@@ -11,14 +11,14 @@ const Home: NextPage = () => {
       <div
         className={
           styles["start-farming-widget"] +
-          " my-8 rounded-lg px-16 1sm:block py-8"
+          " my-8 rounded-lg px-8 1sm:block py-5"
         }
       >
         <div className="flex items-center">
           <Image
             src="/icons/farming-home.svg"
             alt="farming image"
-            width={300}
+            width={130}
             height={80}
           />
           <p className={styles.text}>
@@ -27,7 +27,7 @@ const Home: NextPage = () => {
           </p>
         </div>
 
-        <button className="green-btn h-10 px-6 font-semibold rounded-md text-white">
+        <button className="green-btn h-10 mx-10 font-semibold rounded-md text-white">
           Start Farming
         </button>
       </div>
@@ -43,7 +43,7 @@ const Home: NextPage = () => {
       </div>
       <div className="md:flex flex-row px-16 py-8 rounded-lg my-8 sm:block 2sm:block">
         <div className="basis-1/2">
-          <span className={styles.rowTitle}>asdf</span>
+          <h5 className={styles.rowTitle}>Position Value Breakdown</h5>
           <div className={styles.lendingRow}>
             <span className={styles.lendingRowTitle}>Lending Deposits</span>
             <span className={styles.lendingRowTitle}>$5,000.00 USD</span>
@@ -53,26 +53,30 @@ const Home: NextPage = () => {
             <span className={styles.lendingRowTitle}>$5,000.00 USD</span>
           </div>
         </div>
-        <div className="basis-1/2 flex justify-center">
-          <div className="circle-wrap">
-            <div class="circle">
-              <div class="mask full">
-                <div class="fill"></div>
-              </div>
-              <div class="mask half">
-                <div class="fill"></div>
-              </div>
-              <div class="inside-circle">
-                {" "}
-                <Image
-                  src="/icons/heart.svg"
-                  alt="farming image"
-                  width={300}
-                  height={100}
-                />
+        <div className={`basis-1/2 flex ${styles.circleContaiiner}`}>
+          <div>
+            <h5 className={styles.rowTitle}>Account Health</h5>
+            <div className="circle-wrap">
+              <div class="circle">
+                <div class="mask full">
+                  <div class="fill"></div>
+                </div>
+                <div class="mask half">
+                  <div class="fill"></div>
+                </div>
+                <div class="inside-circle">
+                  {" "}
+                  <Image
+                    src="/icons/heart.svg"
+                    alt="farming image"
+                    width={300}
+                    height={100}
+                  />
+                </div>
               </div>
             </div>
           </div>
+          <h5 className={styles.percentage}>75%</h5>
         </div>
       </div>
     </div>

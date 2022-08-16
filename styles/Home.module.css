@@ -128,10 +128,11 @@
 
 .start-farming-widget .text{
   font-weight: 400;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 29px;
   color: #FFFFFF;
-  max-width: 580px;
+  max-width: 80%;
+  margin-left: 2rem;
 }
 .lendingRow{
   display: flex;
@@ -143,6 +144,17 @@
   font-size: 16px;
 }
 .rowTitle{
-  color:white;
+  color:#8D97A0;
   font-size: 12px;
+  margin-bottom: 1rem;
+}
+.circleContaiiner{
+  margin-left: 4rem;
+  align-items: center;
+}
+.percentage{
+  color: white;
+  font-weight: 500;
+  font-size: 18px;
+  margin-left: 2rem;
 }
