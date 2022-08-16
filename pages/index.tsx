@@ -34,11 +34,11 @@ const Home: NextPage = () => {
       <div className="md:flex gap-8 flex-row my-8 sm:block 2sm:block">
         <div className="net-pay-box basis-1/2 px-6 py-8 ">
           <span className=" small-label">Net Worth</span>
-          <h3 className="">$981,312.51</h3>
+          <h3>$981,312.51 USD</h3>
         </div>
         <div className=" net-pay-box basis-1/2 px-6 pl-8 py-8 ">
           <span className="small-label">Net APY%</span>
-          <h3>$981,312.51</h3>
+          <h3>$250,312.51 USD</h3>
         </div>
       </div>
       <div className="md:flex flex-row px-6 py-8 rounded-lg my-8 sm:block 2sm:block">
