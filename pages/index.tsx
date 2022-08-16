@@ -10,20 +10,23 @@ const Home: NextPage = () => {
     <div className="md:px-16 sm:px-1 2sm:px0">
       <div
         className={
-          styles["start-farming-widget"] + " my-8 rounded-lg 1sm:block py-8"
+          styles["start-farming-widget"] + " my-8 rounded-lg px-16 1sm:block py-8"
         }
       >
+        <div className="flex items-center">
         <Image
           src="/icons/farming-home.svg"
           alt="farming image"
           width={300}
-          height={100}
+          height={80}
         />
-        <p>
+        <p className={styles.text}>
           Some statement about farming and making money and whatever else we
           want to say here...
         </p>
-        <button className=" bg-[#001223] h-10 px-6 font-semibold rounded-md text-white">
+        </div>
+      
+        <button className="green-btn h-10 px-6 font-semibold rounded-md text-white">
           Start Farming
         </button>
       </div>
