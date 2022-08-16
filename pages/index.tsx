@@ -1,17 +1,17 @@
-import type { NextPage } from 'next'
-import { useState } from 'react'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import { PieChart } from 'react-minimal-pie-chart'
+import type { NextPage } from "next";
+import { useState } from "react";
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import { PieChart } from "react-minimal-pie-chart";
 
 const Home: NextPage = () => {
   return (
     <div className="md:px-16 sm:px-1 2sm:px0">
       <div
         className={
-          styles['start-farming-widget'] +
-          ' my-8 rounded-lg px-16 1sm:block py-8'
+          styles["start-farming-widget"] +
+          " my-8 rounded-lg px-16 1sm:block py-8"
         }
       >
         <div className="flex items-center">
@@ -43,12 +43,18 @@ const Home: NextPage = () => {
       </div>
       <div className="md:flex flex-row px-16 py-8 rounded-lg my-8 sm:block 2sm:block">
         <div className="basis-1/2">
-          <h1>Position Value Breakdown</h1>
-          <h1>Lending Deposits $125.23</h1>
-          <h1>Farming Positions $5123.12</h1>
+          <span className={styles.rowTitle}>asdf</span>
+          <div className={styles.lendingRow}>
+            <span className={styles.lendingRowTitle}>Lending Deposits</span>
+            <span className={styles.lendingRowTitle}>$5,000.00 USD</span>
+          </div>
+          <div className={styles.lendingRow}>
+            <span className={styles.lendingRowTitle}>Farming Positions</span>
+            <span className={styles.lendingRowTitle}>$5,000.00 USD</span>
+          </div>
         </div>
         <div className="basis-1/2 flex justify-center">
-          <div class="circle-wrap">
+          <div className="circle-wrap">
             <div class="circle">
               <div class="mask full">
                 <div class="fill"></div>
@@ -57,7 +63,7 @@ const Home: NextPage = () => {
                 <div class="fill"></div>
               </div>
               <div class="inside-circle">
-                {' '}
+                {" "}
                 <Image
                   src="/icons/heart.svg"
                   alt="farming image"
@@ -70,7 +76,7 @@ const Home: NextPage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
