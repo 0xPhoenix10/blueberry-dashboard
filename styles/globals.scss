@@ -28,6 +28,36 @@ a {
 header {
   justify-content: space-between;
 }
+.flex {
+  display: flex;
+}
+.flex-row {
+  flex-direction: row;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-gap {
+  gap: 10px;
+}
+
+.side-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  bottom: 10px;
+  h5 {
+    color: #ffffff;
+    line-height: 24px;
+  }
+}
+
+.side-bottom > div {
+  flex: 50%; /* or - flex: 0 50% - or - flex-basis: 50% - */
+  /*demo*/
+  text-align: center;
+  margin-bottom: 7px;
+}
 
 .small-label {
   font-size: 16px;
