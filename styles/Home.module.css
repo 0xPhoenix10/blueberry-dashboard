@@ -108,7 +108,6 @@
   margin-left: 0.5rem;
 }
 
-
 @media (max-width: 600px) {
   .grid {
     width: 100%;
@@ -116,45 +115,42 @@
   }
 }
 
-
-
-.start-farming-widget{
+.start-farming-widget {
   background-color: rgba(255, 255, 255, 5%);
   display: flex;
   align-items: center;
   place-content: space-between;
 }
 
-
-.start-farming-widget .text{
+.start-farming-widget .text {
   font-weight: 400;
   font-size: 16px;
   line-height: 29px;
-  color: #FFFFFF;
+  color: #ffffff;
   max-width: 80%;
   margin-left: 2rem;
 }
-.lendingRow{
+.lendingRow {
   display: flex;
   justify-content: space-between;
 }
 .lendingRowTitle {
   color: white;
   margin-top: 1rem;
-  font-size: 16px;
+  font-size: 1.8em;
 }
-.rowTitle{
-  color:#8D97A0;
-  font-size: 12px;
+.rowTitle {
+  color: #8d97a0;
+  font-size: 16px;
   margin-bottom: 1rem;
 }
-.circleContaiiner{
-  margin-left: 4rem;
+.circleContaiiner {
+  margin-left: 6rem;
   align-items: center;
 }
-.percentage{
+.percentage {
   color: white;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 1.8em;
   margin-left: 2rem;
 }
