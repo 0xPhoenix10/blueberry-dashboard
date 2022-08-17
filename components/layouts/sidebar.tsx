@@ -23,7 +23,7 @@ const Sidebar = () => {
   ]
 
   return (
-    <aside className=" sticky top-0 max-h-screen bg-[#001223]">
+    <aside className="sidebar sticky top-0 max-h-screen bg-[#001223]">
       <div className="flex items-center justify-center h-[90px]">
         <Link href={'/'}>
           <a>
