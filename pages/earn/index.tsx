@@ -1,79 +1,103 @@
-import type { NextPage } from 'next'
-import Card from '../../components/UI/Card/Card'
+import { Tabs, Tab } from "@mui/material";
+import type { NextPage } from "next";
+import Image from "next/image";
+import { useState } from "react";
+import Card from "../../components/UI/Card/Card";
+import styles from "./earn.module.scss";
 
 const Earn: NextPage = () => {
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
   return (
-    <Card className="">
-       <div className="flex flex-row my-8 sm:block 2sm:block">
-        <div className="basis-1/2 text-center px-16 py-8 border-2 bg-[#7e7e7e] rounded-lg">
-          <h1 className=''>Farming Description</h1>
-          <h1 className=''>Farming Description Farming Description</h1>
+    <div className="md:h-[90px] items-center md:px-16 sm:px-1 2sm:px0 sm:h-[150px] sm:block">
+      <div className={styles.topContainer}>
+        <div>
+          <h4 className={styles.heading}>
+            Farming - Utilize up to 3x leverage on LP strategiers to yield farm.
+          </h4>
+          <p className={styles.text}>
+            Blueberry also offers features such as dual borrow which allows for
+            strategies such as pseudo delta neutral farming within a single
+            position.
+          </p>
         </div>
-        <div className="basis-1/2 text-center px-16 py-8 border-2 bg-[#7e7e7e] rounded-lg">
-          <h1>TVL</h1>
-          <h1>$981,312.51</h1>
+        <div className={styles.rightContainer}>
+          <h4 className={styles.title}>TVL</h4>
+          <h4 className={styles.title}>$100,000,000.00</h4>
         </div>
       </div>
-      <div className="md:grid grid-cols-5 gap-4 my-8 px-16 py-8 border-2 bg-[#7e7e7e] rounded-lg items-center sm:block">
-        <div>
-          <h1>My Positions</h1>
-          <h1>Current Strategy</h1>
-        </div>
-        <div>
-          <h1>Active</h1>
-          <h1>Total Position</h1>
-        </div>
-        <div>
-          <h1>Liguidated</h1>
-          <h1>Debt Value</h1>
-        </div>
-        <div>
-          <h1>Equity Value</h1>
-        </div>
-        <div>
-          <h1>Health Bar</h1>
-        </div>
-      </div>
-      <div className='my-8 px-16 py-8 border-2 bg-[#7e7e7e] rounded-lg sm:block 1sm:block 2sm:hidden'>
-        <table className="table-fixed text-left w-full">
-          <thead>
-            <tr>
-              <th>All Strategies</th>
-              <th>TVL</th>
-              <th>Stablecoin Collateral Yield(@1x, at max lev)</th>
-              <th>Token Collateral Yield(at max lev)</th>
-            </tr>
+
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label="basic tabs example"
+        textColor="secondary"
+        indicatorColor="secondary"
+      >
+        <Tab label="Active Positions" />
+        <Tab label="Liquidated Positions" />
+      </Tabs>
+      <div className={styles.divider}></div>
+      {value == 0 && (
+        <table className={styles.table}>
+          <thead className={styles.header}>
+            <td className={styles.tHeading}>Current Strategy</td>
+            <td className={styles.tHeading}>Total Position</td>
+            <td className={styles.tHeading}>Debt Value</td>
+            <td className={styles.tHeading}>Equity Value</td>
           </thead>
-          <tbody>
+          <tbody className={styles.tbody}>
             <tr>
-              <td>Strategy 1</td>
-              <td>$6132212</td>
-              <td></td>
-              <td></td>
+              <td>
+                <div className={styles.tableCol}>
+                  <Image src="/icons/pic.svg" width={40} height={40} />
+                  <span style={{ paddingLeft: "0.6rem" }}>ICHI-USDC Vault</span>
+                </div>
+              </td>
+              <td>$500 USD</td>
+              <td>$250 USD</td>
+              <td>$250 USD</td>
+            </tr>
+            <tr className={` ${styles.bottom}`}>
+              <td colSpan={4}>
+                <div className={styles.rowBottom}>
+                  <span>Strategy Health: 50%</span>
+                  <div className={styles.innerContainer}>
+                    <div className={styles.container}></div>
+                  </div>
+                </div>
+              </td>
             </tr>
             <tr>
-              <td>Strategy 1</td>
-              <td>$6132212</td>
-              <td></td>
-              <td></td>
+              <td>
+                <div className={styles.tableCol}>
+                  <Image src="/icons/pic1.svg" width={40} height={40} />
+                  <span style={{ paddingLeft: "0.6rem" }}>oneICHI</span>
+                </div>
+              </td>
+              <td>$500 USD</td>
+              <td>$250 USD</td>
+              <td>$250 USD</td>
             </tr>
-            <tr>
-              <td>Strategy 1</td>
-              <td>$6132212</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>Strategy 1</td>
-              <td>$6132212</td>
-              <td></td>
-              <td></td>
+            <tr >
+              <td colSpan={4}>
+                <div className={styles.rowBottom}>
+                  <span>Strategy Health: 75%</span>
+                  <div className={styles.innerContainer}>
+                    <div className={styles.bottomContainer}></div>
+                  </div>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
-      </div>
-       </Card>
-  )
-}
+      )}
+      {value == 1 && <div></div>}
+    </div>
+  );
+};
 
-export default Earn
+export default Earn;
