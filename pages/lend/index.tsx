@@ -4,6 +4,7 @@ import type { NextPage } from 'next'
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import Card from '../../components/UI/Card/Card';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -49,7 +50,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const Lend: NextPage = () => {
   return (
-    <div className='md:px-16 sm:px-1 2sm:px0'>
+    <Card className="">
       <div className="md:flex flex-row my-8 sm:block 2sm:block">
         <div className="basis-1/2 text-center px-16 py-8 border-2 bg-[#7e7e7e] rounded-lg">
           <h1 className=''>Lending description</h1>
@@ -118,7 +119,7 @@ const Lend: NextPage = () => {
           </tbody>
         </table>
       </div>
-    </div>
+    </Card>
   )
 }
 

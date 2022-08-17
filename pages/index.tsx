@@ -1,19 +1,18 @@
 import type { NextPage } from 'next'
 import { useState } from 'react'
+import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { PieChart } from 'react-minimal-pie-chart'
-import WalletConnectProvider from '@walletconnect/web3-provider'
-import { providers } from 'ethers'
-import Head from 'next/head'
-import { useCallback, useEffect, useReducer } from 'react'
-import WalletLink from 'walletlink'
-import Web3Modal from 'web3modal'
-import { ellipseAddress, getChainData } from '../shared/lib/utilities'
+import Card from '../components/UI/Card/Card'
+import Button from '../components/UI/Button/Button'
+import Text from '../components/UI/Text/Text'
+import Graph from '../components/UI/Graph/Graph'
+import { Grid } from '@mui/material'
 
 const Home: NextPage = () => {
   return (
-    <div className="md:px-16 sm:px-1 2sm:px0">
+    <Card className="">
       <div
         className={
           styles['start-farming-widget'] +
@@ -32,60 +31,59 @@ const Home: NextPage = () => {
             want to say here...
           </p>
         </div>
-
-        <button className="green-btn h-10 mx-10 font-semibold rounded-md text-white">
+        <Button type="button" className="green-btn">
           Start Farming
-        </button>
+        </Button>
       </div>
       <div className="md:flex gap-8 flex-row my-8 sm:block 2sm:block">
         <div className="net-pay-box basis-1/2 px-6 py-8 ">
           <span className=" small-label">Net Worth</span>
-          <h3>$981,312.51 USD</h3>
+          <Text>
+            {' '}
+            <h2>$981,312.51 USD</h2>
+          </Text>
         </div>
         <div className=" net-pay-box basis-1/2 px-6 pl-8 py-8 ">
           <span className="small-label">Net APY%</span>
-          <h3>$250,312.51 USD</h3>
+          <Text>
+            {' '}
+            <h2>$250,312.51 USD</h2>
+          </Text>
         </div>
       </div>
-      <div className="md:flex flex-row px-6 py-8 rounded-lg my-8 sm:block 2sm:block">
-        <div className="basis-1/2">
-          <h5 className={styles.rowTitle}>Position Value Breakdown</h5>
+      <div className="md:flex gap-8 flex-row rounded-lg my-8 sm:block 2sm:block">
+        <div className="basis-1/2 px-6 py-8 ">
+          <Text>
+            <h6 className="text-muted">Position Value Breakdown</h6>
+          </Text>
           <div className={styles.lendingRow}>
-            <span className={styles.lendingRowTitle}>Lending Deposits</span>
-            <span className={styles.lendingRowTitle}>$5,000.00 USD</span>
+            <Text className="py-8">
+              {' '}
+              <h3>Lending Deposits</h3>{' '}
+            </Text>
+            <Text className="py-8">
+              {' '}
+              <h3>$5,000.00 USD</h3>{' '}
+            </Text>
           </div>
           <div className={styles.lendingRow}>
-            <span className={styles.lendingRowTitle}>Farming Positions</span>
-            <span className={styles.lendingRowTitle}>$5,000.00 USD</span>
+            <Text>
+              {' '}
+              <h3>Farming Positions</h3>
+            </Text>
+            <Text>
+              {' '}
+              <h3>$5,000.00 USD</h3>{' '}
+            </Text>
           </div>
         </div>
-        <div className={`basis-1/2 flex ${styles.circleContaiiner}`}>
-          <div>
-            <h5 className={styles.rowTitle}>Account Health</h5>
-            <div className="circle-wrap">
-              <div className="circle">
-                <div className="mask full">
-                  <div className="fill"></div>
-                </div>
-                <div className="mask half">
-                  <div className="fill"></div>
-                </div>
-                <div className="inside-circle">
-                  {' '}
-                  <Image
-                    src="/icons/heart.svg"
-                    alt="farming image"
-                    width={300}
-                    height={100}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <h5 className={styles.percentage}>75%</h5>
+
+        {/* account health graph */}
+        <div className={`px-6 py-8`}>
+          <Graph type="pie" label="Account Health" value="75"></Graph>
         </div>
       </div>
-    </div>
+    </Card>
   )
 }
 
