@@ -1,6 +1,9 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* @import "./mixin.scss"; */
 
 html,
 body {
@@ -19,8 +22,32 @@ a {
   box-sizing: border-box;
 }
 
+.sidebar{
+  /* @include devices(tablet) {
+      display: block;
+    }
+
+  @include devices(mobile) {
+    display: none;
+  } */
+}
+
+.my-grid{
+  /* @include devices(tablet) {
+    flex-direction: row;
+  }
+
+@include devices(mobile) {
+  flex-direction: column;
+} */
+}
+
 .bg-main {
   background: linear-gradient(118.56deg, #0f2337 0%, #003d4a 100%);
+
+  /* @include devices(mobile) {
+    padding: 1.5em;
+  } */
 }
 .net-pay-box {
   border-bottom: 4px solid rgb(255 255 255 / 5%);
@@ -46,10 +73,11 @@ header {
   flex-wrap: wrap;
   position: absolute;
   bottom: 10px;
-  h5 {
-    color: #ffffff;
-    line-height: 24px;
-  }
+  
+}
+.side-bottom h5 {
+  color: #ffffff;
+  line-height: 24px;
 }
 
 .side-bottom > div {
@@ -63,21 +91,6 @@ header {
   font-size: 16px;
   line-height: 24px;
   color: #8d97a0;
-}
-
-h3 {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 2em;
-  line-height: 44px;
-  color: #fff;
-}
-
-h4 {
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 29px;
-  color: #fff;
 }
 
 .green-btn {
@@ -148,3 +161,14 @@ Circle styles
 /* 
 Circle style ends
 */
+
+
+
+/* // background global classes */
+
+.bg-white-01{
+  background: rgba(255, 255, 255, 0.1);
+}
+.bg-white-05{
+  background: rgba(255, 255, 255, 0.1);
+}

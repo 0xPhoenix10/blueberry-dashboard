@@ -1,12 +1,10 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Card from '../../components/UI/Card/Card'
 
 const Earn: NextPage = () => {
   return (
-    <div className='md:px-16 sm:px-1 2sm:px0'>
-      <div className="flex flex-row my-8 sm:block 2sm:block">
+    <Card className="">
+       <div className="flex flex-row my-8 sm:block 2sm:block">
         <div className="basis-1/2 text-center px-16 py-8 border-2 bg-[#7e7e7e] rounded-lg">
           <h1 className=''>Farming Description</h1>
           <h1 className=''>Farming Description Farming Description</h1>
@@ -74,7 +72,7 @@ const Earn: NextPage = () => {
           </tbody>
         </table>
       </div>
-    </div>
+       </Card>
   )
 }
 
