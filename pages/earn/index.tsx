@@ -37,8 +37,20 @@ const Earn: NextPage = () => {
         textColor="secondary"
         indicatorColor="secondary"
       >
-        <Tab label="Active Positions" />
-        <Tab label="Liquidated Positions" />
+        <Tab
+          label={
+            <span style={{ color: value === 0 ? "#19857b" : "white" }}>
+              Active Positions
+            </span>
+          }
+        />
+        <Tab
+          label={
+            <span style={{ color: value === 1 ? "#19857b" : "white" }}>
+              Liquidated Positions
+            </span>
+          }
+        />
       </Tabs>
       <div className={styles.divider}></div>
       {value == 0 && (
@@ -51,7 +63,7 @@ const Earn: NextPage = () => {
           </thead>
           <tbody className={styles.tbody}>
             <tr>
-              <td>
+              <td className={styles.columnRoundLeft}>
                 <div className={styles.tableCol}>
                   <Image src="/icons/pic.svg" width={40} height={40} />
                   <span style={{ paddingLeft: "0.6rem" }}>ICHI-USDC Vault</span>
@@ -59,7 +71,7 @@ const Earn: NextPage = () => {
               </td>
               <td>$500 USD</td>
               <td>$250 USD</td>
-              <td>$250 USD</td>
+              <td className={styles.columnRoundRight}>$250 USD</td>
             </tr>
             <tr className={` ${styles.bottom}`}>
               <td colSpan={4}>
@@ -82,8 +94,11 @@ const Earn: NextPage = () => {
               <td>$250 USD</td>
               <td>$250 USD</td>
             </tr>
-            <tr >
-              <td colSpan={4}>
+            <tr>
+              <td
+                colSpan={4}
+                className={`${styles.columnRoundBottomRight} ${styles.columnRoundBottomLeft}`}
+              >
                 <div className={styles.rowBottom}>
                   <span>Strategy Health: 75%</span>
                   <div className={styles.innerContainer}>

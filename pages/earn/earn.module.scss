@@ -37,11 +37,22 @@
         padding: 1rem;
     }
     .tbody {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 20px;
         td {
+            background: rgba(255, 255, 255, 0.05);
             color: white;
             padding: 1rem;
+        }
+        .columnRoundLeft{
+            border-top-left-radius: 10px;
+        }
+        .columnRoundRight{
+            border-top-right-radius: 10px;
+        }
+        .columnRoundBottomLeft{
+            border-bottom-left-radius: 10px;
+        }
+        .columnRoundBottomRight{
+            border-bottom-right-radius: 10px;
         }
     }
 
