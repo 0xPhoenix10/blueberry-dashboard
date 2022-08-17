@@ -1,9 +1,15 @@
 import type { NextPage } from 'next'
 import { useState } from 'react'
-import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { PieChart } from 'react-minimal-pie-chart'
+import WalletConnectProvider from '@walletconnect/web3-provider'
+import { providers } from 'ethers'
+import Head from 'next/head'
+import { useCallback, useEffect, useReducer } from 'react'
+import WalletLink from 'walletlink'
+import Web3Modal from 'web3modal'
+import { ellipseAddress, getChainData } from '../shared/lib/utilities'
 
 const Home: NextPage = () => {
   return (
@@ -57,14 +63,14 @@ const Home: NextPage = () => {
           <div>
             <h5 className={styles.rowTitle}>Account Health</h5>
             <div className="circle-wrap">
-              <div class="circle">
-                <div class="mask full">
-                  <div class="fill"></div>
+              <div className="circle">
+                <div className="mask full">
+                  <div className="fill"></div>
                 </div>
-                <div class="mask half">
-                  <div class="fill"></div>
+                <div className="mask half">
+                  <div className="fill"></div>
                 </div>
-                <div class="inside-circle">
+                <div className="inside-circle">
                   {' '}
                   <Image
                     src="/icons/heart.svg"
