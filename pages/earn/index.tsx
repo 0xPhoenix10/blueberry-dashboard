@@ -1,16 +1,17 @@
-import { Tabs, Tab } from "@mui/material";
-import type { NextPage } from "next";
-import Image from "next/image";
-import { useState } from "react";
-import Card from "../../components/UI/Card/Card";
-import styles from "./earn.module.scss";
+import { Tabs, Tab } from '@mui/material'
+import type { NextPage } from 'next'
+import Image from 'next/image'
+import { useState } from 'react'
+import Button from '../../components/UI/Button/Button'
+import Card from '../../components/UI/Card/Card'
+import styles from './earn.module.scss'
 
 const Earn: NextPage = () => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
   return (
     <div className="md:h-[90px] items-center md:px-16 sm:px-1 2sm:px0 sm:h-[150px] sm:block">
       <div className={styles.topContainer}>
@@ -39,14 +40,14 @@ const Earn: NextPage = () => {
       >
         <Tab
           label={
-            <span style={{ color: value === 0 ? "#19857b" : "white" }}>
+            <span style={{ color: value === 0 ? '#19857b' : 'white' }}>
               Active Positions
             </span>
           }
         />
         <Tab
           label={
-            <span style={{ color: value === 1 ? "#19857b" : "white" }}>
+            <span style={{ color: value === 1 ? '#19857b' : 'white' }}>
               Liquidated Positions
             </span>
           }
@@ -56,17 +57,19 @@ const Earn: NextPage = () => {
       {value == 0 && (
         <table className={styles.table}>
           <thead className={styles.header}>
-            <td className={styles.tHeading}>Current Strategy</td>
-            <td className={styles.tHeading}>Total Position</td>
-            <td className={styles.tHeading}>Debt Value</td>
-            <td className={styles.tHeading}>Equity Value</td>
+            <tr>
+              <td className={styles.tHeading}>Current Strategy</td>
+              <td className={styles.tHeading}>Total Position</td>
+              <td className={styles.tHeading}>Debt Value</td>
+              <td className={styles.tHeading}>Equity Value</td>
+            </tr>
           </thead>
           <tbody className={styles.tbody}>
             <tr>
               <td className={styles.columnRoundLeft}>
                 <div className={styles.tableCol}>
                   <Image src="/icons/pic.svg" width={40} height={40} />
-                  <span style={{ paddingLeft: "0.6rem" }}>ICHI-USDC Vault</span>
+                  <span style={{ paddingLeft: '0.6rem' }}>ICHI-USDC Vault</span>
                 </div>
               </td>
               <td>$500 USD</td>
@@ -87,7 +90,7 @@ const Earn: NextPage = () => {
               <td>
                 <div className={styles.tableCol}>
                   <Image src="/icons/pic1.svg" width={40} height={40} />
-                  <span style={{ paddingLeft: "0.6rem" }}>oneICHI</span>
+                  <span style={{ paddingLeft: '0.6rem' }}>oneICHI</span>
                 </div>
               </td>
               <td>$500 USD</td>
@@ -111,8 +114,45 @@ const Earn: NextPage = () => {
         </table>
       )}
       {value == 1 && <div></div>}
-    </div>
-  );
-};
 
-export default Earn;
+      <div className="mt-6">
+        <table className={styles.table_bottom}>
+          <thead className={styles.header}>
+            <tr>
+              <td className={styles.tHeading}>Strategies</td>
+              <td className={styles.tHeading}>TVL</td>
+              <td className={styles.tHeading}>
+                Stablecoin Collateral Yield (@1x, at max lev)
+              </td>
+              <td className={styles.tHeading}>
+                Token Collateral Yield (at max lev)
+              </td>
+              <td className={styles.tHeading}></td>
+            </tr>
+          </thead>
+          <tbody className={styles.tbody}>
+            <tr>
+              <td className={styles.columnRoundLeft}>
+                <div className={styles.tableCol}>
+                  <Image src="/icons/pic.svg" width={40} height={40} />
+                  <span style={{ paddingLeft: '0.6rem' }}>ICHI-USDC Vault</span>
+                </div>
+              </td>
+              <td>$500 USD</td>
+              <td>$250 USD</td>
+              <td className={styles.columnRoundRight}>$250 USD</td>
+              <td>
+                {' '}
+                <Button type="button" className="green-table-btn">
+                  Farm
+                </Button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )
+}
+
+export default Earn
