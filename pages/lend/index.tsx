@@ -1,126 +1,195 @@
-import * as React from 'react';
+import { Tabs, Tab } from '@mui/material'
 import type { NextPage } from 'next'
+import Image from 'next/image'
+import { useState } from 'react'
+import Button from '../../components/UI/Button/Button'
+import Card from '../../components/UI/Card/Card'
+import styles from './lend.module.scss'
 
-import { styled, alpha } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@mui/icons-material/Search';
-import Card from '../../components/UI/Card/Card';
+const Earn: NextPage = () => {
+  const [value, setValue] = useState(0)
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(1),
-    width: 'auto',
-  },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
-      },
-    },
-  },
-}));
-
-const Lend: NextPage = () => {
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue)
+  }
   return (
-    <Card className="">
-      <div className="md:flex flex-row my-8 sm:block 2sm:block">
-        <div className="basis-1/2 text-center px-16 py-8 border-2 bg-[#7e7e7e] rounded-lg">
-          <h1 className=''>Lending description</h1>
-          <h1 className=''>Lending description Lending description </h1>
+    <div className="md:h-[90px] items-center  mt-3 md:px-16 sm:px-1 2sm:px0 sm:h-[150px] sm:block">
+      <div className={styles.topContainer}>
+        <div>
+          <h4 className={styles.heading}>Lending</h4>
+          <p className={styles.text}>
+            Blueberry also offers features such as dual borrow which allows for
+            strategies such as pseudo delta neutral farming within a single
+            position.
+          </p>
         </div>
-        <div className="basis-1/2 text-center px-16 py-8 border-2 bg-[#7e7e7e] rounded-lg">
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
+        <div className={styles.rightContainer}>
+          <h4 className={styles.title}>TVL</h4>
+          <h4 className={styles.title}>$100,000,000.00</h4>
         </div>
       </div>
-      <div className="sm:grid grid-cols-5 gap-4 my-8 px-16 py-8 border-2 bg-[#7e7e7e] rounded-lg items-center 2sm:block">
-        <div>
-          <h1>My Positions</h1>
-          <h1>Pool</h1>
-        </div>
-        <div>
-          <h1>APY</h1>
-        </div>
-        <div>
-          <h1>Your Position</h1>
-        </div>
-      </div>
-      <div className='my-8 px-16 py-8 border-2 bg-[#7e7e7e] rounded-lg 1sm:block 2sm:hidden'>
-        <h1>Lending Pools</h1>
-        <table className="table-fixed text-left w-full">
-          <thead>
+
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label="basic tabs example"
+        textColor="secondary"
+        indicatorColor="secondary"
+      >
+        <Tab
+          label={
+            <span style={{ color: value === 0 ? '#19857b' : 'white' }}>
+              My Positions
+            </span>
+          }
+        />
+        {/* <Tab
+          label={
+            <span style={{ color: value === 1 ? '#19857b' : 'white' }}>
+              Liquidated Positions
+            </span>
+          }
+        /> */}
+      </Tabs>
+      <div className={styles.divider}></div>
+      {value == 0 && (
+        <table className={styles.table}>
+          <thead className={styles.header}>
             <tr>
-              <th>Pool</th>
-              <th>APY</th>
-              <th>Total Supply</th>
-              <th>Total Borrowed</th>
-              <th>Utilization</th>
-              <th>APY (14D)</th>
-              <th></th>
-              <th></th>
+              <td className={styles.tHeading}>Pool</td>
+              <td className={styles.tHeading}>APY</td>
+              <td className={styles.tHeading}></td>
+              <td className={styles.tHeading}></td>
+              <td className={styles.tHeading}>Your Position</td>
             </tr>
           </thead>
-          <tbody>
+          <tbody className={styles.tbody}>
+            <tr className={` ${styles.bottom}`}>
+              <td className={styles.columnRoundLeft}>
+                <div className={styles.tableCol}>
+                  <Image src="/icons/pic.svg" width={40} height={40} />
+                  <span style={{ paddingLeft: '0.7rem' }}>ICHI</span>
+                </div>
+              </td>
+              <td>12%</td>
+              <td></td>
+              <td></td>
+              <td>250,0000 ICHI</td>
+            </tr>
+
             <tr>
-              <td>Asset</td>
-              <td>5%</td>
-              <td><h1>xxxx Asset</h1><h1>$xxx</h1></td>
-              <td><h1>xxxx Asset</h1><h1>$xxx</h1></td>
-              <td>10%</td>
-              <td>10%</td>
-              <td><button className='border-1 border-[#e2e2e2] p-2 bg-[#68dd59]'>Deposit</button></td>
-              <td><button className='border-1 border-[#e2e2e2] p-2 bg-[#68dd59]'>Chart</button></td>
+              <td>
+                <div className={styles.tableCol}>
+                  <Image src="/icons/pic1.svg" width={40} height={40} />
+                  <span style={{ paddingLeft: '0.7rem' }}>oneICHI</span>
+                </div>
+              </td>
+              <td>12%</td>
+              <td></td>
+              <td></td>
+              <td>250,0000 oneICHI</td>
+            </tr>
+          </tbody>
+        </table>
+      )}
+      {value == 1 && <div></div>}
+
+      <div className="mt-10">
+        <table className={styles.table_bottom}>
+          <thead className={styles.header}>
+            <tr>
+              <td className={styles.tHeading}>Pool</td>
+              <td className={styles.tHeading}>APY</td>
+              <td className={styles.tHeading}>Total Supply</td>
+              <td className={styles.tHeading}>Total Borrowed</td>
+              <td className={styles.tHeading}>Utilization</td>
+              <td className={styles.tHeading}>APY (14D)</td>
+              <td className={styles.tHeading}></td>
+            </tr>
+          </thead>
+
+          <tbody className={styles.tbody}>
+            <tr>
+              <td className={styles.columnRoundLeft}>
+                <div className={styles.tableCol}>
+                  <Image src="/icons/pic.svg" width={40} height={40} />
+                  <span style={{ paddingLeft: '0.7rem' }}>ICHI</span>
+                </div>
+              </td>
+              <td>12%</td>
+              <td>5,000,000 ICHI</td>
+              <td>1,236,010 ICHI</td>
+              <td>80%</td>
+              <td className={styles.columnRoundRight}>80%</td>
+              <td>
+                {' '}
+                <Button type="button" className="green-table-btn">
+                  Deposit
+                </Button>
+              </td>
             </tr>
             <tr>
-              <td>Asset</td>
-              <td>5%</td>
-              <td><h1>xxxx Asset</h1><h1>$xxx</h1></td>
-              <td><h1>xxxx Asset</h1><h1>$xxx</h1></td>
-              <td>10%</td>
-              <td>10%</td>
-              <td><button className='border-1 border-[#e2e2e2] p-2 bg-[#68dd59]'>Deposit</button></td>
-              <td><button className='border-1 border-[#e2e2e2] p-2 bg-[#68dd59]'>Chart</button></td>
+              <td className={styles.columnRoundLeft}>
+                <div className={styles.tableCol}>
+                  <Image src="/icons/pic.svg" width={40} height={40} />
+                  <span style={{ paddingLeft: '0.7rem' }}>oneICHI</span>
+                </div>
+              </td>
+              <td>12%</td>
+              <td>5,000,000 ICHI</td>
+              <td>1,236,010 ICHI</td>
+              <td>80%</td>
+              <td className={styles.columnRoundRight}>80%</td>
+              <td>
+                {' '}
+                <Button type="button" className="green-table-btn">
+                  Deposit
+                </Button>
+              </td>
+            </tr>
+            <tr>
+              <td className={styles.columnRoundLeft}>
+                <div className={styles.tableCol}>
+                  <Image src="/icons/pic.svg" width={40} height={40} />
+                  <span style={{ paddingLeft: '0.7rem' }}>USDC</span>
+                </div>
+              </td>
+              <td>12%</td>
+              <td>5,000,000 ICHI</td>
+              <td>1,236,010 ICHI</td>
+              <td>80%</td>
+              <td className={styles.columnRoundRight}>80%</td>
+              <td>
+                {' '}
+                <Button type="button" className="green-table-btn">
+                  Deposit
+                </Button>
+              </td>
+            </tr>
+            <tr>
+              <td className={styles.columnRoundLeft}>
+                <div className={styles.tableCol}>
+                  <Image src="/icons/pic.svg" width={40} height={40} />
+                  <span style={{ paddingLeft: '0.7rem' }}>ICHI-USDC Vault</span>
+                </div>
+              </td>
+              <td>$500 USD</td>
+              <td>$250 USD</td>
+              <td>$250 USD</td>
+              <td>$250 USD</td>
+              <td className={styles.columnRoundRight}>$250 USD</td>
+              <td>
+                {' '}
+                <Button type="button" className="green-table-btn">
+                  Farm
+                </Button>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
-    </Card>
+    </div>
   )
 }
 
-export default Lend
+export default Earn
