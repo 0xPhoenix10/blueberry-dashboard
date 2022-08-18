@@ -1,7 +1,21 @@
+@import "./mixin.scss";
+
 .container {
   padding: 0 2rem;
 }
 
+.topContainer{
+  display: flex;
+  align-items:center;
+  @include for-size(phone-only){
+    flex-direction: column;
+  }
+}
+.heading{
+  @include for-size(phone-only){
+    font-size: 20px !important;
+  }
+}
 .main {
   min-height: 100vh;
   padding: 4rem 0;

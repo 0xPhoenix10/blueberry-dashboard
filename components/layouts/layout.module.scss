@@ -1,6 +1,12 @@
+@import "../../styles/mixin.scss";
 .rightLayout {
     height: 100vh;
     overflow-y: scroll;
+    @include for-size(phone-only){
+        overflow-x: auto;
+        height: 72vh;
+        padding: 15px;
+    }
     &::-webkit-scrollbar {
         width: 10px;
     }
@@ -12,4 +18,9 @@
     &::-webkit-scrollbar-track {
         background: #e6e7e7;
     }
+}
+.bottomContainer{
+@include for-size(phone-only){
+    padding-bottom: 7rem;
+}
 }
