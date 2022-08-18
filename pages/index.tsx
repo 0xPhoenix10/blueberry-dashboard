@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import { useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.scss'
 import { PieChart } from 'react-minimal-pie-chart'
 import Card from '../components/UI/Card/Card'
 import Button from '../components/UI/Button/Button'
@@ -16,10 +16,10 @@ const Home: NextPage = () => {
       <div
         className={
           styles['start-farming-widget'] +
-          ' my-8 rounded-lg px-8 1sm:block py-5'
+          ' my-8 rounded-lg md-px-8 1sm:block py-5'
         }
       >
-        <div className="flex items-center">
+        <div className={`${styles.topContainer}`}>
           <Image
             src="/icons/farming-home.svg"
             alt="farming image"
@@ -59,21 +59,21 @@ const Home: NextPage = () => {
           <div className={styles.lendingRow}>
             <Text className="py-8">
               {' '}
-              <h3>Lending Deposits</h3>{' '}
+              <h3 className={styles.heading}>Lending Deposits</h3>{' '}
             </Text>
             <Text className="py-8">
               {' '}
-              <h3>$5,000.00 USD</h3>{' '}
+              <h3 className={styles.heading}>$5,000.00 USD</h3>{' '}
             </Text>
           </div>
           <div className={styles.lendingRow}>
             <Text>
               {' '}
-              <h3>Farming Positions</h3>
+              <h3 className={styles.heading}>Farming Positions</h3>
             </Text>
             <Text>
               {' '}
-              <h3>$5,000.00 USD</h3>{' '}
+              <h3 className={styles.heading}>$5,000.00 USD</h3>{' '}
             </Text>
           </div>
         </div>
