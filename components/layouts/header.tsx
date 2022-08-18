@@ -94,7 +94,7 @@ const Header = () => {
       {isMobileTab && (
         <>
           <div
-            className={`flex items-center justify-between filter drop-shadow-md ml-2 mr-2 ${styles.mobiileNavbar} h-20`}
+            className={`flex items-center justify-between pl-2 pr-2 ${styles.mobileNavbar} h-20`}
           >
             <Image
               src="/icons/home.svg"
