@@ -38,7 +38,7 @@ const BottomNavbar = ({}) => {
               onClick={() => handleNavigation(item.href)}
               className={`${Style.navItem}`}
               icon={
-                <Image src={item.icon} width={40} height={40} />
+                <Image src={item.icon} width={30} height={30} />
               }
               label={item.title}
             />

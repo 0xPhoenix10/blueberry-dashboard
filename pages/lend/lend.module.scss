@@ -1,7 +1,13 @@
+@import "../../styles/mixin.scss";
+
 .topContainer {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
+  @include for-size(phone-only) {
+    flex-direction: column;
+    align-items: end;
+  }
   .heading {
     color: white;
     font-size: 16px;
@@ -35,12 +41,18 @@
   .tHeading {
     color: #8d97a0;
     padding: 1rem;
+    @include for-size(phone-only) {
+      font-size: 0.8em;
+    }
   }
   .tbody {
     td {
       background: rgba(255, 255, 255, 0.05);
       color: white;
       padding: 1rem;
+      @include for-size(phone-only) {
+        font-size: 0.8em;
+      }
     }
     .columnRoundLeft {
       border-top-left-radius: 10px;
@@ -104,6 +116,9 @@
   .tHeading {
     color: #8d97a0;
     padding: 1rem;
+    @include for-size(phone-only) {
+      font-size: 0.8em;
+    }
   }
   .tbody {
     td {
@@ -112,6 +127,9 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       color: white;
       padding: 1rem;
+      @include for-size(phone-only) {
+        font-size: 0.8em;
+      }
     }
     .columnRoundLeft {
       border-top-left-radius: 10px;
