@@ -123,9 +123,12 @@ const Earn: NextPage = () => {
               <td className={styles.columnRoundRight}>80%</td>
               <td>
                 {' '}
-                <Button type="button" className="green-table-btn">
-                  Deposit
-                </Button>
+                <div className={styles.tableCol}>
+                  <Button type="button" className="green-table-btn">
+                    Deposit
+                  </Button>
+                  <Image src="/icons/union.svg" width={20} height={20} />
+                </div>
               </td>
             </tr>
             <tr>
@@ -142,9 +145,12 @@ const Earn: NextPage = () => {
               <td className={styles.columnRoundRight}>80%</td>
               <td>
                 {' '}
-                <Button type="button" className="green-table-btn">
-                  Deposit
-                </Button>
+                <div className={styles.tableCol}>
+                  <Button type="button" className="green-table-btn">
+                    Deposit
+                  </Button>
+                  <Image src="/icons/union.svg" width={20} height={20} />
+                </div>
               </td>
             </tr>
             <tr>
@@ -161,9 +167,12 @@ const Earn: NextPage = () => {
               <td className={styles.columnRoundRight}>80%</td>
               <td>
                 {' '}
-                <Button type="button" className="green-table-btn">
-                  Deposit
-                </Button>
+                <div className={styles.tableCol}>
+                  <Button type="button" className="green-table-btn ">
+                    Deposit
+                  </Button>
+                  <Image src="/icons/union.svg" width={20} height={20} />
+                </div>
               </td>
             </tr>
             <tr>
