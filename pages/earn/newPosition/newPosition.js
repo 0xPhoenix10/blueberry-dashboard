@@ -40,7 +40,7 @@ const NewPosition = ()=>{
                 <div  className={` ${Style.chooseSubContainer}`}></div>
 
                 <div className={Style['chooseContainer-content']}>
-                    <label >Choose Leverage</label>
+                    <label className={` ${Style.chooseSubContainerLabel}`}  >Choose Leverage</label>
                      <LeverageSlider/>
                 </div>
 
