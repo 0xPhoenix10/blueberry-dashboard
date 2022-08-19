@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Dialog, DialogTitle } from "@mui/material";
 import Style from "./popup.module.scss";
 import Image from "next/image";
 
 const Popup = ({
     isOpen,
-    handleClose,
     title,
-    width = 475,
+    width = 700,
     borderRadius = 20,
     isFullScreen = false,
     isShowHeader = true,
@@ -15,14 +14,26 @@ const Popup = ({
     containerClassName,
     children,
 }) => {
-    const closePopup = () => {
-        handleClose?.(true);
+
+    const [Open, setOpen] = useState(false);
+    // setOpen(isOpen);
+
+    useEffect(() => {
+        if(isOpen) {
+            setOpen(true);
+        }
+        console.log('mount it!');
+    }, []);
+
+    const handleClose = () => {
+        // handleClose?.(true);
+        setOpen(false);
     };
     return (
         <div>
             <Dialog
                 open={isOpen}
-                // onClose={handleClose}
+                 onClose={handleClose}
                 fullScreen={isFullScreen}
                 aria-describedby="alert-dialog-slide-description"
                 className={Style.dialog}
@@ -47,9 +58,9 @@ const Popup = ({
 
                                     <div
                                         className={`${Style.closeIcon} mt-3`}
-                                        onClick={closePopup}
+                                        onClick={handleClose}
                                     >
-                                        <Image src="/icons/cross.svg" width={15} height={15} />
+                                        <Image src="/icons/cross.svg" width={15} height={15}  alt="image"/>
                                     </div>
 
                                 </div>

@@ -8,22 +8,29 @@ import styles from './earn.module.scss'
 import Popup from '../../components/UI/Popup/popup';
 import NewPosition from './newPosition/newPosition';
 
+
 const Earn: NextPage = () => {
-  const [value, setValue] = useState(0)
+  const [value, setValue] = useState(0);
+  const [Open, setOpen] = useState(false)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
+  }
+
+  const newPositionOpenHandler = () => {
+    setOpen(true);
+    console.log(Open);
   }
   return (
     <div className="md:h-[90px] items-center  mt-3 md:px-16 sm:px-1 2sm:px0 sm:h-[150px] sm:block">
       <div className={styles.topContainer}>
         <div>
           <h4 className={styles.heading}>
-            Farming - Utilize up to 3x leverage on LP strategiers to yield farm.
+             New Positioning - Utilize up to 3x leverage on LP strategiers to yield  New Position.
           </h4>
           <p className={styles.text}>
             Blueberry also offers features such as dual borrow which allows for
-            strategies such as pseudo delta neutral farming within a single
+            strategies such as pseudo delta neutral  New Positioning within a single
             position.
           </p>
         </div>
@@ -70,7 +77,7 @@ const Earn: NextPage = () => {
             <tr>
               <td className={styles.columnRoundLeft}>
                 <div className={styles.tableCol}>
-                  <Image src="/icons/pic.svg" width={40} height={40} />
+                  <Image src="/icons/pic.svg" width={40} height={40}  alt="image"/>
                   <span style={{ paddingLeft: '0.7rem' }}>ICHI-USDC Vault</span>
                 </div>
               </td>
@@ -91,7 +98,7 @@ const Earn: NextPage = () => {
             <tr>
               <td>
                 <div className={styles.tableCol}>
-                  <Image src="/icons/pic1.svg" width={40} height={40} />
+                  <Image src="/icons/pic1.svg" width={40} height={40} alt="icon" />
                   <span style={{ paddingLeft: '0.7rem' }}>oneICHI</span>
                 </div>
               </td>
@@ -136,7 +143,7 @@ const Earn: NextPage = () => {
             <tr>
               <td className={styles.columnRoundLeft}>
                 <div className={styles.tableCol}>
-                  <Image src="/icons/pic.svg" width={40} height={40} />
+                  <Image src="/icons/pic.svg" width={40} height={40}  alt="image"/>
                   <span style={{ paddingLeft: '0.7rem' }}>ICHI-USDC Vault</span>
                 </div>
               </td>
@@ -145,15 +152,15 @@ const Earn: NextPage = () => {
               <td className={styles.columnRoundRight}>$250 USD</td>
               <td>
                 {' '}
-                <Button type="button" className="green-table-btn">
-                  Farm
+                <Button type="button" onClick={newPositionOpenHandler} className="green-table-btn">
+                   New Position
                 </Button>
               </td>
             </tr>
             <tr>
               <td className={styles.columnRoundLeft}>
                 <div className={styles.tableCol}>
-                  <Image src="/icons/pic.svg" width={40} height={40} />
+                  <Image src="/icons/pic.svg" width={40} height={40}  alt="image"/>
                   <span style={{ paddingLeft: '0.7rem' }}>ICHI-USDC Vault</span>
                 </div>
               </td>
@@ -163,14 +170,14 @@ const Earn: NextPage = () => {
               <td>
                 {' '}
                 <Button type="button" className="green-table-btn">
-                  Farm
+                   New Position
                 </Button>
               </td>
             </tr>{' '}
             <tr>
               <td className={styles.columnRoundLeft}>
                 <div className={styles.tableCol}>
-                  <Image src="/icons/pic.svg" width={40} height={40} />
+                  <Image src="/icons/pic.svg" width={40} height={40}  alt="image"/>
                   <span style={{ paddingLeft: '0.7rem' }}>ICHI-USDC Vault</span>
                 </div>
               </td>
@@ -180,14 +187,14 @@ const Earn: NextPage = () => {
               <td>
                 {' '}
                 <Button type="button" className="green-table-btn">
-                  Farm
+                   New Position
                 </Button>
               </td>
             </tr>{' '}
             <tr>
               <td className={styles.columnRoundLeft}>
                 <div className={styles.tableCol}>
-                  <Image src="/icons/pic.svg" width={40} height={40} />
+                  <Image src="/icons/pic.svg" width={40} height={40}  alt="image"/>
                   <span style={{ paddingLeft: '0.7rem' }}>ICHI-USDC Vault</span>
                 </div>
               </td>
@@ -197,14 +204,14 @@ const Earn: NextPage = () => {
               <td>
                 {' '}
                 <Button type="button" className="green-table-btn">
-                  Farm
+                   New Position
                 </Button>
               </td>
             </tr>{' '}
             <tr>
               <td className={styles.columnRoundLeft}>
                 <div className={styles.tableCol}>
-                  <Image src="/icons/pic.svg" width={40} height={40} />
+                  <Image src="/icons/pic.svg" width={40} height={40}  alt="image"/>
                   <span style={{ paddingLeft: '0.7rem' }}>ICHI-USDC Vault</span>
                 </div>
               </td>
@@ -214,15 +221,14 @@ const Earn: NextPage = () => {
               <td>
                 {' '}
                 <Button type="button" className="green-table-btn">
-                  Farm
+                   New Position
                 </Button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-      <Popup isOpen={true} title={"Your Position"} >
-
+      <Popup isOpen={Open} title={"Your Position"}   >
         <NewPosition />
       </Popup>
     </div>
