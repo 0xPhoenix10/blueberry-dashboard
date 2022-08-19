@@ -5,6 +5,8 @@ import { useState } from 'react'
 import Button from '../../components/UI/Button/Button'
 import Card from '../../components/UI/Card/Card'
 import styles from './earn.module.scss'
+import Popup from '../../components/UI/Popup/popup';
+import NewPosition from './newPosition/newPosition';
 
 const Earn: NextPage = () => {
   const [value, setValue] = useState(0)
@@ -219,6 +221,10 @@ const Earn: NextPage = () => {
           </tbody>
         </table>
       </div>
+      <Popup isOpen={true} title={"Your Position"} >
+
+        <NewPosition />
+      </Popup>
     </div>
   )
 }
