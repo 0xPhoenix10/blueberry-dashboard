@@ -5,8 +5,9 @@
 
     .title {
         font-weight: 700;
-        line-height: 35px;
-    }
+        line-height: 30px;
+        font-size: 24px;
+     }
 
     .rightContainer {
         display: flex;
@@ -17,12 +18,12 @@
 
             .text1 {
                 color: #8D97A0;
-                font-size: 12px;
+                font-size: 14px;
                 text-align: end;
             }
 
             .text2 {
-                font-size: 14px;
+                font-size: 18px;
                 text-align: end;
                 font-weight: 400;
             }
@@ -34,10 +35,33 @@
 .chooseContainer {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
-    padding: 20px 0;
+    // padding: 20px 0;
 
     .chooseSubContainer {
         border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .chooseContainer-content{
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        column-gap: 25px;
+
+        label{
+            font-size: 14px;
+            font-weight: 400;
+            color:#fff;
+        }
+
+        input[type="text"]{
+            width: 90px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.25);
+            opacity: 0.5;
+            border-radius: 14px;
+            margin-right: 5px;
+            
+        }
     }
 }
 
@@ -49,4 +73,53 @@
     padding: 0.5rem;
     font-size: 14px;
     font-weight: 500;
+}
+
+
+.bottomContainer{
+
+    padding: 25px 5px;
+    display: flex;
+   justify-content: space-between;
+    .list{
+        list-style: unstyled;
+        li{
+         display: flex;
+         color: #fff;
+         line-height: 28px;
+         font-size: 12px;
+         font-weight:300;
+         white-space: pre;
+        //  column-gap: 25px;
+        .bold{
+            font-weight: 400;
+        }
+         span{
+            width: 50%;
+         }
+        };
+     }
+
+     .bottomContainerRight{
+            height: 110px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding:20px;
+
+            h6{
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 21px;
+                text-align: center;
+                color: #FFFFFF;
+            }
+
+            h3{
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 35px;
+                text-align: center;
+                color: #FFFFFF;
+            }
+     }
 }

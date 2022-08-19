@@ -1,14 +1,10 @@
 import type { NextPage } from 'next'
-import { useState } from 'react'
-import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.scss'
-import { PieChart } from 'react-minimal-pie-chart'
 import Card from '../components/UI/Card/Card'
 import Button from '../components/UI/Button/Button'
 import Text from '../components/UI/Text/Text'
 import Graph from '../components/UI/Graph/Graph'
-import { Grid } from '@mui/material'
 
 const Home: NextPage = () => {
   return (

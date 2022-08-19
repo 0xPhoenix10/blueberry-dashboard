@@ -1,6 +1,8 @@
 
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Slider } from '@mui/material';
 import Button from '../../../components/UI/Button/Button';
 import Style from './newPosition.module.scss';
+import LeverageSlider from './LeverageSlider';
 
 const NewPosition = ()=>{
     return (
@@ -20,10 +22,42 @@ const NewPosition = ()=>{
 
             </div>
             <div className={`mt-5 ${Style.chooseContainer}`}>
-                <div  className={` ${Style.chooseSubContainer}`}>
 
+                <div className={Style['chooseContainer-content']}>
+                    <label>Choose Collateral</label>
+                    <FormControl>
+                        <RadioGroup
+                            row
+                            aria-labelledby="demo-row-radio-buttons-group-label"
+                            name="row-radio-buttons-group">
+                            <FormControlLabel value="ICHI" color="secondary" control={<Radio />} label="ICHI" />
+                            <input type="text" />
+                            <FormControlLabel value="USDC" color="secondary" control={<Radio />} label="USDC" />
+                            <input type="text" />
+                        </RadioGroup>
+                    </FormControl>
+                </div>
+                <div  className={` ${Style.chooseSubContainer}`}></div>
+
+                <div className={Style['chooseContainer-content']}>
+                    <label >Choose Leverage</label>
+                     <LeverageSlider/>
                 </div>
 
+            </div>
+
+            <div className={Style.bottomContainer}>
+                <ul className={Style.list}>
+                    <li><span>Total Position Value</span> <span className={Style.bold}>$900 ($630 ICHI / $270 USDC)</span></li>
+                    <li><span>Borrowing</span> <span className={Style.bold}>900 USDC ($900)</span></li>
+                    <li><span>Borrow Rate</span> <span className={Style.bold}>5%</span></li>
+                    <li><span>Net APY</span> <span className={Style.bold}>90%</span></li>
+                </ul>
+
+                <div className={Style.bottomContainerRight}>
+                    <h6>Expected Weekly Earnings</h6>
+                    <h3>$19.03</h3>
+                </div>
             </div>
           <button className={`mt-4 ${Style.button}`}>Open Positon</button>
         </div>
