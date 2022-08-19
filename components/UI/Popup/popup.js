@@ -57,7 +57,7 @@ const Popup = ({
                                     </div>
 
                                     <div
-                                        className={`${Style.closeIcon} mt-3`}
+                                        className={`${Style.closeIcon}`}
                                         onClick={handleClose}
                                     >
                                         <Image src="/icons/cross.svg" width={15} height={15}  alt="image"/>
