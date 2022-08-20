@@ -7,6 +7,9 @@ import Card from '../../components/UI/Card/Card'
 import styles from './earn.module.scss'
 import Popup from '../../components/UI/Popup/popup';
 import NewPosition from './newPosition/newPosition';
+import PositionDetails from './positionDetails/positionDetails';
+import YourPosition from './yourPosition/yourPosition';
+import ClosePosition from './closePosition/closePosition';
 
 
 const Earn: NextPage = () => {
@@ -228,9 +231,19 @@ const Earn: NextPage = () => {
           </tbody>
         </table>
       </div>
-      <Popup isOpen={Open} title={"Your Position"}   >
+      <Popup isOpen={Open} title={"New Position"}   >
         <NewPosition />
       </Popup>
+      <Popup isOpen={false} title={"Success!"}   >
+        <PositionDetails />
+      </Popup> 
+      <Popup isOpen={false} title={"Your Position"}   >
+        <YourPosition />
+      </Popup>  
+      <Popup isOpen={true} title={"Close Position"}   >
+        <ClosePosition />
+      </Popup>
+      
     </div>
   )
 }
