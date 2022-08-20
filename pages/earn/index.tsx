@@ -5,36 +5,55 @@ import { useState } from 'react'
 import Button from '../../components/UI/Button/Button'
 import Card from '../../components/UI/Card/Card'
 import styles from './earn.module.scss'
-import Popup from '../../components/UI/Popup/popup';
-import NewPosition from './newPosition/newPosition';
-import PositionDetails from './positionDetails/positionDetails';
-import YourPosition from './yourPosition/yourPosition';
-import ClosePosition from './closePosition/closePosition';
-
+import Popup from '../../components/UI/Popup/popup'
+import NewPosition from './newPosition/newPosition'
+import PositionDetails from './positionDetails/positionDetails'
+import YourPosition from './yourPosition/yourPosition'
+import ClosePosition from './closePosition/closePosition'
 
 const Earn: NextPage = () => {
-  const [value, setValue] = useState(0);
-  const [Open, setOpen] = useState(false)
+  const [value, setValue] = useState(0)
+  const [NewOpen, setNewPosition] = useState(false)
+  const [SuccessOpen, setSuccesPosition] = useState(false)
+  const [YourPosOpen, setYourPosition] = useState(false)
+  const [ClosePos, setClosePosition] = useState(false)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
 
-  const newPositionOpenHandler = () => {
-    setOpen(true);
-    console.log(Open);
+  const newPositionOpenHandler = (title: string) => {
+    console.log(title)
+    switch (title) {
+      case 'new-position':
+        setNewPosition(true)
+        break
+      case 'success-position':
+        setSuccesPosition(true)
+        break
+      case 'your-position':
+        setYourPosition(true)
+        break
+      case 'close-position':
+        setClosePosition(true)
+        break
+
+      default:
+        break
+    }
   }
   return (
     <div className="md:h-[90px] items-center  mt-3 md:px-16 sm:px-1 2sm:px0 sm:h-[150px] sm:block">
       <div className={styles.topContainer}>
         <div>
           <h4 className={styles.heading}>
-             New Positioning - Utilize up to 3x leverage on LP strategiers to yield  New Position.
+            New Positioning - Utilize up to 3x leverage on LP strategiers to
+            yield New Position.
           </h4>
           <p className={styles.text}>
             Blueberry also offers features such as dual borrow which allows for
-            strategies such as pseudo delta neutral  New Positioning within a single
-            position.
+            strategies such as pseudo delta neutral New Positioning within a
+            single position.
           </p>
         </div>
         <div className={styles.rightContainer}>
@@ -80,7 +99,12 @@ const Earn: NextPage = () => {
             <tr>
               <td className={styles.columnRoundLeft}>
                 <div className={styles.tableCol}>
-                  <Image src="/icons/pic.svg" width={40} height={40}  alt="image"/>
+                  <Image
+                    src="/icons/pic.svg"
+                    width={40}
+                    height={40}
+                    alt="image"
+                  />
                   <span style={{ paddingLeft: '0.7rem' }}>ICHI-USDC Vault</span>
                 </div>
               </td>
@@ -101,7 +125,12 @@ const Earn: NextPage = () => {
             <tr>
               <td>
                 <div className={styles.tableCol}>
-                  <Image src="/icons/pic1.svg" width={40} height={40} alt="icon" />
+                  <Image
+                    src="/icons/pic1.svg"
+                    width={40}
+                    height={40}
+                    alt="icon"
+                  />
                   <span style={{ paddingLeft: '0.7rem' }}>oneICHI</span>
                 </div>
               </td>
@@ -146,7 +175,12 @@ const Earn: NextPage = () => {
             <tr>
               <td className={styles.columnRoundLeft}>
                 <div className={styles.tableCol}>
-                  <Image src="/icons/pic.svg" width={40} height={40}  alt="image"/>
+                  <Image
+                    src="/icons/pic.svg"
+                    width={40}
+                    height={40}
+                    alt="image"
+                  />
                   <span style={{ paddingLeft: '0.7rem' }}>ICHI-USDC Vault</span>
                 </div>
               </td>
@@ -155,15 +189,24 @@ const Earn: NextPage = () => {
               <td className={styles.columnRoundRight}>$250 USD</td>
               <td>
                 {' '}
-                <Button type="button" onClick={newPositionOpenHandler} className="green-table-btn">
-                   New Position
+                <Button
+                  type="button"
+                  onClick={() => newPositionOpenHandler('new-position')}
+                  className="green-table-btn"
+                >
+                  New Position
                 </Button>
               </td>
             </tr>
             <tr>
               <td className={styles.columnRoundLeft}>
                 <div className={styles.tableCol}>
-                  <Image src="/icons/pic.svg" width={40} height={40}  alt="image"/>
+                  <Image
+                    src="/icons/pic.svg"
+                    width={40}
+                    height={40}
+                    alt="image"
+                  />
                   <span style={{ paddingLeft: '0.7rem' }}>ICHI-USDC Vault</span>
                 </div>
               </td>
@@ -173,14 +216,19 @@ const Earn: NextPage = () => {
               <td>
                 {' '}
                 <Button type="button" className="green-table-btn">
-                   New Position
+                  New Position
                 </Button>
               </td>
             </tr>{' '}
             <tr>
               <td className={styles.columnRoundLeft}>
                 <div className={styles.tableCol}>
-                  <Image src="/icons/pic.svg" width={40} height={40}  alt="image"/>
+                  <Image
+                    src="/icons/pic.svg"
+                    width={40}
+                    height={40}
+                    alt="image"
+                  />
                   <span style={{ paddingLeft: '0.7rem' }}>ICHI-USDC Vault</span>
                 </div>
               </td>
@@ -190,14 +238,19 @@ const Earn: NextPage = () => {
               <td>
                 {' '}
                 <Button type="button" className="green-table-btn">
-                   New Position
+                  New Position
                 </Button>
               </td>
             </tr>{' '}
             <tr>
               <td className={styles.columnRoundLeft}>
                 <div className={styles.tableCol}>
-                  <Image src="/icons/pic.svg" width={40} height={40}  alt="image"/>
+                  <Image
+                    src="/icons/pic.svg"
+                    width={40}
+                    height={40}
+                    alt="image"
+                  />
                   <span style={{ paddingLeft: '0.7rem' }}>ICHI-USDC Vault</span>
                 </div>
               </td>
@@ -207,14 +260,19 @@ const Earn: NextPage = () => {
               <td>
                 {' '}
                 <Button type="button" className="green-table-btn">
-                   New Position
+                  New Position
                 </Button>
               </td>
             </tr>{' '}
             <tr>
               <td className={styles.columnRoundLeft}>
                 <div className={styles.tableCol}>
-                  <Image src="/icons/pic.svg" width={40} height={40}  alt="image"/>
+                  <Image
+                    src="/icons/pic.svg"
+                    width={40}
+                    height={40}
+                    alt="image"
+                  />
                   <span style={{ paddingLeft: '0.7rem' }}>ICHI-USDC Vault</span>
                 </div>
               </td>
@@ -224,26 +282,29 @@ const Earn: NextPage = () => {
               <td>
                 {' '}
                 <Button type="button" className="green-table-btn">
-                   New Position
+                  New Position
                 </Button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-      <Popup isOpen={Open} title={"New Position"}   >
+      <Popup
+        onClick={(e) => newPositionOpenHandler('success-position')}
+        isOpen={NewOpen}
+        title={'New Position'}
+      >
         <NewPosition />
       </Popup>
-      <Popup isOpen={false} title={"Success!"}   >
+      <Popup isOpen={SuccessOpen} title={'Success!'}>
         <PositionDetails />
-      </Popup> 
-      <Popup isOpen={false} title={"Your Position"}   >
+      </Popup>
+      <Popup isOpen={YourPosOpen} title={'Your Position'}>
         <YourPosition />
-      </Popup>  
-      <Popup isOpen={true} title={"Close Position"}   >
+      </Popup>
+      <Popup isOpen={ClosePos} title={'Close Position'}>
         <ClosePosition />
       </Popup>
-      
     </div>
   )
 }
