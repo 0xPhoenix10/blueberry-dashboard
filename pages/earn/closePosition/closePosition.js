@@ -1,6 +1,7 @@
 
 import Style from './closePosition.module.scss';
-const ClosePosition = () => {
+const ClosePosition = ({handleClose}) => {
+
     return (
         <div className={`mt-5 ${Style.container}`}>
             <div className='p-3'>
@@ -41,7 +42,9 @@ const ClosePosition = () => {
 
             </div>
 
-            <button className={`mt-4 ${Style.button}`}>Close Positon</button>
+            <button className={`mt-4 ${Style.button}`}
+            onClick={handleClose}
+            >Close Positon</button>
         </div>
     )
 

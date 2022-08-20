@@ -9,31 +9,21 @@ const Popup = ({
     width = 700,
     borderRadius = 20,
     isFullScreen = false,
+    handleClose,
     isShowHeader = true,
     childClassName,
     containerClassName,
     children,
-}) => {
+}:any) => {
 
-    const [Open, setOpen] = useState(false);
-    // setOpen(isOpen);
-
-    useEffect(() => {
-        if(isOpen) {
-            setOpen(true);
-        }
-        console.log('mount it!');
-    }, []);
-
-    const handleClose = () => {
-        // handleClose?.(true);
-        setOpen(false);
+     const handleClosePopup = () => {
+        handleClose?.();
     };
     return (
         <div>
             <Dialog
                 open={isOpen}
-                 onClose={handleClose}
+                 onClose={handleClosePopup}
                 fullScreen={isFullScreen}
                 aria-describedby="alert-dialog-slide-description"
                 className={Style.dialog}

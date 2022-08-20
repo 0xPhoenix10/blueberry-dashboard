@@ -25,7 +25,9 @@ a {
   box-sizing: border-box;
   font-family: heebo, sans-serif;
 }
-
+.cursor-pointer{
+  cursor: pointer;
+}
 .sidebar {
   /* @include devices(tablet) {
       display: block;

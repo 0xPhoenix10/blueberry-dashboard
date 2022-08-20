@@ -4,12 +4,15 @@ import Button from '../../../components/UI/Button/Button';
 import Style from './newPosition.module.scss';
 import LeverageSlider from './LeverageSlider';
 import { useState } from 'react'
-const NewPosition = ()=>{
+const NewPosition = ({handleButtonClick})=>{
 
     // const [type, setValue]=useState(0)
     // const handleType = () => {
     //     setValue('success')
     // }
+    const handleSuccessPosition = ()=>{
+        handleButtonClick?.('success-position');
+    }
 
     return (
         <div className="mt-5">
@@ -65,7 +68,7 @@ const NewPosition = ()=>{
                     <h3>$19.03</h3>
                 </div>
             </div>
-          <button onClick={(()=>{'success-popup'})} className={`mt-4 ${Style.button}`}>Open Positon</button>
+          <button onClick={handleSuccessPosition} className={`mt-4 ${Style.button}`}>Open Positon</button>
         </div>
     )
 
