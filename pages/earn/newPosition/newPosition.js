@@ -3,8 +3,14 @@ import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Slider } f
 import Button from '../../../components/UI/Button/Button';
 import Style from './newPosition.module.scss';
 import LeverageSlider from './LeverageSlider';
-
+import { useState } from 'react'
 const NewPosition = ()=>{
+
+    // const [type, setValue]=useState(0)
+    // const handleType = () => {
+    //     setValue('success')
+    // }
+
     return (
         <div className="mt-5">
             <div className={Style.topContainer}>
@@ -59,7 +65,7 @@ const NewPosition = ()=>{
                     <h3>$19.03</h3>
                 </div>
             </div>
-          <button className={`mt-4 ${Style.button}`}>Open Positon</button>
+          <button onClick={(()=>{'success-popup'})} className={`mt-4 ${Style.button}`}>Open Positon</button>
         </div>
     )
 
