@@ -2,7 +2,7 @@ import { Tabs, Tab } from "@mui/material";
 import type { NextPage } from "next";
 import Image from "next/image";
 import { useState } from "react";
-import Button from "../../components/UI/customButton/Button";
+import Button from "../../components/UI/Button/Button";
 import Card from "../../components/UI/Card/Card";
 import styles from "./earn.module.scss";
 import Popup from "../../components/UI/Popup/popup";
@@ -10,6 +10,7 @@ import NewPosition from "./newPosition/newPosition";
 import PositionDetails from "./positionDetails/positionDetails";
 import YourPosition from "./yourPosition/yourPosition";
 import ClosePosition from "./closePosition/closePosition";
+import CustomButton from "../../components/UI/customButton/customButton";
 
 const Earn: NextPage = () => {
   const [value, setValue] = useState(0);
@@ -213,14 +214,12 @@ const Earn: NextPage = () => {
               <td>$250 USD</td>
               <td className={styles.columnRoundRight}>$250 USD</td>
               <td>
-                {" "}
-                <Button
-                  type="button"
-                  onClick={() => newPositionOpenHandler("new-position")}
-                  className="green-table-btn"
-                >
-                  New Position
-                </Button>
+                <CustomButton
+                  title="New Position"
+                  handleButtonClick={() =>
+                    newPositionOpenHandler("new-position")
+                  }
+                />
               </td>
             </tr>
             <tr>
@@ -239,10 +238,12 @@ const Earn: NextPage = () => {
               <td>$250 USD</td>
               <td className={styles.columnRoundRight}>$250 USD</td>
               <td>
-                {" "}
-                <Button type="button" className="green-table-btn">
-                  New Position
-                </Button>
+                <CustomButton
+                  title="New Position"
+                  handleButtonClick={() =>
+                    newPositionOpenHandler("new-position")
+                  }
+                />
               </td>
             </tr>{" "}
             <tr>
@@ -261,10 +262,12 @@ const Earn: NextPage = () => {
               <td>$250 USD</td>
               <td className={styles.columnRoundRight}>$250 USD</td>
               <td>
-                {" "}
-                <Button type="button" className="green-table-btn">
-                  New Position
-                </Button>
+                <CustomButton
+                  title="New Position"
+                  handleButtonClick={() =>
+                    newPositionOpenHandler("new-position")
+                  }
+                />
               </td>
             </tr>{" "}
             <tr>
@@ -283,10 +286,12 @@ const Earn: NextPage = () => {
               <td>$250 USD</td>
               <td className={styles.columnRoundRight}>$250 USD</td>
               <td>
-                {" "}
-                <Button type="button" className="green-table-btn">
-                  New Position
-                </Button>
+                <CustomButton
+                  title="New Position"
+                  handleButtonClick={() =>
+                    newPositionOpenHandler("new-position")
+                  }
+                />
               </td>
             </tr>{" "}
             <tr>
@@ -305,10 +310,12 @@ const Earn: NextPage = () => {
               <td>$250 USD</td>
               <td className={styles.columnRoundRight}>$250 USD</td>
               <td>
-                {" "}
-                <Button type="button" className="green-table-btn">
-                  New Position
-                </Button>
+                <CustomButton
+                  title="New Position"
+                  handleButtonClick={() =>
+                    newPositionOpenHandler("new-position")
+                  }
+                />
               </td>
             </tr>
           </tbody>
@@ -347,11 +354,11 @@ const Earn: NextPage = () => {
           setClosePosition(false);
         }}
       >
-        <ClosePosition handleClose={
-          () => {
+        <ClosePosition
+          handleClose={() => {
             setClosePosition(false);
-          }
-        }/>
+          }}
+        />
       </Popup>
     </div>
   );
