@@ -1,5 +1,5 @@
 
-import Button from '../../../components/UI/Button/Button';
+import Button from '../../../components/UI/customButton/Button';
 import Style from './positionDetails.module.scss';
 
 const PositionDetails = ()=>{
