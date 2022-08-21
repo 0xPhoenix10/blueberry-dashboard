@@ -1,21 +1,21 @@
-import type { NextPage } from 'next'
-import Image from 'next/image'
-import styles from '../styles/Home.module.scss'
-import Card from '../components/UI/Card/Card'
-import Button from '../components/UI/Button/Button'
-import Text from '../components/UI/Text/Text'
-import Graph from '../components/UI/Graph/Graph'
+import type { NextPage } from "next";
+import Image from "next/image";
+import styles from "../styles/Home.module.scss";
+import Card from "../components/UI/Card/Card";
+import Text from "../components/UI/Text/Text";
+import Graph from "../components/UI/Graph/Graph";
+import CustomButton from "../components/UI/customButton/customButton";
 
 const Home: NextPage = () => {
   return (
     <Card className="">
       <div
         className={
-          styles['start-farming-widget'] +
-          ' my-8 rounded-lg md-px-8 1sm:block py-5'
+          styles["start-farming-widget"] +
+          " my-8 rounded-lg px-8 1sm:block py-5"
         }
       >
-        <div className={`${styles.topContainer}`}>
+        <div className={`${styles.topContainer} `}>
           <Image
             src="/icons/farming-home.svg"
             alt="farming image"
@@ -27,22 +27,20 @@ const Home: NextPage = () => {
             want to say here...
           </p>
         </div>
-        <Button type="button" className="green-btn">
-          Start Farming
-        </Button>
+        <CustomButton title={"Start Farming"} handleButtonClick={() => {}} />
       </div>
       <div className="md:flex gap-8 flex-row my-8 sm:block 2sm:block">
         <div className="net-pay-box basis-1/2 px-6 py-8 ">
           <span className=" small-label">Net Worth</span>
           <Text>
-            {' '}
+            {" "}
             <h2>$981,312.51 USD</h2>
           </Text>
         </div>
         <div className=" net-pay-box basis-1/2 px-6 pl-8 py-8 ">
           <span className="small-label">Net APY%</span>
           <Text>
-            {' '}
+            {" "}
             <h2>$250,312.51 USD</h2>
           </Text>
         </div>
@@ -54,22 +52,22 @@ const Home: NextPage = () => {
           </Text>
           <div className={styles.lendingRow}>
             <Text className="py-8">
-              {' '}
-              <h3 className={styles.heading}>Lending Deposits</h3>{' '}
+              {" "}
+              <h3 className={styles.heading}>Lending Deposits</h3>{" "}
             </Text>
             <Text className="py-8">
-              {' '}
-              <h3 className={styles.heading}>$5,000.00 USD</h3>{' '}
+              {" "}
+              <h3 className={styles.heading}>$5,000.00 USD</h3>{" "}
             </Text>
           </div>
           <div className={styles.lendingRow}>
             <Text>
-              {' '}
+              {" "}
               <h3 className={styles.heading}>Farming Positions</h3>
             </Text>
             <Text>
-              {' '}
-              <h3 className={styles.heading}>$5,000.00 USD</h3>{' '}
+              {" "}
+              <h3 className={styles.heading}>$5,000.00 USD</h3>{" "}
             </Text>
           </div>
         </div>
@@ -80,7 +78,7 @@ const Home: NextPage = () => {
         </div>
       </div>
     </Card>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

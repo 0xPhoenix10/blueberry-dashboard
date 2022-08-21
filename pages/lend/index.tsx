@@ -2,7 +2,7 @@ import { Tabs, Tab } from '@mui/material'
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import { useState } from 'react'
-import Button from '../../components/UI/Button/Button'
+import Button from '../../components/UI/customButton/Button'
 import Card from '../../components/UI/Card/Card'
 import styles from './lend.module.scss'
 
