@@ -11,6 +11,34 @@ import PositionDetails from "./positionDetails/positionDetails";
 import YourPosition from "./yourPosition/yourPosition";
 import ClosePosition from "./closePosition/closePosition";
 import CustomButton from "../../components/UI/customButton/customButton";
+import StrategiesTable from "../../interfaces/strategiesTable";
+
+const strategiesTable = [
+  {
+    name: "ICHI-USDC Vault",
+    tvl: "$500 USD",
+    Stablecoin: "$250 USD",
+    Token: "$250 USD",
+  },
+  {
+    name: "ICHI-USDC Vault",
+    tvl: "$500 USD",
+    Stablecoin: "$250 USD",
+    Token: "$250 USD",
+  },
+  {
+    name: "ICHI-USDC Vault",
+    tvl: "$500 USD",
+    Stablecoin: "$250 USD",
+    Token: "$250 USD",
+  },
+  {
+    name: "ICHI-USDC Vault",
+    tvl: "$500 USD",
+    Stablecoin: "$250 USD",
+    Token: "$250 USD",
+  },
+] as StrategiesTable[];
 
 const Earn: NextPage = () => {
   const [value, setValue] = useState(0);
@@ -198,126 +226,34 @@ const Earn: NextPage = () => {
             </tr>
           </thead>
           <tbody className={styles.tbody}>
-            <tr>
-              <td className={styles.columnRoundLeft}>
-                <div className={styles.tableCol}>
-                  <Image
-                    src="/icons/pic.svg"
-                    width={40}
-                    height={40}
-                    alt="image"
-                  />
-                  <span style={{ paddingLeft: "0.7rem" }}>ICHI-USDC Vault</span>
-                </div>
-              </td>
-              <td>$500 USD</td>
-              <td>$250 USD</td>
-              <td className={styles.columnRoundRight}>$250 USD</td>
-              <td>
-                <CustomButton
-                  title="New Position"
-                  handleButtonClick={() =>
-                    newPositionOpenHandler("new-position")
-                  }
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className={styles.columnRoundLeft}>
-                <div className={styles.tableCol}>
-                  <Image
-                    src="/icons/pic.svg"
-                    width={40}
-                    height={40}
-                    alt="image"
-                  />
-                  <span style={{ paddingLeft: "0.7rem" }}>ICHI-USDC Vault</span>
-                </div>
-              </td>
-              <td>$500 USD</td>
-              <td>$250 USD</td>
-              <td className={styles.columnRoundRight}>$250 USD</td>
-              <td>
-                <CustomButton
-                  title="New Position"
-                  handleButtonClick={() =>
-                    newPositionOpenHandler("new-position")
-                  }
-                />
-              </td>
-            </tr>{" "}
-            <tr>
-              <td className={styles.columnRoundLeft}>
-                <div className={styles.tableCol}>
-                  <Image
-                    src="/icons/pic.svg"
-                    width={40}
-                    height={40}
-                    alt="image"
-                  />
-                  <span style={{ paddingLeft: "0.7rem" }}>ICHI-USDC Vault</span>
-                </div>
-              </td>
-              <td>$500 USD</td>
-              <td>$250 USD</td>
-              <td className={styles.columnRoundRight}>$250 USD</td>
-              <td>
-                <CustomButton
-                  title="New Position"
-                  handleButtonClick={() =>
-                    newPositionOpenHandler("new-position")
-                  }
-                />
-              </td>
-            </tr>{" "}
-            <tr>
-              <td className={styles.columnRoundLeft}>
-                <div className={styles.tableCol}>
-                  <Image
-                    src="/icons/pic.svg"
-                    width={40}
-                    height={40}
-                    alt="image"
-                  />
-                  <span style={{ paddingLeft: "0.7rem" }}>ICHI-USDC Vault</span>
-                </div>
-              </td>
-              <td>$500 USD</td>
-              <td>$250 USD</td>
-              <td className={styles.columnRoundRight}>$250 USD</td>
-              <td>
-                <CustomButton
-                  title="New Position"
-                  handleButtonClick={() =>
-                    newPositionOpenHandler("new-position")
-                  }
-                />
-              </td>
-            </tr>{" "}
-            <tr>
-              <td className={styles.columnRoundLeft}>
-                <div className={styles.tableCol}>
-                  <Image
-                    src="/icons/pic.svg"
-                    width={40}
-                    height={40}
-                    alt="image"
-                  />
-                  <span style={{ paddingLeft: "0.7rem" }}>ICHI-USDC Vault</span>
-                </div>
-              </td>
-              <td>$500 USD</td>
-              <td>$250 USD</td>
-              <td className={styles.columnRoundRight}>$250 USD</td>
-              <td>
-                <CustomButton
-                  title="New Position"
-                  handleButtonClick={() =>
-                    newPositionOpenHandler("new-position")
-                  }
-                />
-              </td>
-            </tr>
+            {strategiesTable.map((row) => {
+              return (
+                <tr>
+                  <td className={styles.columnRoundLeft}>
+                    <div className={styles.tableCol}>
+                      <Image
+                        src="/icons/pic.svg"
+                        width={40}
+                        height={40}
+                        alt="image"
+                      />
+                      <span style={{ paddingLeft: "0.7rem" }}>{row.name}</span>
+                    </div>
+                  </td>
+                  <td>{row.tvl}</td>
+                  <td>{row.Stablecoin}</td>
+                  <td className={styles.columnRoundRight}>{row.Token}</td>
+                  <td>
+                    <CustomButton
+                      title="New Position"
+                      handleButtonClick={() =>
+                        newPositionOpenHandler("new-position")
+                      }
+                    />
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

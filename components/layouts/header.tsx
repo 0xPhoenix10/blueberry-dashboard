@@ -49,7 +49,7 @@ const Header = () => {
   }, [pathName]);
 
   const handleConnectClick = () => {
-    setWalletToggle(true);
+    setWalletToggle((prev)=>!prev);
   };
 
   return (
@@ -83,10 +83,10 @@ const Header = () => {
               </Button>
             )}
             {isEarn && (
-                 <CustomButton
-                 title="Connect Wallet"
-                 handleButtonClick={handleConnectClick}
-               />
+              <CustomButton
+                title="Connect Wallet"
+                handleButtonClick={handleConnectClick}
+              />
             )}
           </div>
         </header>
@@ -155,6 +155,7 @@ const Header = () => {
           </div>
         </>
       )}
+      {isWallet && <WalletPage isOpen={isWallet} handleCloseWallet={handleConnectClick} />}
     </>
   );
 };
