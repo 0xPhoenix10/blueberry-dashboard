@@ -1,17 +1,18 @@
-import { Tabs, Tab } from '@mui/material'
-import type { NextPage } from 'next'
-import Image from 'next/image'
-import { useState } from 'react'
-import Button from '../../components/UI/customButton/Button'
-import Card from '../../components/UI/Card/Card'
-import styles from './lend.module.scss'
+import { Tabs, Tab } from "@mui/material";
+import type { NextPage } from "next";
+import Image from "next/image";
+import { useState } from "react";
+import Button from "../../components/UI/Button/Button";
+import Card from "../../components/UI/Card/Card";
+import CustomButton from "../../components/UI/customButton/customButton";
+import styles from "./lend.module.scss";
 
 const Earn: NextPage = () => {
-  const [value, setValue] = useState(0)
+  const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue)
-  }
+    setValue(newValue);
+  };
   return (
     <div className="md:h-[90px] items-center  mt-3 md:px-16 sm:px-1 2sm:px0 sm:h-[150px] sm:block">
       <div className={styles.topContainer}>
@@ -38,7 +39,7 @@ const Earn: NextPage = () => {
       >
         <Tab
           label={
-            <span style={{ color: value === 0 ? '#19857b' : 'white' }}>
+            <span style={{ color: value === 0 ? "#19857b" : "white" }}>
               My Positions
             </span>
           }
@@ -68,7 +69,7 @@ const Earn: NextPage = () => {
               <td className={styles.columnRoundLeft}>
                 <div className={styles.tableCol}>
                   <Image src="/icons/pic.svg" width={40} height={40} />
-                  <span style={{ paddingLeft: '0.7rem' }}>ICHI</span>
+                  <span style={{ paddingLeft: "0.7rem" }}>ICHI</span>
                 </div>
               </td>
               <td>12%</td>
@@ -81,7 +82,7 @@ const Earn: NextPage = () => {
               <td>
                 <div className={styles.tableCol}>
                   <Image src="/icons/pic1.svg" width={40} height={40} />
-                  <span style={{ paddingLeft: '0.7rem' }}>oneICHI</span>
+                  <span style={{ paddingLeft: "0.7rem" }}>oneICHI</span>
                 </div>
               </td>
               <td>12%</td>
@@ -113,7 +114,7 @@ const Earn: NextPage = () => {
               <td className={styles.columnRoundLeft}>
                 <div className={styles.tableCol}>
                   <Image src="/icons/pic.svg" width={40} height={40} />
-                  <span style={{ paddingLeft: '0.7rem' }}>ICHI</span>
+                  <span style={{ paddingLeft: "0.7rem" }}>ICHI</span>
                 </div>
               </td>
               <td>12%</td>
@@ -122,11 +123,13 @@ const Earn: NextPage = () => {
               <td>80%</td>
               <td className={styles.columnRoundRight}>80%</td>
               <td>
-                {' '}
+                {" "}
                 <div className={styles.tableCol}>
-                  <Button type="button" className="green-table-btn">
-                    Deposit
-                  </Button>
+                  <CustomButton
+                    title="Deposit"
+                    handleButtonClick={() => {}}
+                    buttonStyle={styles.depositButton}
+                  />
                   <Image src="/icons/union.svg" width={20} height={20} />
                 </div>
               </td>
@@ -135,7 +138,7 @@ const Earn: NextPage = () => {
               <td className={styles.columnRoundLeft}>
                 <div className={styles.tableCol}>
                   <Image src="/icons/pic.svg" width={40} height={40} />
-                  <span style={{ paddingLeft: '0.7rem' }}>oneICHI</span>
+                  <span style={{ paddingLeft: "0.7rem" }}>oneICHI</span>
                 </div>
               </td>
               <td>12%</td>
@@ -144,11 +147,13 @@ const Earn: NextPage = () => {
               <td>80%</td>
               <td className={styles.columnRoundRight}>80%</td>
               <td>
-                {' '}
+                {" "}
                 <div className={styles.tableCol}>
-                  <Button type="button" className="green-table-btn">
-                    Deposit
-                  </Button>
+                  <CustomButton
+                    title="Deposit"
+                    handleButtonClick={() => {}}
+                    buttonStyle={styles.depositButton}
+                  />
                   <Image src="/icons/union.svg" width={20} height={20} />
                 </div>
               </td>
@@ -157,7 +162,7 @@ const Earn: NextPage = () => {
               <td className={styles.columnRoundLeft}>
                 <div className={styles.tableCol}>
                   <Image src="/icons/pic.svg" width={40} height={40} />
-                  <span style={{ paddingLeft: '0.7rem' }}>USDC</span>
+                  <span style={{ paddingLeft: "0.7rem" }}>USDC</span>
                 </div>
               </td>
               <td>12%</td>
@@ -166,11 +171,13 @@ const Earn: NextPage = () => {
               <td>80%</td>
               <td className={styles.columnRoundRight}>80%</td>
               <td>
-                {' '}
+                {" "}
                 <div className={styles.tableCol}>
-                  <Button type="button" className="green-table-btn ">
-                    Deposit
-                  </Button>
+                  <CustomButton
+                    title="Deposit"
+                    handleButtonClick={() => {}}
+                    buttonStyle={styles.depositButton}
+                  />
                   <Image src="/icons/union.svg" width={20} height={20} />
                 </div>
               </td>
@@ -179,7 +186,7 @@ const Earn: NextPage = () => {
               <td className={styles.columnRoundLeft}>
                 <div className={styles.tableCol}>
                   <Image src="/icons/pic.svg" width={40} height={40} />
-                  <span style={{ paddingLeft: '0.7rem' }}>ICHI-USDC Vault</span>
+                  <span style={{ paddingLeft: "0.7rem" }}>ICHI-USDC Vault</span>
                 </div>
               </td>
               <td>$500 USD</td>
@@ -188,17 +195,18 @@ const Earn: NextPage = () => {
               <td>$250 USD</td>
               <td className={styles.columnRoundRight}>$250 USD</td>
               <td>
-                {' '}
-                <Button type="button" className="green-table-btn">
-                  Farm
-                </Button>
+                <CustomButton
+                  title="Deposit"
+                  handleButtonClick={() => {}}
+                  buttonStyle={styles.depositButton}
+                />
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Earn
+export default Earn;
