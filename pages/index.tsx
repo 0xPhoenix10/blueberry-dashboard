@@ -8,7 +8,7 @@ import CustomButton from "../components/UI/customButton/customButton";
 
 const Home: NextPage = () => {
   return (
-    <Card className="">
+    <Card className={styles.mainContainer}>
       <div
         className={
           styles["start-farming-widget"] +
@@ -34,14 +34,21 @@ const Home: NextPage = () => {
           <span className=" small-label">Net Worth</span>
           <Text>
             {" "}
-            <h2>$981,312.51 USD</h2>
+            <h3>$500,000.00 USD</h3>
           </Text>
         </div>
         <div className=" net-pay-box basis-1/2 px-6 pl-8 py-8 ">
           <span className="small-label">Net APY%</span>
           <Text>
             {" "}
-            <h2>$250,312.51 USD</h2>
+            <h3>Net APY %</h3>
+          </Text>
+        </div>
+        <div className=" net-pay-box basis-1/2 px-6 pl-8 py-8 ">
+          <span className="small-label">Projected Weekly Earnings</span>
+          <Text>
+            {" "}
+            <h3>$5,000.00 USD</h3>
           </Text>
         </div>
       </div>
@@ -53,28 +60,72 @@ const Home: NextPage = () => {
           <div className={styles.lendingRow}>
             <Text className="py-8">
               {" "}
-              <h3 className={styles.heading}>Lending Deposits</h3>{" "}
+              <span className={styles.heading1}>Lending Deposits</span>{" "}
             </Text>
             <Text className="py-8">
               {" "}
-              <h3 className={styles.heading}>$5,000.00 USD</h3>{" "}
+              <span className={styles.heading1}>$5,000.00 USD</span>{" "}
             </Text>
           </div>
           <div className={styles.lendingRow}>
             <Text>
               {" "}
-              <h3 className={styles.heading}>Farming Positions</h3>
+              <span className={styles.heading1}>Farming Positions</span>
             </Text>
             <Text>
               {" "}
-              <h3 className={styles.heading}>$5,000.00 USD</h3>{" "}
+              <span className={styles.heading1}>$5,000.00 USD</span>{" "}
+            </Text>
+          </div>
+          <div className={styles.lendingRow}>
+            <Text className="py-8">
+              <span className={`${styles.heading1} text-rose-500`}>
+                Debt Value
+              </span>
+            </Text>
+            <Text className="py-8">
+              <span className={`${styles.heading1} text-rose-500`}>
+                $5,000.00 USD
+              </span>{" "}
             </Text>
           </div>
         </div>
 
         {/* account health graph */}
-        <div className={`px-6 py-8`}>
-          <Graph type="pie" label="Account Health" value="75"></Graph>
+        <div className={`basis-1/2 px-6 py-8`}>
+          <Text>
+            <h6 className="text-muted">Position Value Breakdown</h6>
+          </Text>
+          <div className={styles.lendingRow}>
+            <div className={styles.rightRow}>
+              <Image src="/icons/pic.svg" width={35} height={35} alt="image" />
+              <div className={styles.container}>
+                <span className={styles.title}>ICHI-USDC Vault</span>
+                <span className={styles.subTitle}>$2,500</span>
+              </div>
+            </div>
+            <div className={`py-8 ${styles.pMainContainer}`}>
+              <div className={styles.positionContainer}>
+                <div className={styles.pInnercontainer}></div>
+              </div>
+              <span className={styles.percentage}>50%</span>
+            </div>
+          </div>
+          <div className={styles.lendingRow}>
+            <div className={styles.rightRow}>
+              <Image src="/icons/pic.svg" width={35} height={35} alt="image" />
+              <div className={styles.container}>
+                <span className={styles.title}>ICHI-USDC Vault</span>
+                <span className={styles.subTitle}>$2,500</span>
+              </div>
+            </div>
+            <div className={`py-8 ${styles.pMainContainer}`}>
+              <div className={styles.positionContainer}>
+                <div className={styles.pInnercontainer1}></div>
+              </div>
+              <span className={styles.percentage}>75%</span>
+            </div>
+          </div>
         </div>
       </div>
     </Card>

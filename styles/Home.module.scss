@@ -7,16 +7,18 @@
 .topContainer {
   display: flex;
   align-items: center;
-  
+
   @include for-size(phone-only) {
     flex-direction: column;
     gap: 20px;
   }
 }
-.heading {
-  @include for-size(phone-only) {
-    font-size: 20px !important;
-  }
+.heading1 {
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  // @include for-size(phone-only) {
+  //   font-size: 20px !important;
+  // }
 }
 .main {
   min-height: 100vh;
@@ -77,8 +79,8 @@
   border-radius: 5px;
   padding: 0.75rem;
   font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New,
+    monospace;
 }
 
 .grid {
@@ -158,6 +160,66 @@
 .lendingRow {
   display: flex;
   justify-content: space-between;
+  .rightRow {
+    display: flex;
+    align-items: center;
+    .container {
+      display: flex;
+      flex-direction: column;
+      margin-left: -1rem;
+      .title {
+        color: white;
+        font-weight: 500;
+        font-size: 13px;
+      }
+      .subTitle{
+        color: white;
+        font-weight: 400;
+        margin-top: 0.3rem;
+        font-size: 11px;
+      }
+    }
+  }
+}
+.mainContainer{
+  padding-bottom: 3rem;
+}
+.pMainContainer{
+  flex: 1;
+  .positionContainer {
+    height: 10px;
+    width: 80%;
+    background-color: #02172C;
+    margin-left: 1rem;
+    border-radius: 20px;
+    position: relative;
+    .pInnercontainer {
+      position: absolute;
+      height: 10px;
+      width: 50%;
+      top: 0;
+      left: 0;
+      background: linear-gradient(89.83deg, #0056e0 0.3%, #57c5e0 99.81%);
+      border-radius: 20px;
+    }
+    .pInnercontainer1{
+      position: absolute;
+      height: 10px;
+      width: 75%;
+      top: 0;
+      left: 0;
+      background:  linear-gradient(63.51deg, #007994 33.26%, #04AC5C 100%);
+      border-radius: 20px;
+
+    }
+  }
+  
+  .percentage{
+    margin-left: 1rem;
+    color: #FFFFFF;
+    margin-top: 1rem;
+    font-size: 12px;
+  }
 }
 .lendingRowTitle {
   color: white;
