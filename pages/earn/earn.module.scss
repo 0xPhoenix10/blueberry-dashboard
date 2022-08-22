@@ -116,6 +116,10 @@
 .table_bottom {
   margin-top: 1rem;
   width: 100%;
+  @include for-size(phone-only) {
+    display: grid;
+    overflow-x: auto;
+  }
   .tHeading {
     color: #8d97a0;
     padding: 1rem;
