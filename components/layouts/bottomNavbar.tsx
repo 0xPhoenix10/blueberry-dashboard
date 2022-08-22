@@ -2,27 +2,53 @@ import { BottomNavigation, Paper, BottomNavigationAction } from "@mui/material";
 import { useRouter } from "next/router";
 import Style from "./bottomNavbar.module.scss";
 import Image from "next/image";
-const menuItems = [
-  {
-    href: "/",
-    title: "Overview",
-    icon: "/icons/overview.svg",
-  },
-  {
-    href: "/earn",
-    title: "Earn",
-    icon: "/icons/earn.svg",
-  },
-  {
-    href: "/lend",
-    title: "Lend",
-    icon: "/icons/lend.svg",
-  },
-];
+import { useEffect, useState } from "react";
 
 const BottomNavbar = ({}) => {
   const router = useRouter();
-  const handleNavigation = (href) => {
+  const pathName = router.pathname;
+  const [menuItems, setMenuItems] =  useState([
+    {
+      href: '/',
+      title: 'Overview',
+      icon:    <Image src={'/icons/overview.svg'}  width={ 20} height={20} /> ,
+      selectedIcon:'/icons/selectedOverview.svg',
+      isSelected: false
+
+    },
+    {
+      href: '/earn',
+      title: 'Earn',
+      icon: <Image src={ '/icons/lend.svg'}  width={ 40} height={40} /> ,
+      selectedIcon:'/icons/selectedLend.svg',
+      isSelected: false
+
+    },
+    {
+      href: '/lend',
+      title: 'Lend',
+      icon:  <Image src={  '/icons/earn.svg'}  width={ 40} height={40} />,
+      selectedIcon:'/icons/selectedEarn.svg',
+      isSelected: false
+    }])
+  
+
+  useEffect(() => {
+   if(pathName){
+    activeRoute(pathName);
+   }
+  }, [pathName]);
+
+  const activeRoute =(route:string)=>{
+    let _routes= [...menuItems];
+     _routes= _routes.map((item)=>{
+      return {
+        ...item, isSelected : item.href === route? true : false
+      }
+    });
+    setMenuItems([..._routes]);
+  }
+  const handleNavigation = (href:string) => {
     router.push(href);
   };
   return (
@@ -38,7 +64,12 @@ const BottomNavbar = ({}) => {
               onClick={() => handleNavigation(item.href)}
               className={`${Style.navItem}`}
               icon={
-                <Image src={item.icon} width={30} height={30} />
+                
+                  item.isSelected ?
+                  <Image src={ item.selectedIcon } width={ 44} height={44} />
+                  :
+                  item.icon
+                 
               }
               label={item.title}
             />
