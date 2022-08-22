@@ -11,7 +11,7 @@ const Sidebar = () => {
     {
       href: '/',
       title: 'Overview',
-      icon:    <Image src={'/icons/overview.svg'}  width={ 20} height={20} /> ,
+      icon:    <Image src={'/icons/overview.svg'}  width={ 40} height={40} /> ,
       selectedIcon:'/icons/selectedOverview.svg',
       isSelected: false
 

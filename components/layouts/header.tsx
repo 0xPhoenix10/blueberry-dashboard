@@ -2,6 +2,7 @@ import { StayPrimaryLandscapeSharp } from "@mui/icons-material";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useWidth } from "../../hooks/useWidth";
 import Button from "../UI/Button/Button";
 import CustomButton from "../UI/customButton/customButton";
 import Dropdown from "../UI/Dropdown/Dropdown";
@@ -18,15 +19,7 @@ const Header = () => {
 
   const router = useRouter();
   const pathName = router.pathname;
-  const [isMobileTab, setIsMobileTab] = useState(false);
-  const handleResize = () => {
-    setIsMobileTab(window.innerWidth <= 450);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize());
-    return window.removeEventListener("resize", handleResize());
-  }, []);
+  const width = useWidth();
   useEffect(() => {
     switch (pathName) {
       case "/earn":
@@ -54,7 +47,7 @@ const Header = () => {
 
   return (
     <>
-      {!isMobileTab && (
+      {width >768 && (
         <header className="md:h-[90px] md:flex items-center md:px-16 sm:px-1 2sm:px0 sm:h-[150px] sm:block">
           <Text>
             {" "}
@@ -91,7 +84,7 @@ const Header = () => {
           </div>
         </header>
       )}
-      {isMobileTab && (
+      {width <=768 && (
         <>
           <div
             className={`flex items-center justify-between pl-2 pr-4 ${styles.mobileNavbar} h-20`}
