@@ -1,26 +1,55 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 const Sidebar = () => {
+
   const router = useRouter()
-  const menuItems = [
+  const pathName = router.pathname;
+  const [menuItems, setMenuItems] =  useState([
     {
       href: '/',
       title: 'Overview',
-      icon: '/icons/overview.svg',
+      icon:    <Image src={'/icons/overview.svg'}  width={ 20} height={20} /> ,
+      selectedIcon:'/icons/selectedOverview.svg',
+      isSelected: false
+
     },
     {
       href: '/earn',
       title: 'Earn',
-      icon: '/icons/earn.svg',
+      icon: <Image src={ '/icons/lend.svg'}  width={ 40} height={40} /> ,
+      selectedIcon:'/icons/selectedLend.svg',
+      isSelected: false
+
     },
     {
       href: '/lend',
       title: 'Lend',
-      icon: '/icons/lend.svg',
-    },
-  ]
+      icon:  <Image src={  '/icons/earn.svg'}  width={ 40} height={40} />,
+      selectedIcon:'/icons/selectedEarn.svg',
+      isSelected: false
+    }])
+  
+
+  useEffect(() => {
+   if(pathName){
+    activeRoute(pathName);
+   }
+  }, [pathName]);
+
+  const activeRoute =(route:string)=>{
+    let _routes= [...menuItems];
+     _routes= _routes.map((item)=>{
+      return {
+        ...item, isSelected : item.href === route? true : false
+      }
+    });
+    setMenuItems([..._routes]);
+  }
+
+
 
   return (
     <aside className="sidebar sticky top-0 max-h-screen bg-[#001223]">
@@ -38,7 +67,7 @@ const Sidebar = () => {
       </div>
       <nav>
         <ul>
-          {menuItems.map(({ href, title, icon }) => (
+          {menuItems.map(({ href, title, icon ,selectedIcon, isSelected}) => (
             <li className="m-2" key={title}>
               <Link href={href}>
                 <a
@@ -46,7 +75,12 @@ const Sidebar = () => {
                     router.asPath === href && 'text-white'
                   }`}
                 >
-                  <Image src={icon} alt={title} width={40} height={40} />
+                 {
+                  isSelected ?
+                  <Image src={ selectedIcon } alt={title} width={ 44} height={44} />
+                  :
+                  icon
+                 }
                 </a>
               </Link>
             </li>
