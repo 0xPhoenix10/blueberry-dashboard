@@ -7,6 +7,7 @@
 .topContainer {
   display: flex;
   align-items: center;
+  column-gap: 2rem;
 
   @include for-size(phone-only) {
     flex-direction: column;
@@ -150,7 +151,6 @@
   line-height: 29px;
   color: #ffffff;
   max-width: 65%;
-  margin-left: 2rem;
 
   @include for-size(phone-only) {
     max-width: 100%;
@@ -184,6 +184,13 @@
 .mainContainer{
   padding-bottom: 3rem;
 }
+
+.positionValueRow{
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  margin-top: 36px;
+}
 .pMainContainer{
   flex: 1;
   .positionContainer {
@@ -193,6 +200,11 @@
     margin-left: 1rem;
     border-radius: 20px;
     position: relative;
+
+    @include for-size(phone-only) {
+      width: 100%;
+      margin-left: 0px;
+    }
     .pInnercontainer {
       position: absolute;
       height: 10px;

@@ -87,17 +87,11 @@ const Header = () => {
       {width <=768 && (
         <>
           <div
-            className={`flex items-center justify-between pl-2 pr-4 ${styles.mobileNavbar} h-20`}
+            className={`flex items-center pl-2 pr-4 ${styles.mobileNavbar} h-20`}
           >
-            <Image
-              src="/icons/home.svg"
-              alt="Blueberry Web"
-              width={40}
-              height={40}
-            />
             {!open ? (
               <Image
-                src="/icons/menu_icon.png"
+                src="/icons/menu-icon.svg"
                 alt="Blueberry Web"
                 width={30}
                 onClick={() => setOpen(true)}
@@ -105,12 +99,23 @@ const Header = () => {
               />
             ) : (
               <Image
-                src="/icons/close_icon.png"
+                src="/icons/close.svg"
                 width={30}
+                alt="icon"
                 onClick={() => setOpen(false)}
                 height={30}
               />
             )}
+
+          <div className={styles['m-auto']}>
+          <Image
+                        src="/icons/home.svg"
+                        alt="Blueberry Web"
+                        width={40}
+                        height={40}
+                      />
+          </div>
+     
           </div>
           <div
             className={`absolute top-20 left-0 h-screen w-screen  transform ${
