@@ -5,8 +5,10 @@ import Card from "../components/UI/Card/Card";
 import Text from "../components/UI/Text/Text";
 import Graph from "../components/UI/Graph/Graph";
 import CustomButton from "../components/UI/customButton/customButton";
+import { useWidth } from "../hooks/useWidth";
 
 const Home: NextPage = () => {
+  const width = useWidth();
   return (
     <Card className={styles.mainContainer}>
       <div
@@ -27,7 +29,8 @@ const Home: NextPage = () => {
             want to say here...
           </p>
         </div>
-        <CustomButton title={"Start Farming"} handleButtonClick={() => {}} />
+
+        <CustomButton buttonStyle={`${width <= 768 && 'w-full'}`} title={"Start Farming"} handleButtonClick={() => { }} />
       </div>
       <div className="md:flex gap-8 flex-row my-8 sm:block 2sm:block">
         <div className="net-pay-box basis-1/2 px-6 py-8 ">
@@ -54,49 +57,57 @@ const Home: NextPage = () => {
       </div>
       <div className="md:flex gap-8 flex-row rounded-lg my-8 sm:block 2sm:block">
         <div className="basis-1/2 px-6 py-8 ">
-          <Text>
+          <Text >
             <h6 className="text-muted">Position Value Breakdown</h6>
           </Text>
-          <div className={styles.lendingRow}>
-            <Text className="py-8">
-              {" "}
-              <span className={styles.heading1}>Lending Deposits</span>{" "}
-            </Text>
-            <Text className="py-8">
-              {" "}
-              <span className={styles.heading1}>$5,000.00 USD</span>{" "}
-            </Text>
+
+          <div className={styles.positionValueRow}>
+            <div className={styles.lendingRow}>
+              <Text >
+                {" "}
+                <span className={styles.heading1}>Lending Deposits</span>{" "}
+              </Text>
+              <Text>
+                {" "}
+                <span className={styles.heading1}>$5,000.00 USD</span>{" "}
+              </Text>
+            </div>
+            <div className={styles.lendingRow}>
+              <Text>
+                {" "}
+                <span className={styles.heading1}>Farming Positions</span>
+              </Text>
+              <Text>
+                {" "}
+                <span className={styles.heading1}>$5,000.00 USD</span>{" "}
+              </Text>
+            </div>
+            <div className={styles.lendingRow}>
+              <Text>
+                <span className={`${styles.heading1} text-rose-500`}>
+                  Debt Value
+                </span>
+              </Text>
+              <Text>
+                <span className={`${styles.heading1} text-rose-500`}>
+                  $5,000.00 USD
+                </span>{" "}
+              </Text>
+            </div>
           </div>
-          <div className={styles.lendingRow}>
-            <Text>
-              {" "}
-              <span className={styles.heading1}>Farming Positions</span>
-            </Text>
-            <Text>
-              {" "}
-              <span className={styles.heading1}>$5,000.00 USD</span>{" "}
-            </Text>
-          </div>
-          <div className={styles.lendingRow}>
-            <Text className="py-8">
-              <span className={`${styles.heading1} text-rose-500`}>
-                Debt Value
-              </span>
-            </Text>
-            <Text className="py-8">
-              <span className={`${styles.heading1} text-rose-500`}>
-                $5,000.00 USD
-              </span>{" "}
-            </Text>
-          </div>
+
         </div>
 
         {/* account health graph */}
+
+        <div className="md:flex gap-20 flex-row my-8 sm:block 2sm:block">
+
+        </div>
         <div className={`basis-1/2 px-6 py-8`}>
           <Text>
             <h6 className="text-muted">Position Value Breakdown</h6>
           </Text>
-          <div className={styles.lendingRow}>
+          <div className={`${styles.lendingRow} mt-5 ${width <= 768 && 'flex-column'}`}>
             <div className={styles.rightRow}>
               <Image src="/icons/pic.svg" width={35} height={35} alt="image" />
               <div className={styles.container}>
@@ -111,7 +122,7 @@ const Home: NextPage = () => {
               <span className={styles.percentage}>50%</span>
             </div>
           </div>
-          <div className={styles.lendingRow}>
+          <div className={`${styles.lendingRow}  ${width <= 768 && 'flex-column'}`}>
             <div className={styles.rightRow}>
               <Image src="/icons/pic.svg" width={35} height={35} alt="image" />
               <div className={styles.container}>

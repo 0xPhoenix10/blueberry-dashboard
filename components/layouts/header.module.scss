@@ -2,12 +2,19 @@
   background: linear-gradient(42.73deg, #017d91 -79.94%, #05ac5c 159.12%);
 }
 .mobileNavbar {
-  background: linear-gradient(42.73deg, #017d91 -79.94%, #05ac5c 159.12%);
+  background: #001223;
+  height: 100px;
 }
 
 .mobileNavbarBg {
   background: #1e1e1e !important;
   z-index: 111111;
+  height: calc(100vh - 100px);
+  top: 100px !important;
 
   //   background: linear-gradient(42.73deg, #017d91 -79.94%, #05ac5c 159.12%);
+}
+
+.m-auto{
+  margin: auto;
 }
