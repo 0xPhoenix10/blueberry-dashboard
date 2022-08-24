@@ -13,7 +13,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div className="min-h-screen bg-[#1E1E1E] flex flex-col md:flex-row flex-1">
-      {width <= 768 ? <BottomNavbar /> : <Sidebar />}
+      {width >680 ? <Sidebar /> :<></>}
       <div className="flex bg-main flex-col flex-1">
         <Header />
         <div className={styles.bottomContainer}>

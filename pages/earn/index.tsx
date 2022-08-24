@@ -2,7 +2,6 @@ import { Tabs, Tab } from '@mui/material'
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import { useState } from 'react'
-import Button from '../../components/UI/Button/Button'
 import Card from '../../components/UI/Card/Card'
 import styles from './earn.module.scss'
 import Popup from '../../components/UI/Popup/popup'
@@ -13,6 +12,10 @@ import ClosePosition from './closePosition/closePosition'
 import CustomButton from '../../components/UI/customButton/customButton'
 import StrategiesTable from '../../interfaces/strategiesTable'
 import TableGrid from '../../components/UI/TableGrid/TableGrid'
+import Button from '../../components/UI/Button/Button'
+import Dropdown from '../../components/UI/Dropdown/Dropdown'
+import Text from '../../components/UI/Text/Text'
+import { useWidth } from '../../hooks/useWidth'
 
 const strategiesTable = [
   {
@@ -51,6 +54,7 @@ const Earn: NextPage = () => {
   const [SuccessOpen, setSuccesPosition] = useState(false)
   const [YourPosOpen, setYourPosition] = useState(false)
   const [ClosePos, setClosePosition] = useState(false)
+  const width = useWidth();
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
@@ -91,6 +95,32 @@ const Earn: NextPage = () => {
   }
   return (
     <div className="md:h-[90px] items-center  mt-3 md:px-16 sm:px-1 2sm:px0 sm:h-[150px] sm:block">
+      {
+        width <=680 &&
+       <header className="md:h-[90px] md:flex items-center md:px-16 sm:px-1 2sm:px0 sm:h-[150px] sm:block">
+          <Text>
+            {' '}
+            <h3>Earn</h3>
+          </Text>
+
+          <div className="flex my-grid items-center">
+            
+            <Image
+              src="/icons/men.svg"
+              alt="Blueberry Web"
+              width={40}
+              height={40}
+              className={styles.menuIcon}
+            />
+
+            <Dropdown className={"flex-1"}/>
+              <CustomButton
+                title="Connect "
+                handleButtonClick={()=>{}}
+              />
+          </div>
+        </header>
+      }
       <div className={styles.topContainer}>
         <div>
           <h4 className={styles.heading}>

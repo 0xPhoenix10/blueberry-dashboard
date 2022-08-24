@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useWidth } from '../../hooks/useWidth'
+import styles from './layout.module.scss';
 
 const Sidebar = () => {
   const router = useRouter()
@@ -76,9 +77,9 @@ const Sidebar = () => {
             <li className="m-2" key={title}>
               <Link href={href}>
                 <a
-                  className={`flex p-2  justify-center rounded cursor-pointer ${
+                  className={`flex p-2  justify-center rounded cursor-pointer ${styles.itemIcon} ${
                     router.asPath === href && 'text-white'
-                  }`}
+                  } ${isSelected ? styles.selectedItem : ''}`}
                 >
                   {isSelected ? (
                     <Image
@@ -90,6 +91,7 @@ const Sidebar = () => {
                   ) : (
                     icon
                   )}
+                  <span>{title}</span>
                 </a>
               </Link>
             </li>
