@@ -3,6 +3,7 @@
 @tailwind utilities;
 /* @import "./mixin.scss"; */
 @import url("https://use.typekit.net/gji5wjb.css");
+@import "../styles/mixin.scss";
 
 html,
 body {
@@ -12,8 +13,8 @@ body {
   font-style: normal;
   // font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
   //   Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    overflow-y: hidden;
-    overflow-x: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 a {
@@ -25,9 +26,11 @@ a {
   box-sizing: border-box;
   font-family: heebo, sans-serif;
 }
-.cursor-pointer{
+
+.cursor-pointer {
   cursor: pointer;
 }
+
 .sidebar {
   /* @include devices(tablet) {
       display: block;
@@ -55,21 +58,27 @@ a {
     padding: 1.5em;
   } */
 }
+
 .net-pay-box {
   border-bottom: 4px solid rgb(255 255 255 / 5%);
 }
+
 header {
   justify-content: space-between;
 }
+
 .flex {
   display: flex;
 }
+
 .flex-row {
   flex-direction: row;
 }
+
 .flex-column {
   flex-direction: column;
 }
+
 .flex-gap {
   gap: 10px;
 }
@@ -80,13 +89,24 @@ header {
   position: absolute;
   bottom: 10px;
 }
+
 .side-bottom h5 {
   color: #ffffff;
   line-height: 24px;
 }
 
-.side-bottom > div {
-  flex: 50%; /* or - flex: 0 50% - or - flex-basis: 50% - */
+.side-bottom>div {
+  flex: 50%;
+
+  /* or - flex: 0 50% - or - flex-basis: 50% - */
+  @include devices(phone) {
+    flex: 100% !important;
+  }
+  @include devices(tablet) {
+    flex: 100% !important;
+  }
+
+
   /*demo*/
   text-align: center;
   margin-bottom: 7px;
@@ -149,6 +169,7 @@ Circle styles
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(135deg);
   }
@@ -169,6 +190,7 @@ Circle styles
   font-weight: 700;
   font-size: 2em;
 }
+
 /* 
 Circle style ends
 */
@@ -178,6 +200,7 @@ Circle style ends
 .bg-white-01 {
   background: rgba(255, 255, 255, 0.1);
 }
+
 .bg-white-05 {
   background: rgba(255, 255, 255, 0.1);
 }
