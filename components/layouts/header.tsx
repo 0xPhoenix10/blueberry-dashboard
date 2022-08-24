@@ -8,6 +8,7 @@ import CustomButton from '../UI/customButton/customButton'
 import Dropdown from '../UI/Dropdown/Dropdown'
 import Text from '../UI/Text/Text'
 import styles from './header.module.scss'
+import Sidebar from './sidebar'
 import WalletPage from './wallet'
 
 const Header = () => {
@@ -47,7 +48,7 @@ const Header = () => {
 
   return (
     <>
-      {width > 768 && (
+      {width > 680 && (
         <header className="md:h-[90px] md:flex items-center md:px-16 sm:px-1 2sm:px0 sm:h-[150px] sm:block">
           <Text>
             {' '}
@@ -84,7 +85,7 @@ const Header = () => {
           </div>
         </header>
       )}
-      {width <= 768 && (
+      {width <= 680 && (
         <>
           <div
             className={`flex items-center pl-2 pr-4 ${styles.mobileNavbar} h-20`}
@@ -123,32 +124,11 @@ const Header = () => {
               open ? '-translate-x-0' : '-translate-x-full'
             } transition-transform duration-300 ease-in-out filter drop-shadow-md `}
           >
-            <div className="flex flex-col ml-4">
-              <Text>
-                {' '}
-                <h3>{title}</h3>
-              </Text>
-              <Image
-                src="/icons/notification.svg"
-                alt="Blueberry Web"
-                width={40}
-                height={40}
-              />
-
-              <Dropdown></Dropdown>
-              {isOverview && (
-                <Button type="button" className="bg-white-01">
-                  <span className={`mr-3`}>100.54 ETH</span>{' '}
-                  <span> 0x575...A57D</span>
-                </Button>
-              )}
-              {isEarn && (
-                <CustomButton
-                  title="Connect Wallet"
-                  handleButtonClick={handleConnectClick}
-                />
-              )}
+          <div className={`${styles.mobileNavbarContainer} h-[90px]`}>
+          <div className="flex flex-col ml-4 h-full">
+             <Sidebar />
             </div>
+          </div>
           </div>
         </>
       )}

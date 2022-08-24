@@ -2,10 +2,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { useWidth } from '../../hooks/useWidth'
 
 const Sidebar = () => {
   const router = useRouter()
-  const pathName = router.pathname
+  const pathName = router.pathname;
+  const width = useWidth()
+
   const [menuItems, setMenuItems] = useState([
     {
       href: '/',
@@ -48,18 +51,20 @@ const Sidebar = () => {
   }
 
   return (
-    <aside className="sidebar sticky top-0 max-h-screen bg-[#001223]">
-      <div className="flex items-center justify-center h-[90px]">
-        <Link href={'/'}>
-          <a>
-            <Image
-              src="/icons/home.svg"
-              alt="Blueberry Web"
-              width={40}
-              height={40}
-            />
-          </a>
-        </Link>
+    <aside className="sidebar sticky top-0 h-screen bg-[#001223]">
+      <div className={`flex items-center justify-center ${width > 680 ? 'h-[90px]' : ''}`}>
+        {width > 680 &&
+          <Link href={'/'}>
+            <a>
+              <Image
+                src="/icons/home.svg"
+                alt="Blueberry Web"
+                width={40}
+                height={40}
+              />
+            </a>
+          </Link>
+        }
       </div>
       <nav>
         <ul>
@@ -67,9 +72,8 @@ const Sidebar = () => {
             <li className="m-2" key={title}>
               <Link href={href}>
                 <a
-                  className={`flex p-2  justify-center rounded cursor-pointer ${
-                    router.asPath === href && 'text-white'
-                  }`}
+                  className={`flex p-2  justify-center rounded cursor-pointer ${router.asPath === href && 'text-white'
+                    }`}
                 >
                   {isSelected ? (
                     <Image
