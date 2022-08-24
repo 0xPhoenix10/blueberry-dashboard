@@ -56,6 +56,7 @@ const Earn: NextPage = () => {
     setValue(newValue)
   }
 
+  //
   const newPositionOpenHandler = (title: string) => {
     console.log(title)
     switch (title) {
