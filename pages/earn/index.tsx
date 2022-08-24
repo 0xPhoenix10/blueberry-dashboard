@@ -12,27 +12,32 @@ import YourPosition from './yourPosition/yourPosition'
 import ClosePosition from './closePosition/closePosition'
 import CustomButton from '../../components/UI/customButton/customButton'
 import StrategiesTable from '../../interfaces/strategiesTable'
+import TableGrid from '../../components/UI/TableGrid/TableGrid'
 
 const strategiesTable = [
   {
+    id: 1,
     name: 'ICHI-USDC Vault',
     tvl: '$500 USD',
     Stablecoin: '$250 USD',
     Token: '$250 USD',
   },
   {
+    id: 2,
     name: 'ICHI-USDC Vault',
     tvl: '$500 USD',
     Stablecoin: '$250 USD',
     Token: '$250 USD',
   },
   {
+    id: 3,
     name: 'ICHI-USDC Vault',
     tvl: '$500 USD',
     Stablecoin: '$250 USD',
     Token: '$250 USD',
   },
   {
+    id: 4,
     name: 'ICHI-USDC Vault',
     tvl: '$500 USD',
     Stablecoin: '$250 USD',
@@ -94,7 +99,7 @@ const Earn: NextPage = () => {
           <p className={styles.text}>
             We allow capital efficient leverage for token holders with flexible
             collateral, so you can earn boosted yield on your holdings and
-            support your token's price with deeper liquidity
+            support your token&apos;s price with deeper liquidity
           </p>
         </div>
         <div className={styles.rightContainer}>
@@ -127,86 +132,7 @@ const Earn: NextPage = () => {
       </Tabs>
       <div className={styles.divider}></div>
       {value == 0 && (
-        <table className={styles.table}>
-          <thead className={styles.header}>
-            <tr>
-              <td className={styles.tHeading}>Current Strategy</td>
-              <td className={styles.tHeading}>Total Position</td>
-              <td className={styles.tHeading}>Debt Value</td>
-              <td className={styles.tHeading}>Equity Value</td>
-            </tr>
-          </thead>
-          <tbody className={styles.tbody}>
-            <tr
-              className="cursor-pointer"
-              onClick={() => newPositionOpenHandler('your-position')}
-            >
-              <td className={styles.columnRoundLeft}>
-                <div className={styles.tableCol}>
-                  <Image
-                    src="/icons/pic.svg"
-                    width={40}
-                    height={40}
-                    alt="image"
-                  />
-                  <span style={{ paddingLeft: '0.7rem' }}>ICHI-USDC Vault</span>
-                </div>
-              </td>
-              <td>$500 USD</td>
-              <td>$250 USD</td>
-              <td className={styles.columnRoundRight}>$250 USD</td>
-            </tr>
-            <tr
-              className={` ${styles.bottom} cursor-pointer`}
-              onClick={() => newPositionOpenHandler('your-position')}
-            >
-              <td colSpan={4}>
-                <div className={styles.rowBottom}>
-                  <span>Strategy Health: 50%</span>
-                  <div className={styles.innerContainer}>
-                    <div className={styles.container}></div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-
-            <tr
-              className="cursor-pointer"
-              onClick={() => newPositionOpenHandler('your-position')}
-            >
-              <td>
-                <div className={styles.tableCol}>
-                  <Image
-                    src="/icons/pic1.svg"
-                    width={40}
-                    height={40}
-                    alt="icon"
-                  />
-                  <span style={{ paddingLeft: '0.7rem' }}>oneICHI</span>
-                </div>
-              </td>
-              <td>$500 USD</td>
-              <td>$250 USD</td>
-              <td>$250 USD</td>
-            </tr>
-            <tr
-              className="cursor-pointer"
-              onClick={() => newPositionOpenHandler('your-position')}
-            >
-              <td
-                colSpan={4}
-                className={`${styles.columnRoundBottomRight} ${styles.columnRoundBottomLeft}`}
-              >
-                <div className={styles.rowBottom}>
-                  <span>Strategy Health: 75%</span>
-                  <div className={styles.innerContainer}>
-                    <div className={styles.bottomContainer}></div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <TableGrid></TableGrid>
       )}
       {value == 1 && <div></div>}
 
@@ -228,7 +154,7 @@ const Earn: NextPage = () => {
           <tbody className={styles.tbody}>
             {strategiesTable.map((row) => {
               return (
-                <tr>
+                <tr key={row.id}>
                   <td className={styles.columnRoundLeft}>
                     <div className={styles.tableCol}>
                       <Image
