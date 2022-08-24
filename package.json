@@ -16,6 +16,10 @@
     "next": "12.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "@walletconnect/web3-provider": "^1.6.6",
+    "ethers": "^5.5.1",
+    "walletlink": "^2.2.6",
+    "web3modal": "^1.9.4",
     "react-minimal-pie-chart": "^8.3.0",
     "sass": "^1.54.4"
   },
