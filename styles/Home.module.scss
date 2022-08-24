@@ -22,7 +22,7 @@
   // }
 }
 .main {
-  min-height: 100vh;
+  // min-height: 100vh;
   padding: 4rem 0;
   flex: 1;
   display: flex;
@@ -80,8 +80,8 @@
   border-radius: 5px;
   padding: 0.75rem;
   font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New,
-    monospace;
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
 }
 
 .grid {
@@ -172,7 +172,7 @@
         font-weight: 500;
         font-size: 13px;
       }
-      .subTitle{
+      .subTitle {
         color: white;
         font-weight: 400;
         margin-top: 0.3rem;
@@ -181,22 +181,22 @@
     }
   }
 }
-.mainContainer{
+.mainContainer {
   padding-bottom: 3rem;
 }
 
-.positionValueRow{
+.positionValueRow {
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
   margin-top: 36px;
 }
-.pMainContainer{
+.pMainContainer {
   flex: 1;
   .positionContainer {
     height: 10px;
     width: 80%;
-    background-color: #02172C;
+    background-color: #02172c;
     margin-left: 1rem;
     border-radius: 20px;
     position: relative;
@@ -214,21 +214,20 @@
       background: linear-gradient(89.83deg, #0056e0 0.3%, #57c5e0 99.81%);
       border-radius: 20px;
     }
-    .pInnercontainer1{
+    .pInnercontainer1 {
       position: absolute;
       height: 10px;
       width: 75%;
       top: 0;
       left: 0;
-      background:  linear-gradient(63.51deg, #007994 33.26%, #04AC5C 100%);
+      background: linear-gradient(63.51deg, #007994 33.26%, #04ac5c 100%);
       border-radius: 20px;
-
     }
   }
-  
-  .percentage{
+
+  .percentage {
     margin-left: 1rem;
-    color: #FFFFFF;
+    color: #ffffff;
     margin-top: 1rem;
     font-size: 12px;
   }

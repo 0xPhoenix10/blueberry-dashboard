@@ -6,7 +6,7 @@
 
   @include for-size(phone-only) {
     overflow-x: hidden;
-    height: 78vh;
+    height: 100vh;
     padding: 15px;
   }
 
@@ -37,10 +37,10 @@
     color: rgba(255, 255, 255, 0.35);
   }
 }
-.selectedItem{
-  background: #1B2E41;
+.selectedItem {
+  background: #1b2e41;
   border-radius: 20px;
-  span{
+  span {
     color: white !important;
   }
 }

@@ -54,7 +54,7 @@ const Earn: NextPage = () => {
   const [SuccessOpen, setSuccesPosition] = useState(false)
   const [YourPosOpen, setYourPosition] = useState(false)
   const [ClosePos, setClosePosition] = useState(false)
-  const width = useWidth();
+  const width = useWidth()
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
@@ -95,16 +95,14 @@ const Earn: NextPage = () => {
   }
   return (
     <div className="md:h-[90px] items-center  mt-3 md:px-16 sm:px-1 2sm:px0 sm:h-[150px] sm:block">
-      {
-        width <=680 &&
-       <header className="md:h-[90px] md:flex items-center md:px-16 sm:px-1 2sm:px0 sm:h-[150px] sm:block">
+      {width <= 680 && (
+        <header className="md:h-[90px] pb-4 md:flex items-center md:px-16 sm:px-1 2sm:px0 sm:h-[150px] sm:block">
           <Text>
             {' '}
             <h3>Earn</h3>
           </Text>
 
           <div className="flex my-grid items-center">
-            
             <Image
               src="/icons/men.svg"
               alt="Blueberry Web"
@@ -113,14 +111,11 @@ const Earn: NextPage = () => {
               className={styles.menuIcon}
             />
 
-            <Dropdown className={"flex-1"}/>
-              <CustomButton
-                title="Connect "
-                handleButtonClick={()=>{}}
-              />
+            <Dropdown className={'flex-1'} />
+            <CustomButton title="Connect " handleButtonClick={() => {}} />
           </div>
         </header>
-      }
+      )}
       <div className={styles.topContainer}>
         <div>
           <h4 className={styles.heading}>
@@ -162,9 +157,7 @@ const Earn: NextPage = () => {
         />
       </Tabs>
       <div className={styles.divider}></div>
-      {value == 0 && (
-        <TableGrid></TableGrid>
-      )}
+      {value == 0 && <TableGrid></TableGrid>}
       {value == 1 && <div></div>}
 
       <div className="mt-10">
