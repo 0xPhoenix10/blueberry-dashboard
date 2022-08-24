@@ -4,52 +4,48 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 const Sidebar = () => {
-
   const router = useRouter()
-  const pathName = router.pathname;
-  const [menuItems, setMenuItems] =  useState([
+  const pathName = router.pathname
+  const [menuItems, setMenuItems] = useState([
     {
       href: '/',
       title: 'Overview',
-      icon:    <Image src={'/icons/overview.svg'}  width={ 40} height={40} /> ,
-      selectedIcon:'/icons/selectedOverview.svg',
-      isSelected: false
-
+      icon: <Image src={'/icons/overview.svg'} width={40} height={40} />,
+      selectedIcon: '/icons/selectedOverview.svg',
+      isSelected: false,
     },
     {
       href: '/earn',
       title: 'Earn',
-      icon: <Image src={ '/icons/lend.svg'}  width={ 40} height={40} /> ,
-      selectedIcon:'/icons/selectedLend.svg',
-      isSelected: false
-
+      icon: <Image src={'/icons/lend.svg'} width={40} height={40} />,
+      selectedIcon: '/icons/selectedLend.svg',
+      isSelected: false,
     },
     {
       href: '/lend',
       title: 'Lend',
-      icon:  <Image src={  '/icons/earn.svg'}  width={ 40} height={40} />,
-      selectedIcon:'/icons/selectedEarn.svg',
-      isSelected: false
-    }])
-  
+      icon: <Image src={'/icons/earn.svg'} width={40} height={40} />,
+      selectedIcon: '/icons/selectedEarn.svg',
+      isSelected: false,
+    },
+  ])
 
   useEffect(() => {
-   if(pathName){
-    activeRoute(pathName);
-   }
-  }, [pathName]);
+    if (pathName) {
+      activeRoute(pathName)
+    }
+  }, [pathName])
 
-  const activeRoute =(route:string)=>{
-    let _routes= [...menuItems];
-     _routes= _routes.map((item)=>{
+  const activeRoute = (route: string) => {
+    let _routes = [...menuItems]
+    _routes = _routes.map((item) => {
       return {
-        ...item, isSelected : item.href === route? true : false
+        ...item,
+        isSelected: item.href === route ? true : false,
       }
-    });
-    setMenuItems([..._routes]);
+    })
+    setMenuItems([..._routes])
   }
-
-
 
   return (
     <aside className="sidebar sticky top-0 max-h-screen bg-[#001223]">
@@ -67,7 +63,7 @@ const Sidebar = () => {
       </div>
       <nav>
         <ul>
-          {menuItems.map(({ href, title, icon ,selectedIcon, isSelected}) => (
+          {menuItems.map(({ href, title, icon, selectedIcon, isSelected }) => (
             <li className="m-2" key={title}>
               <Link href={href}>
                 <a
@@ -75,12 +71,16 @@ const Sidebar = () => {
                     router.asPath === href && 'text-white'
                   }`}
                 >
-                 {
-                  isSelected ?
-                  <Image src={ selectedIcon } alt={title} width={ 44} height={44} />
-                  :
-                  icon
-                 }
+                  {isSelected ? (
+                    <Image
+                      src={selectedIcon}
+                      alt={title}
+                      width={44}
+                      height={44}
+                    />
+                  ) : (
+                    icon
+                  )}
                 </a>
               </Link>
             </li>
