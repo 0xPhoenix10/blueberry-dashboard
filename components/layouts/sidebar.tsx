@@ -6,7 +6,7 @@ import { useWidth } from '../../hooks/useWidth'
 
 const Sidebar = () => {
   const router = useRouter()
-  const pathName = router.pathname;
+  const pathName = router.pathname
   const width = useWidth()
 
   const [menuItems, setMenuItems] = useState([
@@ -52,8 +52,12 @@ const Sidebar = () => {
 
   return (
     <aside className="sidebar sticky top-0 h-screen bg-[#001223]">
-      <div className={`flex items-center justify-center ${width > 680 ? 'h-[90px]' : ''}`}>
-        {width > 680 &&
+      <div
+        className={`flex items-center justify-center ${
+          width > 680 ? 'h-[90px]' : ''
+        }`}
+      >
+        {width > 680 && (
           <Link href={'/'}>
             <a>
               <Image
@@ -64,7 +68,7 @@ const Sidebar = () => {
               />
             </a>
           </Link>
-        }
+        )}
       </div>
       <nav>
         <ul>
@@ -72,8 +76,9 @@ const Sidebar = () => {
             <li className="m-2" key={title}>
               <Link href={href}>
                 <a
-                  className={`flex p-2  justify-center rounded cursor-pointer ${router.asPath === href && 'text-white'
-                    }`}
+                  className={`flex p-2  justify-center rounded cursor-pointer ${
+                    router.asPath === href && 'text-white'
+                  }`}
                 >
                   {isSelected ? (
                     <Image
