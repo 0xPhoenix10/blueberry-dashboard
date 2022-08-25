@@ -6,6 +6,41 @@ import Button from "../../components/UI/Button/Button";
 import Card from "../../components/UI/Card/Card";
 import CustomButton from "../../components/UI/customButton/customButton";
 import styles from "./lend.module.scss";
+import MobileTableLend from "./mobileTableLend/mobileTableLend";
+
+
+const tableData = [
+  {
+    name: 'ICHI',
+    image: '/icons/pic.svg',
+    apy: '12%',
+    totalSupplyIchi: '5,000,000 ICHI',
+    totalSupplyusd: '5,000,000 USD',
+    totalBorrowedIchi: '4,000,000 ICHI',
+    totalBorrowedUsd: '4,000,000 USD',
+    utilization: '80%'
+  },
+  {
+    name: 'oneICHI',
+    image: '/icons/pic1.svg',
+    apy: '12%',
+    totalSupplyIchi: '5,000,000 ICHI',
+    totalSupplyusd: '5,000,000 USD',
+    totalBorrowedIchi: '4,000,000 ICHI',
+    totalBorrowedUsd: '4,000,000 USD',
+    utilization: '80%'
+  },
+  {
+    name: 'ICHI',
+    image: '/icons/pic.svg',
+    apy: '12%',
+    totalSupplyIchi: '5,000,000 ICHI',
+    totalSupplyusd: '5,000,000 USD',
+    totalBorrowedIchi: '4,000,000 ICHI',
+    totalBorrowedUsd: '4,000,000 USD',
+    utilization: '80%'
+  }
+]
 
 const Earn: NextPage = () => {
   const [value, setValue] = useState(0);
@@ -95,7 +130,9 @@ const Earn: NextPage = () => {
       )}
       {value == 1 && <div></div>}
 
-      <div className="mt-10">
+      <MobileTableLend  tableData ={tableData}/>
+
+      {/* <div className="mt-10">
         <table className={styles.table_bottom}>
           <thead className={styles.header}>
             <tr>
@@ -204,7 +241,7 @@ const Earn: NextPage = () => {
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> */}
     </div>
   );
 };
