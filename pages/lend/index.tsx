@@ -5,6 +5,7 @@ import { useState } from "react";
 import Button from "../../components/UI/Button/Button";
 import Card from "../../components/UI/Card/Card";
 import CustomButton from "../../components/UI/customButton/customButton";
+import { useWidth } from "../../hooks/useWidth";
 import styles from "./lend.module.scss";
 import MobileTableLend from "./mobileTableLend/mobileTableLend";
 
@@ -44,6 +45,7 @@ const tableData = [
 
 const Earn: NextPage = () => {
   const [value, setValue] = useState(0);
+  const width = useWidth();
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -130,118 +132,121 @@ const Earn: NextPage = () => {
       )}
       {value == 1 && <div></div>}
 
-      <MobileTableLend  tableData ={tableData}/>
+      {width <= 680 ?
+        <MobileTableLend tableData={tableData} />
+        :
+        <div className="mt-10">
+          <table className={styles.table_bottom}>
+            <thead className={styles.header}>
+              <tr>
+                <td className={styles.tHeading}>Pool</td>
+                <td className={styles.tHeading}>APY</td>
+                <td className={styles.tHeading}>Total Supply</td>
+                <td className={styles.tHeading}>Total Borrowed</td>
+                <td className={styles.tHeading}>Utilization</td>
+                <td className={styles.tHeading}>APY (14D)</td>
+                <td className={styles.tHeading}></td>
+              </tr>
+            </thead>
 
-      {/* <div className="mt-10">
-        <table className={styles.table_bottom}>
-          <thead className={styles.header}>
-            <tr>
-              <td className={styles.tHeading}>Pool</td>
-              <td className={styles.tHeading}>APY</td>
-              <td className={styles.tHeading}>Total Supply</td>
-              <td className={styles.tHeading}>Total Borrowed</td>
-              <td className={styles.tHeading}>Utilization</td>
-              <td className={styles.tHeading}>APY (14D)</td>
-              <td className={styles.tHeading}></td>
-            </tr>
-          </thead>
+            <tbody className={styles.tbody}>
+              <tr>
+                <td className={styles.columnRoundLeft}>
+                  <div className={styles.tableCol}>
+                    <Image src="/icons/pic.svg" width={40} height={40} />
+                    <span style={{ paddingLeft: "0.7rem" }}>ICHI</span>
+                  </div>
+                </td>
+                <td>12%</td>
+                <td>5,000,000 ICHI</td>
+                <td>1,236,010 ICHI</td>
+                <td>80%</td>
+                <td className={styles.columnRoundRight}>80%</td>
+                <td>
+                  {" "}
+                  <div className={styles.tableCol}>
+                    <CustomButton
+                      title="Deposit"
+                      handleButtonClick={() => { }}
+                      buttonStyle={styles.depositButton}
+                    />
+                    <Image src="/icons/union.svg" width={20} height={20} />
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td className={styles.columnRoundLeft}>
+                  <div className={styles.tableCol}>
+                    <Image src="/icons/pic.svg" width={40} height={40} />
+                    <span style={{ paddingLeft: "0.7rem" }}>oneICHI</span>
+                  </div>
+                </td>
+                <td>12%</td>
+                <td>5,000,000 ICHI</td>
+                <td>1,236,010 ICHI</td>
+                <td>80%</td>
+                <td className={styles.columnRoundRight}>80%</td>
+                <td>
+                  {" "}
+                  <div className={styles.tableCol}>
+                    <CustomButton
+                      title="Deposit"
+                      handleButtonClick={() => { }}
+                      buttonStyle={styles.depositButton}
+                    />
+                    <Image src="/icons/union.svg" width={20} height={20} />
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td className={styles.columnRoundLeft}>
+                  <div className={styles.tableCol}>
+                    <Image src="/icons/pic.svg" width={40} height={40} />
+                    <span style={{ paddingLeft: "0.7rem" }}>USDC</span>
+                  </div>
+                </td>
+                <td>12%</td>
+                <td>5,000,000 ICHI</td>
+                <td>1,236,010 ICHI</td>
+                <td>80%</td>
+                <td className={styles.columnRoundRight}>80%</td>
+                <td>
+                  {" "}
+                  <div className={styles.tableCol}>
+                    <CustomButton
+                      title="Deposit"
+                      handleButtonClick={() => { }}
+                      buttonStyle={styles.depositButton}
+                    />
+                    <Image src="/icons/union.svg" width={20} height={20} />
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td className={styles.columnRoundLeft}>
+                  <div className={styles.tableCol}>
+                    <Image src="/icons/pic.svg" width={40} height={40} />
+                    <span style={{ paddingLeft: "0.7rem" }}>ICHI-USDC Vault</span>
+                  </div>
+                </td>
+                <td>$500 USD</td>
+                <td>$250 USD</td>
+                <td>$250 USD</td>
+                <td>$250 USD</td>
+                <td className={styles.columnRoundRight}>$250 USD</td>
+                <td>
+                  <CustomButton
+                    title="Deposit"
+                    handleButtonClick={() => { }}
+                    buttonStyle={styles.depositButton}
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      }
 
-          <tbody className={styles.tbody}>
-            <tr>
-              <td className={styles.columnRoundLeft}>
-                <div className={styles.tableCol}>
-                  <Image src="/icons/pic.svg" width={40} height={40} />
-                  <span style={{ paddingLeft: "0.7rem" }}>ICHI</span>
-                </div>
-              </td>
-              <td>12%</td>
-              <td>5,000,000 ICHI</td>
-              <td>1,236,010 ICHI</td>
-              <td>80%</td>
-              <td className={styles.columnRoundRight}>80%</td>
-              <td>
-                {" "}
-                <div className={styles.tableCol}>
-                  <CustomButton
-                    title="Deposit"
-                    handleButtonClick={() => {}}
-                    buttonStyle={styles.depositButton}
-                  />
-                  <Image src="/icons/union.svg" width={20} height={20} />
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td className={styles.columnRoundLeft}>
-                <div className={styles.tableCol}>
-                  <Image src="/icons/pic.svg" width={40} height={40} />
-                  <span style={{ paddingLeft: "0.7rem" }}>oneICHI</span>
-                </div>
-              </td>
-              <td>12%</td>
-              <td>5,000,000 ICHI</td>
-              <td>1,236,010 ICHI</td>
-              <td>80%</td>
-              <td className={styles.columnRoundRight}>80%</td>
-              <td>
-                {" "}
-                <div className={styles.tableCol}>
-                  <CustomButton
-                    title="Deposit"
-                    handleButtonClick={() => {}}
-                    buttonStyle={styles.depositButton}
-                  />
-                  <Image src="/icons/union.svg" width={20} height={20} />
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td className={styles.columnRoundLeft}>
-                <div className={styles.tableCol}>
-                  <Image src="/icons/pic.svg" width={40} height={40} />
-                  <span style={{ paddingLeft: "0.7rem" }}>USDC</span>
-                </div>
-              </td>
-              <td>12%</td>
-              <td>5,000,000 ICHI</td>
-              <td>1,236,010 ICHI</td>
-              <td>80%</td>
-              <td className={styles.columnRoundRight}>80%</td>
-              <td>
-                {" "}
-                <div className={styles.tableCol}>
-                  <CustomButton
-                    title="Deposit"
-                    handleButtonClick={() => {}}
-                    buttonStyle={styles.depositButton}
-                  />
-                  <Image src="/icons/union.svg" width={20} height={20} />
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td className={styles.columnRoundLeft}>
-                <div className={styles.tableCol}>
-                  <Image src="/icons/pic.svg" width={40} height={40} />
-                  <span style={{ paddingLeft: "0.7rem" }}>ICHI-USDC Vault</span>
-                </div>
-              </td>
-              <td>$500 USD</td>
-              <td>$250 USD</td>
-              <td>$250 USD</td>
-              <td>$250 USD</td>
-              <td className={styles.columnRoundRight}>$250 USD</td>
-              <td>
-                <CustomButton
-                  title="Deposit"
-                  handleButtonClick={() => {}}
-                  buttonStyle={styles.depositButton}
-                />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div> */}
     </div>
   );
 };

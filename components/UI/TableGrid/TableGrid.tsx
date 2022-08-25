@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useState } from 'react';
 import TableGridItem from './TableGridItem';
 import ProgressBar from '../ProgressBar/ProgressBar';
+import ProgressBar1 from '../ProgressBar/ProgressBar1';
 
 // const columns = {
 //     CurrentStrategy = 
@@ -87,7 +88,7 @@ const TableGrid = () => {
                 >
                     <td><span>Strategy Health: 75%</span></td>
                     <td colSpan={3}>
-                        <ProgressBar color={`linear-gradient(63.51deg, #007994 33.26%, #04ac5c 100%)`} value={70}></ProgressBar>
+                        <ProgressBar1 color={`linear-gradient(63.51deg, #007994 33.26%, #04ac5c 100%)`} value={70} />
                     </td>
                 </tr>
                 {/* <tr
