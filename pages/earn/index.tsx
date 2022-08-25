@@ -200,6 +200,7 @@ const Earn: NextPage = () => {
                     <td>
                       <CustomButton
                         title="New Position"
+                        buttonStyle={styles.buttonStyle}
                         handleButtonClick={() =>
                           newPositionOpenHandler('new-position')
                         }

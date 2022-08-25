@@ -45,9 +45,11 @@ const TableGrid = () => {
                             <span style={{ paddingLeft: '0.7rem' }} className={styles.tdSpan}>ICHI-USDC Vault</span>
                         </div>
                     </td>
-                    <td>   <span>Total Position</span> <span className={styles.coltd}> $500 USD</span></td>
-                    <td>  <span>Debt Value</span> <span className={styles.coltd}> $250 USD</span></td>
-                    <td className={styles.columnRoundRight}> <span >Equity Value</span>  <span className={styles.coltd}> $250 USD</span></td>
+                    <td>   <span className={styles.tdSubtitle}>Total Position</span>
+                        <span className={styles.coltd} > $500 USD</span>
+                    </td>
+                    <td>  <span className={styles.tdSubtitle}>Debt Value</span> <span className={styles.coltd}> $250 USD</span></td>
+                    <td  className={styles.tdSubtitle}> <span >Equity Value</span>  <span className={styles.coltd}> $250 USD</span></td>
                 </tr>
                 <tr
                     className={` ${styles.bottom} ${styles.rowBottom} cursor-pointer`}
