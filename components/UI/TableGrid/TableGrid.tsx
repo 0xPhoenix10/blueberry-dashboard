@@ -22,7 +22,7 @@ const TableGrid = () => {
             {/* header  */}
 
         </div>
-
+        <span className={styles.title}> Current Strategy</span>
         <table className={styles.table}>
             <thead className={styles.header}>
                 <tr>
@@ -42,12 +42,12 @@ const TableGrid = () => {
                                 height={40}
                                 alt="image"
                             />
-                            <span style={{ paddingLeft: '0.7rem' }}>ICHI-USDC Vault</span>
+                            <span style={{ paddingLeft: '0.7rem' }} className={styles.tdSpan}>ICHI-USDC Vault</span>
                         </div>
                     </td>
-                    <td>   <span>Total Position</span> <span> $500 USD</span></td>
-                    <td>  <span>Debt Value</span> <span> $250 USD</span></td>
-                    <td className={styles.columnRoundRight}> <span>Equity Value</span>  <span> $250 USD</span></td>
+                    <td>   <span>Total Position</span> <span className={styles.coltd}> $500 USD</span></td>
+                    <td>  <span>Debt Value</span> <span className={styles.coltd}> $250 USD</span></td>
+                    <td className={styles.columnRoundRight}> <span >Equity Value</span>  <span className={styles.coltd}> $250 USD</span></td>
                 </tr>
                 <tr
                     className={` ${styles.bottom} ${styles.rowBottom} cursor-pointer`}
@@ -72,12 +72,12 @@ const TableGrid = () => {
                                 height={40}
                                 alt="icon"
                             />
-                            <span style={{ paddingLeft: '0.7rem' }}>oneICHI</span>
+                            <span style={{ paddingLeft: '0.7rem' }} className={styles.tdSpan}> oneICHI</span>
                         </div>
                     </td>
-                    <td>$500 USD</td>
-                    <td>$250 USD</td>
-                    <td>$250 USD</td>
+                    <td > $500 USD</td>
+                    <td >$250 USD</td>
+                    <td >$250 USD</td>
                 </tr>
 
                 <tr
