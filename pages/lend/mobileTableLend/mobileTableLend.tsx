@@ -57,9 +57,9 @@ const MobileTableLend = ({ tableData }: any) => {
         <div className={`mt-8 ${styles.mainContainer1}`}>
             <span className={styles.subtitle}></span>
             {
-                tableData.map((row: any) => {
+                tableData.map((row: any, index: number) => {
                     return (
-                        <RowLend row={row} />
+                        <RowLend row={row} key={index}/>
                     )
                 })
             }
