@@ -46,9 +46,9 @@ const AvailableFaultMobile = ({strategiesTable}:any) => {
             <h1 className={`mb-5 ${styles.title}`}>Available Vaults</h1>
             <span className={styles.subtitle}>Strategy</span>
         {
-            strategiesTable.map((row:any)=>{
+            strategiesTable.map((row:any, index: number)=>{
                 return (
-                    <FaultMobile row={row} />
+                    <FaultMobile row={row} key={index}/>
                 )
             })
         }
