@@ -113,7 +113,7 @@ const Earn: NextPage = () => {
             />
 
             <Dropdown className={'flex-1'} />
-            <CustomButton title="Connect " handleButtonClick={() => { }} />
+            <CustomButton title="Connect " handleButtonClick={() => {}} />
           </div>
         </header>
       )}
@@ -158,12 +158,14 @@ const Earn: NextPage = () => {
         />
       </Tabs>
       <div className={styles.divider}></div>
-      {value == 0 && <TableGrid></TableGrid>}
+      {value == 0 && (
+        <TableGrid newPositionOpenHandler={newPositionOpenHandler}></TableGrid>
+      )}
       {value == 1 && <div></div>}
 
-      {width <= 680 ?
-        <AvailableFaultMobile strategiesTable={strategiesTable} />
-        :
+      {width <= 680 ? (
+        <AvailableFaultMobile strategiesTable={strategiesTable || []} />
+      ) : (
         <div className="mt-10">
           <table className={styles.table_bottom}>
             <thead className={styles.header}>
@@ -191,7 +193,9 @@ const Earn: NextPage = () => {
                           height={40}
                           alt="image"
                         />
-                        <span style={{ paddingLeft: '0.7rem' }}>{row.name}</span>
+                        <span style={{ paddingLeft: '0.7rem' }}>
+                          {row.name}
+                        </span>
                       </div>
                     </td>
                     <td>{row.tvl}</td>
@@ -212,9 +216,7 @@ const Earn: NextPage = () => {
             </tbody>
           </table>
         </div>
-      }
-
-
+      )}
 
       <Popup
         // onClick={(e) => newPositionOpenHandler('success-position')}
