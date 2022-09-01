@@ -8,6 +8,7 @@ import Popup from '../../components/UI/Popup/popup'
 import NewPosition from './newPosition/newPosition'
 import PositionDetails from './positionDetails/positionDetails'
 import YourPosition from './yourPosition/yourPosition'
+import EditPosition from './editPosition/editPosition'
 import ClosePosition from './closePosition/closePosition'
 import CustomButton from '../../components/UI/customButton/customButton'
 import StrategiesTable from '../../interfaces/strategiesTable'
@@ -54,6 +55,7 @@ const Earn: NextPage = () => {
   const [NewOpen, setNewPosition] = useState(false)
   const [SuccessOpen, setSuccesPosition] = useState(false)
   const [YourPosOpen, setYourPosition] = useState(false)
+  const [EditPosOpen, setEditPosition] = useState(false)
   const [ClosePos, setClosePosition] = useState(false)
   const width = useWidth()
 
@@ -73,6 +75,9 @@ const Earn: NextPage = () => {
         break
       case 'your-position':
         setYourPosition(true)
+        break
+      case 'edit-position':
+        setEditPosition(true)
         break
       case 'close-position':
         setClosePosition(true)
@@ -240,6 +245,19 @@ const Earn: NextPage = () => {
         }}
       >
         <YourPosition handleClosepositionPopup={handleClosepositionPopup} />
+      </Popup>
+      <Popup
+        isOpen={EditPosOpen}
+        title={'Edit Position'}
+        handleClose={() => {
+          setEditPosition(false)
+        }}
+      >
+        <EditPosition
+          handleClose={() => {
+            setEditPosition(false)
+          }}
+        />
       </Popup>
       <Popup
         isOpen={ClosePos}
