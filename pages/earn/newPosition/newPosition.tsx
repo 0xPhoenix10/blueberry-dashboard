@@ -101,6 +101,10 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
               <LeverageSlider
                 marks={[
                   {
+                    value: 0,
+                    label: '0x',
+                  },
+                  {
                     value: 1,
                     label: '1x',
                   },
@@ -109,12 +113,16 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
                     label: '3x',
                   },
                 ]}
-                max={4}
+                max={3}
                 realMax={3}
               />
             ) : (
               <LeverageSlider
                 marks={[
+                  {
+                    value: 0,
+                    label: '0x',
+                  },
                   {
                     value: 1,
                     label: '1x',
@@ -123,8 +131,12 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
                     value: 1.5,
                     label: '1.5x',
                   },
+                  {
+                    value: 3,
+                    label: '3x',
+                  },
                 ]}
-                max={4}
+                max={3}
                 realMax={1.5}
               />
             )
