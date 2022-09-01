@@ -124,7 +124,7 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
                     label: '1.5x',
                   },
                 ]}
-                max={2}
+                max={4}
                 realMax={1.5}
               />
             )
