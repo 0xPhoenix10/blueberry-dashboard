@@ -100,7 +100,7 @@ const Earn: NextPage = () => {
     newPositionOpenHandler(value)
   }
   return (
-    <div className="h-full items-center my-4 md:px-16 sm:px-1 2sm:px0 sm:block">
+    <div className={`${width <= 680 ? 'h-fit' : 'h-full'} items-center my-4 md:px-16 sm:px-1 2sm:px0 sm:block`}>
       {width <= 680 && (
         <header className="md:h-[90px] pb-4 md:flex items-center md:px-16 sm:px-1 2sm:px0 sm:h-[150px] sm:block">
           <Text>
@@ -168,7 +168,7 @@ const Earn: NextPage = () => {
       {width <= 680 ? (
         <AvailableFaultMobile strategiesTable={strategiesTable || []} />
       ) : (
-        <div className="mt-10">
+        <div className="mt-10 pb-40">
           <table className={styles.table_bottom}>
             <thead className={styles.header}>
               <tr>

@@ -61,7 +61,7 @@ const Earn: NextPage = () => {
     closeDepositModal()
   }
   return (
-    <div className="h-full items-center my-4 md:px-16 sm:px-1 2sm:px0 sm:block">
+    <div className={`${width <= 680 ? 'h-fit' : 'h-full'} items-center my-4 md:px-16 sm:px-1 2sm:px0 sm:block`}>
       <div className={styles.topContainer}>
         <div>
           <h4 className={styles.heading}>Lending</h4>
@@ -148,7 +148,7 @@ const Earn: NextPage = () => {
       {width <= 680 ? (
         <MobileTableLend tableData={tableData || []} />
       ) : (
-        <div className="mt-10">
+        <div className="mt-10 pb-40">
           <table className={styles.table_bottom}>
             <thead className={styles.header}>
               <tr>
