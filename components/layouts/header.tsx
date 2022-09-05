@@ -4,18 +4,19 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useWidth } from '../../hooks/useWidth'
 import Button from '../UI/Button/Button'
-import CustomButton from '../UI/customButton/customButton'
+import { Web3Button } from '../UI/Web3Button/Web3Button'
 import Dropdown from '../UI/Dropdown/Dropdown'
 import Text from '../UI/Text/Text'
 import styles from './header.module.scss'
 import Sidebar from './sidebar'
-import WalletPage from './wallet'
+import { useWeb3Context } from '../../context'
 
 const Header = () => {
+  const { web3Provider, connect, disconnect } = useWeb3Context()
+
   const [title, setTitle] = useState('Overview')
   const [isEarn, setIsEarn] = useState(false)
   const [isLend, setIsLend] = useState(false)
-  const [isWallet, setWalletToggle] = useState(false)
   const [isOverview, setIsOverview] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -46,10 +47,6 @@ const Header = () => {
     }
   }, [pathName])
 
-  const handleConnectClick = () => {
-    setWalletToggle((prev) => !prev)
-  }
-
   return (
     <>
       {width > 680 && (
@@ -74,18 +71,8 @@ const Header = () => {
             />
 
             <Dropdown className={'flex-1'}></Dropdown>
-            {isOverview && (
-              <Button type="button" className="bg-white-01">
-                <span className={`mr-3`}>100.54 ETH</span>{' '}
-                <span> 0x575...A57D</span>
-              </Button>
-            )}
-            {(isEarn || isLend) && (
-              <CustomButton
-                title="Connect Wallet"
-                handleButtonClick={handleConnectClick}
-              />
-            )}
+
+            <Web3Button />
           </div>
         </header>
       )}
@@ -135,9 +122,6 @@ const Header = () => {
             </div>
           </div>
         </>
-      )}
-      {isWallet && (
-        <WalletPage isOpen={isWallet} handleCloseWallet={handleConnectClick} />
       )}
     </>
   )
