@@ -2,6 +2,7 @@ import { useEffect, useReducer, useCallback } from 'react'
 import { ethers } from 'ethers'
 import Web3Modal from 'web3modal'
 import WalletConnectProvider from '@walletconnect/web3-provider'
+import CoinbaseWalletSDK from "@coinbase/wallet-sdk"
 
 import {
   Web3ProviderState,
@@ -12,11 +13,20 @@ import {
 
 import { toast } from 'react-toastify'
 
+const INFURA_ID = '460f40a260564ac4a4f4b3fffb032dad'
+
 const providerOptions = {
+  coinbasewallet: {
+    package: CoinbaseWalletSDK, 
+    options: {
+      appName: "Web 3 Modal Demo",
+      infuraId: INFURA_ID 
+    }
+  },
   walletconnect: {
     package: WalletConnectProvider, // required
     options: {
-      infuraId: process.env.NEXT_PUBLIC_INFURA_ID,
+      infuraId: INFURA_ID,
     },
   },
 }
@@ -27,6 +37,7 @@ if (typeof window !== 'undefined') {
     network: 'mainnet', // optional
     cacheProvider: true,
     providerOptions, // required
+    theme: "dark",
   })
 }
 
