@@ -4,15 +4,23 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useWidth } from '../../hooks/useWidth'
 import Button from '../UI/Button/Button'
-import { Web3Button } from '../UI/Web3Button/Web3Button'
 import Dropdown from '../UI/Dropdown/Dropdown'
 import Text from '../UI/Text/Text'
 import styles from './header.module.scss'
 import Sidebar from './sidebar'
-import { useWeb3Context } from '../../context'
+import { connectors } from "../web3/connectors"
+import { Web3Button } from '../web3/Web3Button'
+import { useWeb3React } from "@web3-react/core"
 
 const Header = () => {
-  const { web3Provider, connect, disconnect } = useWeb3Context()
+  const {
+    library,
+    chainId,
+    account,
+    activate,
+    deactivate,
+    active
+  } = useWeb3React();
 
   const [title, setTitle] = useState('Overview')
   const [isEarn, setIsEarn] = useState(false)
@@ -46,6 +54,11 @@ const Header = () => {
         break
     }
   }, [pathName])
+
+  useEffect(() => {
+    const provider = window.localStorage.getItem("provider");
+    if (provider) activate(connectors[provider]);
+  }, []);
 
   return (
     <>
