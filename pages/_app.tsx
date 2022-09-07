@@ -9,8 +9,13 @@ import theme from '../theme/theme'
 import createEmotionCache from '../theme/createEmotionCache'
 import Layout from '../components/layouts/layout'
 import { AppContextProvider } from '../context/AppContext'
-import { Web3ContextProvider } from '../context'
 import { ToastContainer } from 'react-toastify'
+import { Web3ReactProvider } from '@web3-react/core'
+import { Web3Provider } from "@ethersproject/providers"
+
+const getLibrary = (provider) => {
+  return new Web3Provider(provider);
+}
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
@@ -29,13 +34,13 @@ function MyApp(props: MyAppProps) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <Web3ContextProvider>
+        <Web3ReactProvider getLibrary={getLibrary}>
           <AppContextProvider>
             <Layout>
               <Component {...pageProps} />
             </Layout>
           </AppContextProvider>
-        </Web3ContextProvider>
+        </Web3ReactProvider>
       </ThemeProvider>
     </CacheProvider>
   )
