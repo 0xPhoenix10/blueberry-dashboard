@@ -55,10 +55,10 @@ const Header = () => {
     }
   }, [pathName])
 
-  useEffect(() => {
-    const provider = window.localStorage.getItem("provider");
-    if (provider) activate(connectors[provider]);
-  }, []);
+  // useEffect(() => {
+  //   const provider = window.localStorage.getItem("provider");
+  //   if (provider) activate(connectors[provider]);
+  // }, []);
 
   return (
     <>
