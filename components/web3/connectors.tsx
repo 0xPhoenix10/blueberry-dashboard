@@ -10,7 +10,8 @@ const injected = new InjectedConnector({
 
 
 const WalletConnect = new WalletConnectConnector({
-  rpcUrl: `https://mainnet.infura.io/v3/${INFURA_ID}`,
+  // rpcUrl: `https://mainnet.infura.io/v3/${INFURA_ID}`,
+  rpc: { 1: `https://mainnet.infura.io/v3/${INFURA_ID}` },
   bridge: "https://bridge.walletconnect.org",
   qrcode: true,
  });
