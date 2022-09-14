@@ -13,6 +13,7 @@ import Popup from '../components/UI/Popup/popup';
 import YourPosition from './earn/yourPosition/yourPosition';
 import ClosePosition from './earn/closePosition/closePosition'
 import EditPosition from './earn/editPosition/editPosition'
+import { Web3Button } from '../components/web3/Web3Button'
 
 const Home: NextPage = () => {
   const [YourPosOpen, setYourPosition] = useState(false)
@@ -69,9 +70,7 @@ const Home: NextPage = () => {
             />
 
             <Dropdown className={"flex-1"}/>
-            <Button type="button" className="bg-white-01">
-                <span className={`mr-3`}>100.54 ETH</span>{' '}
-              </Button>
+            <Web3Button />
            
           </div>
         </header>

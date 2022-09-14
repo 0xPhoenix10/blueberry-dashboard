@@ -18,6 +18,7 @@ import Dropdown from '../../components/UI/Dropdown/Dropdown'
 import Text from '../../components/UI/Text/Text'
 import { useWidth } from '../../hooks/useWidth'
 import AvailableFaultMobile from './availableFaultMobile/availableFaultMobile'
+import { Web3Button } from '../../components/web3/Web3Button'
 
 const strategiesTable = [
   {
@@ -118,7 +119,7 @@ const Earn: NextPage = () => {
             />
 
             <Dropdown className={'flex-1'} />
-            <CustomButton title="Connect " handleButtonClick={() => {}} />
+            <Web3Button />
           </div>
         </header>
       )}

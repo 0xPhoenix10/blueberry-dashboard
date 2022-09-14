@@ -10,6 +10,9 @@ import styles from './lend.module.scss'
 import MobileTableLend from './mobileTableLend/mobileTableLend'
 import DepositModal from './depositModal/depositModal'
 import Popup from '../../components/UI/Popup/popup'
+import { Web3Button } from '../../components/web3/Web3Button'
+import Text from '../../components/UI/Text/Text'
+import Dropdown from '../../components/UI/Dropdown/Dropdown'
 
 const tableData = [
   {
@@ -65,6 +68,27 @@ const Earn: NextPage = () => {
   }
   return (
     <div className={`${width <= 680 ? 'h-fit' : 'h-full'} items-center my-4 md:px-16 sm:px-1 2sm:px0 sm:block`}>
+      {width <= 680 && (
+        <header className="md:h-[90px] pb-4 md:flex items-center md:px-16 sm:px-1 2sm:px0 sm:h-[150px] sm:block">
+          <Text>
+            {' '}
+            <h3>Lend</h3>
+          </Text>
+
+          <div className="flex my-grid items-center">
+            <Image
+              src="/icons/men.svg"
+              alt="Blueberry Web"
+              width={40}
+              height={40}
+              className={styles.menuIcon}
+            />
+
+            <Dropdown className={'flex-1'} />
+            <Web3Button />
+          </div>
+        </header>
+      )}
       <div className={styles.topContainer}>
         <div>
           <h4 className={styles.heading}>Lending</h4>
