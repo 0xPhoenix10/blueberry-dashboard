@@ -8,19 +8,9 @@ import Dropdown from '../UI/Dropdown/Dropdown'
 import Text from '../UI/Text/Text'
 import styles from './header.module.scss'
 import Sidebar from './sidebar'
-import { connectors } from "../web3/connectors"
 import { Web3Button } from '../web3/Web3Button'
-import { useWeb3React } from "@web3-react/core"
 
 const Header = () => {
-  const {
-    library,
-    chainId,
-    account,
-    activate,
-    deactivate,
-    active
-  } = useWeb3React();
 
   const [title, setTitle] = useState('Overview')
   const [isEarn, setIsEarn] = useState(false)
@@ -55,10 +45,6 @@ const Header = () => {
     }
   }, [pathName])
 
-  // useEffect(() => {
-  //   const provider = window.localStorage.getItem("provider");
-  //   if (provider) activate(connectors[provider]);
-  // }, []);
   const handleSidebarClick = (value: string) => {
     setOpen(false)
   }
