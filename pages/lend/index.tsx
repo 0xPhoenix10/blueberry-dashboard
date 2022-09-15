@@ -13,6 +13,8 @@ import Popup from '../../components/UI/Popup/popup'
 import { Web3Button } from '../../components/web3/Web3Button'
 import Text from '../../components/UI/Text/Text'
 import Dropdown from '../../components/UI/Dropdown/Dropdown'
+import { useTheme } from '@mui/material/styles'
+import TableGrid from './TableGrid/TableGrid'
 
 const tableData = [
   {
@@ -52,6 +54,7 @@ const Earn: NextPage = () => {
   const [tokenName, setTokenName] = useState("ICHI")
   const [value, setValue] = useState(0)
   const width = useWidth()
+  const theme = useTheme()
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
@@ -97,7 +100,7 @@ const Earn: NextPage = () => {
           </p>
         </div>
         <div className={styles.rightContainer}>
-          <input className={styles.btnSearch} placeholder={"Search..."}/>
+          <input className={`${styles.btnSearch} ${theme.palette.mode === 'light' ? 'bg-black/[0.1]':'bg-white/[0.1]'}`} placeholder={"Search..."}/>
         </div>
       </div>
 
@@ -110,65 +113,66 @@ const Earn: NextPage = () => {
       >
         <Tab
           label={
-            <span style={{ color: value === 0 ? '#19857b' : 'white' }}>
+            <span style={{ color: value === 0 ? '#19857b' : (theme.palette.mode === 'light' ? '#000' : '#fff') }}>
               My Positions
             </span>
           }
         />
         {/* <Tab
           label={
-            <span style={{ color: value === 1 ? '#19857b' : 'white' }}>
+            <span style={{ color: value === 1 ? '#19857b' : (theme.palette.mode === 'light' ? '#000' : '#fff') }}>
               Liquidated Positions
             </span>
           }
         /> */}
       </Tabs>
-      <div className={styles.divider}></div>
+      <div className={`${theme.palette.mode === 'light' ? styles.dividerLight : styles.dividerDark} ${styles.divider}`}></div>
       {value == 0 && (
-        <table className={styles.table}>
-          <thead className={styles.header}>
-            <tr>
-              <td className={styles.tHeading}>Pool</td>
-              <td className={styles.tHeading}>APY % (Weekly Earnings)</td>
-              <td className={styles.tHeading}></td>
-              <td className={styles.tHeading}></td>
-              <td className={styles.tHeading}>Your Position</td>
-            </tr>
-          </thead>
-          <tbody className={styles.tbody}>
-            <tr className={` ${styles.bottom}`}>
-              <td className={styles.columnRoundLeft}>
-                <div className={styles.tableCol}>
-                  <Image src="/icons/pic.svg" width={30} height={30} />
-                  <span style={{ paddingLeft: '0.7rem' }}>ICHI</span>
-                </div>
-              </td>
-              <td>12% <span className={styles.smallAPYText}>($576)</span></td>
-              <td></td>
-              <td></td>
-              <td>
-                <p>250,0000 ICHI</p>
-                <p className={styles.smallPositionText}>$2,500,000 USD</p>
-              </td>
-            </tr>
+        <TableGrid />
+        // <table className={styles.table}>
+        //   <thead className={styles.header}>
+        //     <tr>
+        //       <td className={styles.tHeading}>Pool</td>
+        //       <td className={styles.tHeading}>APY % (Weekly Earnings)</td>
+        //       <td className={styles.tHeading}></td>
+        //       <td className={styles.tHeading}></td>
+        //       <td className={styles.tHeading}>Your Position</td>
+        //     </tr>
+        //   </thead>
+        //   <tbody className={`${styles.tbody} ${theme.palette.mode === 'light' ?'bg-black/[0.1]' : 'bg-white/[0.05]'}`}>
+        //     <tr className={`border-b-[1px] ${theme.palette.mode === 'light' ? 'border-black/[0.2]':'border-white/[0.1]'}`}>
+        //       <td className={styles.columnRoundLeft}>
+        //         <div className={styles.tableCol}>
+        //           <Image src="/icons/pic.svg" width={30} height={30} />
+        //           <span style={{ paddingLeft: '0.7rem' }}>ICHI</span>
+        //         </div>
+        //       </td>
+        //       <td>12% <span className={styles.smallAPYText}>($576)</span></td>
+        //       <td></td>
+        //       <td></td>
+        //       <td>
+        //         <p>250,0000 ICHI</p>
+        //         <p className={styles.smallPositionText}>$2,500,000 USD</p>
+        //       </td>
+        //     </tr>
 
-            <tr>
-              <td>
-                <div className={styles.tableCol}>
-                  <Image src="/icons/pic1.svg" width={30} height={30} />
-                  <span style={{ paddingLeft: '0.7rem' }}>oneICHI</span>
-                </div>
-              </td>
-              <td>12% <span className={styles.smallAPYText}>($576)</span></td>
-              <td></td>
-              <td></td>
-              <td>
-                <p>250,0000 oneICHI</p>
-                <p className={styles.smallPositionText}>$2,500,000 USD</p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        //     <tr>
+        //       <td>
+        //         <div className={styles.tableCol}>
+        //           <Image src="/icons/pic1.svg" width={30} height={30} />
+        //           <span style={{ paddingLeft: '0.7rem' }}>oneICHI</span>
+        //         </div>
+        //       </td>
+        //       <td>12% <span className={styles.smallAPYText}>($576)</span></td>
+        //       <td></td>
+        //       <td></td>
+        //       <td>
+        //         <p>250,0000 oneICHI</p>
+        //         <p className={styles.smallPositionText}>$2,500,000 USD</p>
+        //       </td>
+        //     </tr>
+        //   </tbody>
+        // </table>
       )}
       {value == 1 && <div></div>}
 
@@ -190,7 +194,7 @@ const Earn: NextPage = () => {
             </thead>
 
             <tbody className={styles.tbody}>
-              <tr>
+              <tr className={`border-y-[1px] ${theme.palette.mode === 'light' ? 'border-black/[0.2]':'border-white/[0.1]'}`}>
                 <td className={styles.columnRoundLeft}>
                   <div className={styles.tableCol}>
                     <Image src="/icons/pic.svg" width={30} height={30} />
@@ -220,7 +224,7 @@ const Earn: NextPage = () => {
                   </div>
                 </td>
               </tr>
-              <tr>
+              <tr className={`border-y-[1px] ${theme.palette.mode === 'light' ? 'border-black/[0.2]':'border-white/[0.1]'}`}>
                 <td className={styles.columnRoundLeft}>
                   <div className={styles.tableCol}>
                     <Image src="/icons/pic1.svg" width={30} height={30} />
@@ -237,7 +241,7 @@ const Earn: NextPage = () => {
                   <p className={styles.smallPositionText}>$12,360,100 USD</p>
                 </td>
                 <td>80%</td>
-                <td className={styles.columnRoundRight}></td>
+                <td></td>
                 <td>
                   {' '}
                   <div className={styles.tableCol}>
@@ -250,7 +254,7 @@ const Earn: NextPage = () => {
                   </div>
                 </td>
               </tr>
-              <tr>
+              <tr className={`border-y-[1px] ${theme.palette.mode === 'light' ? 'border-black/[0.2]':'border-white/[0.1]'}`}>
                 <td className={styles.columnRoundLeft}>
                   <div className={styles.tableCol}>
                     <Image src="/icons/pic.svg" width={30} height={30} />
@@ -267,7 +271,7 @@ const Earn: NextPage = () => {
                   <p className={styles.smallPositionText}>$12,360,100 USD</p>
                 </td>
                 <td>80%</td>
-                <td className={styles.columnRoundRight}></td>
+                <td></td>
                 <td>
                   {' '}
                   <div className={styles.tableCol}>
@@ -280,28 +284,6 @@ const Earn: NextPage = () => {
                   </div>
                 </td>
               </tr>
-              {/* <tr>
-                <td className={styles.columnRoundLeft}>
-                  <div className={styles.tableCol}>
-                    <Image src="/icons/pic.svg" width={40} height={40} />
-                    <span style={{ paddingLeft: '0.7rem' }}>
-                      ICHI-USDC Vault
-                    </span>
-                  </div>
-                </td>
-                <td>$500 USD</td>
-                <td>$250 USD</td>
-                <td>$250 USD</td>
-                <td>$250 USD</td>
-                <td className={styles.columnRoundRight}>$250 USD</td>
-                <td>
-                  <CustomButton
-                    title="Deposit"
-                    handleButtonClick={() => {}}
-                    buttonStyle={styles.depositButton}
-                  />
-                </td>
-              </tr> */}
             </tbody>
           </table>
         </div>

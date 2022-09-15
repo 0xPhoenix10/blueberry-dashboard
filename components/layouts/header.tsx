@@ -53,7 +53,7 @@ const Header = () => {
     <>
       {width > 680 && (
         <header className="md:h-[90px] md:flex items-center md:px-16 sm:px-1 2sm:px0 sm:h-[150px] sm:block">
-          <Text>
+          <Text >
             {' '}
             <h3>{title}</h3>
           </Text>
@@ -118,7 +118,7 @@ const Header = () => {
             } transition-transform duration-300 ease-in-out filter drop-shadow-md `}
           >
             <div className={`${styles.mobileNavbarContainer} h-[90px]`}>
-              <div className="flex flex-col ml-4 h-full">
+              <div className="flex flex-col h-full">
                 <Sidebar handleSidebarClick={handleSidebarClick}/>
               </div>
             </div>
