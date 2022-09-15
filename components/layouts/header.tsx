@@ -1,7 +1,7 @@
 import { StayPrimaryLandscapeSharp } from '@mui/icons-material'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useWidth } from '../../hooks/useWidth'
 import Button from '../UI/Button/Button'
 import Dropdown from '../UI/Dropdown/Dropdown'
@@ -9,6 +9,10 @@ import Text from '../UI/Text/Text'
 import styles from './header.module.scss'
 import Sidebar from './sidebar'
 import { Web3Button } from '../web3/Web3Button'
+import IconButton from '@mui/material/IconButton'
+import ColorModeContext from '../../context/ColorModeContext'
+import { useTheme } from '@mui/material/styles'
+import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 
 const Header = () => {
 
@@ -17,6 +21,8 @@ const Header = () => {
   const [isLend, setIsLend] = useState(false)
   const [isOverview, setIsOverview] = useState(false)
   const [open, setOpen] = useState(false)
+  const colorMode = useContext(ColorModeContext)
+  const theme = useTheme()
 
   const router = useRouter()
   const pathName = router.pathname
@@ -65,12 +71,29 @@ const Header = () => {
                 <h4>LTV $000,000.00</h4>
               </Text>
             )}
-            <Image
+            <IconButton
+              sx={{ marginRight: '10px' }}
+              onClick={colorMode.toggleColorMode}
+              color="inherit"
+            >
+              <Image
+                src={
+                  theme.palette.mode === 'light'
+                    ? '/icons/crescent.svg'
+                    : '/icons/sun.svg'
+                }
+                alt=""
+                width={34}
+                height={34}
+              />
+            </IconButton>
+            <CircleNotificationsIcon sx={{cursor: 'pointer', fontSize: '2.8rem', color: `${theme.palette.mode === 'light' ? '#b6d4db' : '#fff'}`}}/>
+            {/* <Image
               src="/icons/notification.svg"
               alt="Blueberry Web"
               width={40}
               height={40}
-            />
+            /> */}
 
             <Dropdown className={'flex-1'}></Dropdown>
 
@@ -109,6 +132,23 @@ const Header = () => {
                 height={40}
               />
             </div>
+
+            <IconButton
+              sx={{ marginRight: '10px' }}
+              onClick={colorMode.toggleColorMode}
+              color="inherit"
+            >
+              <Image
+                src={
+                  theme.palette.mode === 'light'
+                    ? '/icons/crescent.svg'
+                    : '/icons/sun.svg'
+                }
+                alt=""
+                width={34}
+                height={34}
+              />
+            </IconButton>
           </div>
           <div
             className={`absolute top-20 left-0 h-screen w-screen  transform ${

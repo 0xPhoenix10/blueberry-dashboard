@@ -151,7 +151,7 @@ const Earn: NextPage = () => {
               <tr className={`border-y-[1px] ${theme.palette.mode === 'light' ? 'border-black/[0.2]':'border-white/[0.1]'}`}>
                 <td className={styles.columnRoundLeft}>
                   <div className={styles.tableCol}>
-                    <Image src="/icons/pic.svg" width={30} height={30} />
+                    <Image src="/icons/pic.svg" width={30} height={30} alt={"ICHI"}/>
                     <span style={{ paddingLeft: '0.7rem' }}>ICHI</span>
                   </div>
                 </td>
@@ -181,7 +181,7 @@ const Earn: NextPage = () => {
               <tr className={`border-y-[1px] ${theme.palette.mode === 'light' ? 'border-black/[0.2]':'border-white/[0.1]'}`}>
                 <td className={styles.columnRoundLeft}>
                   <div className={styles.tableCol}>
-                    <Image src="/icons/pic1.svg" width={30} height={30} />
+                    <Image src="/icons/pic1.svg" width={30} height={30} alt={"oneICHI"}/>
                     <span style={{ paddingLeft: '0.7rem' }}>oneICHI</span>
                   </div>
                 </td>
@@ -211,7 +211,7 @@ const Earn: NextPage = () => {
               <tr className={`border-y-[1px] ${theme.palette.mode === 'light' ? 'border-black/[0.2]':'border-white/[0.1]'}`}>
                 <td className={styles.columnRoundLeft}>
                   <div className={styles.tableCol}>
-                    <Image src="/icons/pic.svg" width={30} height={30} />
+                    <Image src="/icons/pic.svg" width={30} height={30} alt={"USDC"}/>
                     <span style={{ paddingLeft: '0.7rem' }}>USDC</span>
                   </div>
                 </td>
