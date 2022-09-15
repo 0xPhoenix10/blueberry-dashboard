@@ -12,7 +12,7 @@ import { Web3Button } from '../web3/Web3Button'
 import IconButton from '@mui/material/IconButton'
 import ColorModeContext from '../../context/ColorModeContext'
 import { useTheme } from '@mui/material/styles'
-import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
+import NotificationsIcon from '@mui/icons-material/Notifications'
 
 const Header = () => {
 
@@ -87,7 +87,11 @@ const Header = () => {
                 height={34}
               />
             </IconButton>
-            <CircleNotificationsIcon sx={{cursor: 'pointer', fontSize: '2.8rem', color: `${theme.palette.mode === 'light' ? '#b6d4db' : '#fff'}`}}/>
+            
+            <div className={`rounded-[12px] p-[7px] ${theme.palette.mode === 'light' ? 'bg-[#b6d4db]' : 'bg-[#214554]'}`}>
+              <NotificationsIcon sx={{cursor: 'pointer', fontSize: '1.6rem', color: '#fff'}}/>
+            </div>
+            
             {/* <Image
               src="/icons/notification.svg"
               alt="Blueberry Web"
