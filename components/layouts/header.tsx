@@ -88,7 +88,7 @@ const Header = () => {
               />
             </IconButton>
             
-            <div className={`rounded-[12px] p-[7px] ${theme.palette.mode === 'light' ? 'bg-[#b6d4db]' : 'bg-[#214554]'}`}>
+            <div className={`rounded-[12px] p-[7px] ${theme.palette.mode === 'light' ? 'bg-[#e2e8f0]' : 'bg-[#214554]'}`}>
               <NotificationsIcon sx={{cursor: 'pointer', fontSize: '1.6rem', color: '#fff'}}/>
             </div>
             
