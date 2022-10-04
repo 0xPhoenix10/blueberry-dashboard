@@ -69,14 +69,16 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
 export default function LeverageSlider({
   marks,
   max,
-  realMax
+  realMax,
+  value,
+  setValue,
 }: {
   marks: any,
   max: number,
-  realMax: number
+  realMax: number,
+  value: number,
+  setValue: (value: number) => void
 }) {
-  const [value1, setValue1] = useState(1.25);
-
   const handleChange1 = (
     event: Event,
     newValue: number | number[],
@@ -84,13 +86,13 @@ export default function LeverageSlider({
     if (Array.isArray(newValue)) {
       return;
     }
-    if(newValue > realMax) {
+    if (newValue > realMax) {
       newValue = realMax;
     }
-    setValue1(newValue);
+    setValue(newValue);
   };
   useEffect(() => {
-    setValue1(1.25)
+    setValue(value)
   }, [marks, max, realMax])
   return (
     <Box sx={{ width: '100%' }}>
@@ -100,7 +102,7 @@ export default function LeverageSlider({
         getAriaValueText={valuetext}
         valueLabelFormat={valuetext}
         onChange={handleChange1}
-        value={value1}
+        value={value}
         marks={marks}
         valueLabelDisplay="on"
         step={0.01}

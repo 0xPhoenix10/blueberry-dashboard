@@ -14,9 +14,10 @@ import { ethers } from 'ethers';
 import spell_abi from '../../../contracts/abi/IchiSpellVault_abi.json';
 import bank_abi from '../../../contracts/abi/BlueBerryBank_abi.json';
 import sToken_abi from '../../../contracts/abi/SupplyToken_abi.json';
+import bToken_abi from '../../../contracts/abi/BaseToken_abi.json';
 // import erc20_abi from '../../../contracts/abi/ERC20.json';
 
-import { ICHI_VAULT_SPELL_ADDR, USDC_ADDR, BANK_ADDR } from '../../../contracts/constants';
+import { ICHI_VAULT_SPELL_ADDR, USDC_ADDR, ICHI_ADDR, BANK_ADDR } from '../../../contracts/constants';
 
 const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
   // const [type, setValue]=useState(0)
@@ -26,36 +27,41 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
   let { ethereum } = window;
 
   const [collateral, setCollateral] = useState('ICHI');
+  const [usdcAmount, setUSDCAmount] = useState(0);
+  const [ichiAmount, setICHIAmount] = useState(0);
+  const [usdcLeverage, setUSDCLeverage] = useState(1.2);
+  const [ichiLeverage, setICHILeverage] = useState(1.4);
+
   const handleCollateralChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCollateral((event.target as HTMLInputElement).value);
   };
 
   const handleSuccessPosition = async () => {
     if (ethereum) {
+      var amount = collateral == 'ICHI' ? ichiAmount : usdcAmount;
+      var amount1 = amount * (collateral == 'ICHI' ? ichiLeverage : usdcLeverage);
+
       let provider = new ethers.providers.Web3Provider(ethereum);
       let signer = provider.getSigner();
 
       let bank_contract = new ethers.Contract(BANK_ADDR, bank_abi, signer);
-      // let spell_contract = new ethers.Contract(ICHI_VAULT_SPELL_ADDR, spell_abi, signer);
       let spell_iface = new ethers.utils.Interface(spell_abi);
 
-      // let usdc_contract = new ethers.Contract(USDC_ADDR, sToken_abi, signer);
-      // const tx = await usdc_contract.approve(BANK_ADDR, ethers.utils.parseUnits('500', 18));
-      // await tx.wait();
+      let token_contract = collateral == 'ICHI' ? new ethers.Contract(ICHI_ADDR, bToken_abi, signer) : new ethers.Contract(USDC_ADDR, sToken_abi, signer);
+      const tx = await token_contract.approve(BANK_ADDR, ethers.utils.parseUnits(amount.toString(), 18));
+      await tx.wait();
 
       let tx1 = await bank_contract.execute(
         0,
         ICHI_VAULT_SPELL_ADDR,
         spell_iface.encodeFunctionData("deposit", [
-          USDC_ADDR,
-          ethers.utils.parseUnits('100', 18),
-          ethers.utils.parseUnits('300', 18)
+          collateral == 'ICHI' ? ICHI_ADDR : USDC_ADDR,
+          ethers.utils.parseUnits(amount.toString(), 18),
+          ethers.utils.parseUnits(amount1.toString(), 18)
         ])
       );
 
-      await tx1.await();
-
-
+      await tx1.wait();
     }
 
     handleButtonClick?.("success-position");
@@ -106,7 +112,7 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
                   }} />}
                   label={<p style={{ color: collateral == "ICHI" ? "#fff" : "#8D97A0", width: '42px' }}>ICHI</p>}
                 />
-                <input type="text" className={collateral == "ICHI" ? "" : Style.inputDisabled} onClick={() => setCollateral("ICHI")} />
+                <input type="number" className={collateral == "ICHI" ? "" : Style.inputDisabled} onClick={() => setCollateral("ICHI")} onChange={(e) => setICHIAmount(parseInt(e.target.value))} />
               </div>
 
               <div className={Style.formControl}>
@@ -124,7 +130,7 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
                   }} />}
                   label={<p style={{ color: collateral == "USDC" ? "#fff" : "#8D97A0", width: '42px' }}>USDC</p>}
                 />
-                <input type="text" className={collateral == "USDC" ? "" : Style.inputDisabled} onClick={() => setCollateral("USDC")} />
+                <input type="number" className={collateral == "USDC" ? "" : Style.inputDisabled} onClick={() => setCollateral("USDC")} onChange={(e) => setUSDCAmount(parseInt(e.target.value))} />
               </div>
             </RadioGroup>
           </FormControl>
@@ -154,6 +160,8 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
                 ]}
                 max={3}
                 realMax={3}
+                value={usdcLeverage}
+                setValue={setUSDCLeverage}
               />
             ) : (
               <LeverageSlider
@@ -177,6 +185,8 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
                 ]}
                 max={3}
                 realMax={1.5}
+                value={ichiLeverage}
+                setValue={setICHILeverage}
               />
             )
           }
