@@ -69,9 +69,9 @@ const Home: NextPage = () => {
               className={styles.menuIcon}
             />
 
-            <Dropdown className={"flex-1"}/>
+            <Dropdown className={"flex-1"} />
             <Web3Button />
-           
+
           </div>
         </header>
       }
@@ -79,7 +79,7 @@ const Home: NextPage = () => {
         <div
           className={
             styles["start-farming-widget"] +
-            ` my-8 rounded-lg px-8 1sm:block py-5 ${theme.palette.mode === 'light' ? 'bg-black/[0.05]':'bg-white/[0.05]'}`
+            ` my-8 rounded-lg px-8 1sm:block py-5 ${theme.palette.mode === 'light' ? 'bg-black/[0.05]' : 'bg-white/[0.05]'}`
           }
         >
           <div className={styles.topContainer}>
@@ -91,7 +91,7 @@ const Home: NextPage = () => {
             />
             <p className={styles.text}>
               Earn optimal yield on autopilot with Blueberry automatically rebalanced concentrated liquidity pools.
-              <br/><br/>
+              <br /><br />
               Supercharge your returns with optional leverage.
             </p>
           </div>
@@ -191,7 +191,7 @@ const Home: NextPage = () => {
                 <span className={styles.percentage}>50%</span>
               </div>
             </div>
-            <div 
+            <div
               className={`${styles.lendingRow}  ${width <= 768 && 'flex-column'} cursor-pointer`}
               onClick={(event) => newPositionOpenHandler('your-position')}
             >

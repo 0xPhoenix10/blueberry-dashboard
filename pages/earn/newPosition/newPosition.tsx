@@ -32,6 +32,9 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
   const [usdcLeverage, setUSDCLeverage] = useState(1.2);
   const [ichiLeverage, setICHILeverage] = useState(1.4);
 
+  let nextPositionId = 0;
+  let positions = [];
+
   const handleCollateralChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCollateral((event.target as HTMLInputElement).value);
   };
@@ -43,25 +46,39 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
 
       let provider = new ethers.providers.Web3Provider(ethereum);
       let signer = provider.getSigner();
+      let signer_address = await signer.getAddress();
 
       let bank_contract = new ethers.Contract(BANK_ADDR, bank_abi, signer);
-      let spell_iface = new ethers.utils.Interface(spell_abi);
 
-      let token_contract = collateral == 'ICHI' ? new ethers.Contract(ICHI_ADDR, bToken_abi, signer) : new ethers.Contract(USDC_ADDR, sToken_abi, signer);
-      const tx = await token_contract.approve(BANK_ADDR, ethers.utils.parseUnits(amount.toString(), 18));
-      await tx.wait();
+      let _nextPositionId = await bank_contract.nextPositionId();
+      nextPositionId = _nextPositionId.toString();
 
-      let tx1 = await bank_contract.execute(
-        0,
-        ICHI_VAULT_SPELL_ADDR,
-        spell_iface.encodeFunctionData("deposit", [
-          collateral == 'ICHI' ? ICHI_ADDR : USDC_ADDR,
-          ethers.utils.parseUnits(amount.toString(), 18),
-          ethers.utils.parseUnits(amount1.toString(), 18)
-        ])
-      );
+      for (let i = 0; i < nextPositionId; i++) {
+        bank_contract.positions(i.toString()).then((result) => {
+          if (result[0] === signer_address) {
+            var res = [...result, i];
+            positions.push(res);
+          }
+        }).catch('error', console.error);
+      }
 
-      await tx1.wait();
+      // let spell_iface = new ethers.utils.Interface(spell_abi);
+
+      // let token_contract = collateral == 'ICHI' ? new ethers.Contract(ICHI_ADDR, bToken_abi, signer) : new ethers.Contract(USDC_ADDR, sToken_abi, signer);
+      // const tx = await token_contract.approve(BANK_ADDR, ethers.utils.parseUnits(amount.toString(), 18));
+      // await tx.wait();
+
+      // let tx1 = await bank_contract.execute(
+      //   0,
+      //   ICHI_VAULT_SPELL_ADDR,
+      //   spell_iface.encodeFunctionData("deposit", [
+      //     collateral == 'ICHI' ? ICHI_ADDR : USDC_ADDR,
+      //     ethers.utils.parseUnits(amount.toString(), 18),
+      //     ethers.utils.parseUnits(amount1.toString(), 18)
+      //   ])
+      // );
+
+      // await tx1.wait();
     }
 
     handleButtonClick?.("success-position");

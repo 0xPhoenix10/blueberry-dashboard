@@ -7,12 +7,70 @@ import {
   RadioGroup,
 } from "@mui/material"
 
-const EditPosition = ({handleClose}) => {
+import { ethers } from 'ethers';
+
+import spell_abi from '../../../contracts/abi/IchiSpellVault_abi.json';
+import bank_abi from '../../../contracts/abi/BlueBerryBank_abi.json';
+import sToken_abi from '../../../contracts/abi/SupplyToken_abi.json';
+
+import { ICHI_VAULT_SPELL_ADDR, USDC_ADDR, WERC20_ADDR, BANK_ADDR } from '../../../contracts/constants';
+
+// const EditPosition = ({ handleClose }) => {
+const EditPosition = () => {
   const [collateral, setCollateral] = useState('Add');
   const handleCollateralChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCollateral((event.target as HTMLInputElement).value);
   };
   const [newAmount, setNewAmount] = useState("0");
+
+  let { ethereum } = window;
+
+  const handleClose = async () => {
+    if (ethereum) {
+      let provider = new ethers.providers.Web3Provider(ethereum);
+      let signer = provider.getSigner();
+
+      let bank_contract = new ethers.Contract(BANK_ADDR, bank_abi, signer);
+
+      let spell_iface = new ethers.utils.Interface(spell_abi);
+
+      // add collateral
+      let token_contract = new ethers.Contract(USDC_ADDR, sToken_abi, signer);
+      const tx = await token_contract.approve(BANK_ADDR, ethers.utils.parseUnits('100', 18));
+      await tx.wait();
+
+      let tx1 = await bank_contract.execute(
+        7,
+        ICHI_VAULT_SPELL_ADDR,
+        spell_iface.encodeFunctionData("deposit", [
+          USDC_ADDR,
+          ethers.utils.parseUnits('100', 18),
+          ethers.utils.parseUnits('300', 18)
+        ])
+      );
+
+      await tx1.wait();
+
+      // // remove collateral
+      // let token_contract = new ethers.Contract(USDC_ADDR, sToken_abi, signer);
+      // const tx = await token_contract.approve(BANK_ADDR, ethers.utils.parseUnits('100', 18));
+      // await tx.wait();
+
+      // let tx1 = await bank_contract.execute(
+      //   7,
+      //   ICHI_VAULT_SPELL_ADDR,
+      //   spell_iface.encodeFunctionData("withdraw", [
+      //     USDC_ADDR,
+      //     ethers.utils.parseUnits('100', 18),
+      //     ethers.utils.parseUnits('0', 18),
+      //     ethers.utils.parseUnits('0', 18),
+      //     ethers.utils.parseUnits('0', 18)
+      //   ])
+      // );
+
+      // await tx1.wait();
+    }
+  };
 
   return (
     <div className={`mt-5 ${Style.container}`}>
@@ -39,14 +97,14 @@ const EditPosition = ({handleClose}) => {
                         color: '#fff'
                       }
                     },
-                  }}/>}
-                  label={<span style={{color: collateral == "Remove" ? "#fff" : "#8D97A0"}}>Remove</span>}
+                  }} />}
+                  label={<span style={{ color: collateral == "Remove" ? "#fff" : "#8D97A0" }}>Remove</span>}
                 />
                 <input
                   type="number"
                   className={collateral == "Remove" ? "" : Style.inputDisabled}
-                  onChange={(e:any) => {setNewAmount(e.target.value)}}
-                  onClick={(e:any) => {setNewAmount(e.target?.value);setCollateral("Remove")}}
+                  onChange={(e: any) => { setNewAmount(e.target.value) }}
+                  onClick={(e: any) => { setNewAmount(e.target?.value); setCollateral("Remove") }}
                 />
 
                 <FormControlLabel
@@ -61,14 +119,14 @@ const EditPosition = ({handleClose}) => {
                         color: '#fff'
                       }
                     },
-                  }}/>}
-                  label={<span style={{color: collateral == "Add" ? "#fff" : "#8D97A0"}}>Add</span>}
+                  }} />}
+                  label={<span style={{ color: collateral == "Add" ? "#fff" : "#8D97A0" }}>Add</span>}
                 />
                 <input
                   type="number"
                   className={collateral == "Add" ? "" : Style.inputDisabled}
-                  onChange={(e:any) => {setNewAmount(e.target.value)}}
-                  onClick={(e:any) => {setNewAmount(e.target?.value);setCollateral("Add")}}
+                  onChange={(e: any) => { setNewAmount(e.target.value) }}
+                  onClick={(e: any) => { setNewAmount(e.target?.value); setCollateral("Add") }}
                 />
               </RadioGroup>
             </FormControl>
