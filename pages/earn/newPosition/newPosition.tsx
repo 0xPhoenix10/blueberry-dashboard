@@ -13,7 +13,8 @@ import { ethers } from 'ethers';
 
 import spell_abi from '../../../contracts/abi/IchiSpellVault_abi.json';
 import bank_abi from '../../../contracts/abi/BlueBerryBank_abi.json';
-import erc20_abi from '../../../contracts/abi/ERC20.json';
+import sToken_abi from '../../../contracts/abi/SupplyToken_abi.json';
+// import erc20_abi from '../../../contracts/abi/ERC20.json';
 
 import { ICHI_VAULT_SPELL_ADDR, USDC_ADDR, BANK_ADDR } from '../../../contracts/constants';
 
@@ -38,20 +39,23 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
       // let spell_contract = new ethers.Contract(ICHI_VAULT_SPELL_ADDR, spell_abi, signer);
       let spell_iface = new ethers.utils.Interface(spell_abi);
 
-      let usdc_contract = new ethers.Contract(USDC_ADDR, erc20_abi, signer);
-      const tx = await usdc_contract.approve(BANK_ADDR, ethers.utils.parseUnits('500'));
-      await tx.wait();
+      // let usdc_contract = new ethers.Contract(USDC_ADDR, sToken_abi, signer);
+      // const tx = await usdc_contract.approve(BANK_ADDR, ethers.utils.parseUnits('500', 18));
+      // await tx.wait();
 
-      const tx1 = await bank_contract.execute(
+      let tx1 = await bank_contract.execute(
         0,
         ICHI_VAULT_SPELL_ADDR,
         spell_iface.encodeFunctionData("deposit", [
           USDC_ADDR,
-          ethers.utils.parseUnits('100'),
-          ethers.utils.parseUnits('300')
+          ethers.utils.parseUnits('100', 18),
+          ethers.utils.parseUnits('300', 18)
         ])
-      )
-      await tx1.wait();
+      );
+
+      await tx1.await();
+
+
     }
 
     handleButtonClick?.("success-position");
