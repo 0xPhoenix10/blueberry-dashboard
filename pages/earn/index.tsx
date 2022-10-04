@@ -189,7 +189,7 @@ const Earn: NextPage = () => {
             <tbody className={`${styles.tbody}`}>
               {strategiesTable.map((row) => {
                 return (
-                  <tr key={row.id} className={`border-y-[1px] ${theme.palette.mode === 'light' ? 'border-black/[0.2]':'border-white/[0.1]'}`}>
+                  <tr key={row.id} className={`border-y-[1px] ${theme.palette.mode === 'light' ? 'border-black/[0.2]' : 'border-white/[0.1]'}`}>
                     <td className={styles.columnRoundLeft}>
                       <div className={styles.tableCol}>
                         <Image
