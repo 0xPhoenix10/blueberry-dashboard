@@ -8,17 +8,52 @@ import Style from "./newPosition.module.scss";
 import LeverageSlider from "./LeverageSlider";
 import { useState } from "react";
 import CustomButton from "../../../components/UI/customButton/customButton";
+
+import { ethers } from 'ethers';
+
+import spell_abi from '../../../contracts/abi/IchiSpellVault_abi.json';
+import bank_abi from '../../../contracts/abi/BlueBerryBank_abi.json';
+import erc20_abi from '../../../contracts/abi/ERC20.json';
+
+import { ICHI_VAULT_SPELL_ADDR, USDC_ADDR, BANK_ADDR } from '../../../contracts/constants';
+
 const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
   // const [type, setValue]=useState(0)
   // const handleType = () => {
   //     setValue('success')
   // }
+  let { ethereum } = window;
+
   const [collateral, setCollateral] = useState('ICHI');
   const handleCollateralChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCollateral((event.target as HTMLInputElement).value);
   };
 
-  const handleSuccessPosition = () => {
+  const handleSuccessPosition = async () => {
+    if (ethereum) {
+      let provider = new ethers.providers.Web3Provider(ethereum);
+      let signer = provider.getSigner();
+
+      let bank_contract = new ethers.Contract(BANK_ADDR, bank_abi, signer);
+      // let spell_contract = new ethers.Contract(ICHI_VAULT_SPELL_ADDR, spell_abi, signer);
+      let spell_iface = new ethers.utils.Interface(spell_abi);
+
+      let usdc_contract = new ethers.Contract(USDC_ADDR, erc20_abi, signer);
+      const tx = await usdc_contract.approve(BANK_ADDR, ethers.utils.parseUnits('500'));
+      await tx.wait();
+
+      const tx1 = await bank_contract.execute(
+        0,
+        ICHI_VAULT_SPELL_ADDR,
+        spell_iface.encodeFunctionData("deposit", [
+          USDC_ADDR,
+          ethers.utils.parseUnits('100'),
+          ethers.utils.parseUnits('300')
+        ])
+      )
+      await tx1.wait();
+    }
+
     handleButtonClick?.("success-position");
   };
 
@@ -64,8 +99,8 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
                         color: '#fff'
                       }
                     },
-                  }}/>}
-                  label={<p style={{color: collateral == "ICHI" ? "#fff" : "#8D97A0", width: '42px'}}>ICHI</p>}
+                  }} />}
+                  label={<p style={{ color: collateral == "ICHI" ? "#fff" : "#8D97A0", width: '42px' }}>ICHI</p>}
                 />
                 <input type="text" className={collateral == "ICHI" ? "" : Style.inputDisabled} onClick={() => setCollateral("ICHI")} />
               </div>
@@ -82,8 +117,8 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
                         color: '#fff'
                       }
                     },
-                  }}/>}
-                  label={<p style={{color: collateral == "USDC" ? "#fff" : "#8D97A0", width: '42px'}}>USDC</p>}
+                  }} />}
+                  label={<p style={{ color: collateral == "USDC" ? "#fff" : "#8D97A0", width: '42px' }}>USDC</p>}
                 />
                 <input type="text" className={collateral == "USDC" ? "" : Style.inputDisabled} onClick={() => setCollateral("USDC")} />
               </div>
@@ -178,5 +213,5 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
 export default NewPosition;
 
 interface NewPositionProps {
-  handleButtonClick: (value:string) => void;
+  handleButtonClick: (value: string) => void;
 }
