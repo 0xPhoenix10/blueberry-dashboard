@@ -60,7 +60,18 @@ const Earn: NextPage = () => {
   const [YourPosOpen, setYourPosition] = useState(false)
   const [EditPosOpen, setEditPosition] = useState(false)
   const [ClosePos, setClosePosition] = useState(false)
-  const [curPosition, setCurPosition] = useState({})
+  const [curPosition, setCurPosition] = useState({
+    owner: '',
+    collToken: '',
+    underlyingToken: '',
+    underlyingAmount: '',
+    underlyingcTokenAmount: '',
+    collId: '',
+    collateralSize: '',
+    debtMap: '',
+    positionId: 0,
+    debtValue: 0
+  })
 
   const width = useWidth()
   const theme = useTheme()

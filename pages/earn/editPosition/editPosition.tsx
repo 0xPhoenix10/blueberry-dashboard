@@ -10,7 +10,21 @@ import {
 import CustomButton from "../../../components/UI/customButton/customButton";
 import { addCollateral, removeCollateral } from '../../../contracts/helper';
 
-const EditPosition = ({ handleClose, position }) => {
+const EditPosition = ({
+  handleClose,
+  position = {
+    owner: '',
+    collToken: '',
+    underlyingToken: '',
+    underlyingAmount: '0',
+    underlyingcTokenAmount: '0',
+    collId: '',
+    collateralSize: '0',
+    debtMap: '',
+    positionId: 0,
+    debtValue: 0
+  }
+}) => {
   const [collateral, setCollateral] = useState('Add');
   const [newAmount, setNewAmount] = useState("0");
   const [isLoading, setLoading] = useState(false);
@@ -21,7 +35,7 @@ const EditPosition = ({ handleClose, position }) => {
 
   console.log("curPos?", position)
 
-  let leverageFactor = position.collateralSize / position.underlyingAmount;
+  let leverageFactor = Number(position.collateralSize) / Number(position.underlyingAmount);
 
   const handleConfirm = async () => {
     try {
