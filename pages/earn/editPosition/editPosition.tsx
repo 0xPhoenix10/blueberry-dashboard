@@ -19,14 +19,18 @@ const EditPosition = ({ handleClose, position }) => {
     setCollateral((event.target as HTMLInputElement).value);
   };
 
+  console.log("curPos?", position)
+
+  let leverageFactor = position.collateralSize / position.underlyingAmount;
+
   const handleConfirm = async () => {
     try {
       setLoading(true)
 
       if (collateral == 'Add') {
-        await addCollateral(7, parseInt(newAmount), 3);
+        await addCollateral(position.positionId, parseInt(newAmount), leverageFactor);
       } else {
-        await removeCollateral(7, parseInt(newAmount), 3);
+        await removeCollateral(position.positionId, parseInt(newAmount), leverageFactor);
       }
 
       setLoading(false)
@@ -100,7 +104,7 @@ const EditPosition = ({ handleClose, position }) => {
         <div>
           <div className={Style.rowContent}>
             <span>Total Position Value</span>
-            <span className="text-right">$1,000</span>
+            <span className="text-right">${position.collateralSize}</span>
           </div>
           <div className={Style.rowContent}>
             <span>New Collateral Value</span>
@@ -111,7 +115,7 @@ const EditPosition = ({ handleClose, position }) => {
         <div>
           <div className={Style.rowContent}>
             <span>New Leverage Factor</span>
-            <span className="text-right">2.5x</span>
+            <span className="text-right">{leverageFactor}x</span>
           </div>
         </div>
       </div>

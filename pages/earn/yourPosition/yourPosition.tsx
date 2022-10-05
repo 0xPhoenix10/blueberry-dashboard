@@ -5,26 +5,30 @@ const YourPosition = ({ handleClosepositionPopup, position }: any) => {
   }
   console.log("curPos?", position)
 
+  let borrowingAmount = position.collateralSize - position.underlyingAmount;
+  let borrowingRate = Number((borrowingAmount / position.collateralSize) * 100).toFixed(2);
+  let leverageFactor = position.collateralSize / position.underlyingAmount;
+
   return (
     <div className={`mt-5 ${Style.container}`}>
       <div className="p-3">
         <div className={`${Style.rowContent} ${Style.headingRow}`}>
           <span>Your Collateral ($ Value)</span>
-          <span className="text-right">$300 USDC</span>
+          <span className="text-right">${position.underlyingAmount} USDC</span>
         </div>
         <div className={Style.seprator}> </div>
         <div>
           <div className={Style.rowContent}>
             <span>Total Position Value</span>
-            <span className="text-right">$1,000 USDC</span>
+            <span className="text-right">${position.collateralSize} USDC</span>
           </div>
           <div className={Style.rowContent}>
             <span>Borrowing</span>
-            <span className="text-right">900 USDC ($900)</span>
+            <span className="text-right">{borrowingAmount} USDC (${borrowingAmount})</span>
           </div>
           <div className={Style.rowContent}>
             <span>Borrow Rate</span>
-            <span className="text-right">5%</span>
+            <span className="text-right">{borrowingRate}%</span>
           </div>
           <div className={Style.rowContent}>
             <span>Net APY</span>
@@ -35,7 +39,7 @@ const YourPosition = ({ handleClosepositionPopup, position }: any) => {
         <div>
           <div className={Style.rowContent}>
             <span>Leverage Factor</span>
-            <span className="text-right">3x</span>
+            <span className="text-right">{leverageFactor}x</span>
           </div>
           <div className={Style.rowContent}>
             <span>ROI From Entry</span>
