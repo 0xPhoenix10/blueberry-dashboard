@@ -1,7 +1,7 @@
 import { Tabs, Tab } from '@mui/material'
 import type { NextPage } from 'next'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Card from '../../components/UI/Card/Card'
 import styles from './earn.module.scss'
 import Popup from '../../components/UI/Popup/popup'
@@ -20,6 +20,7 @@ import { useWidth } from '../../hooks/useWidth'
 import AvailableFaultMobile from './availableFaultMobile/availableFaultMobile'
 import { Web3Button } from '../../components/web3/Web3Button'
 import { useTheme } from '@mui/material/styles'
+
 
 const strategiesTable = [
   {
@@ -59,6 +60,8 @@ const Earn: NextPage = () => {
   const [YourPosOpen, setYourPosition] = useState(false)
   const [EditPosOpen, setEditPosition] = useState(false)
   const [ClosePos, setClosePosition] = useState(false)
+  const [curPosition, setCurPosition] = useState({})
+
   const width = useWidth()
   const theme = useTheme()
 
@@ -67,6 +70,10 @@ const Earn: NextPage = () => {
   }
 
   //
+  const yourPositionOpenHandler = (item) => {
+    setCurPosition(item)
+    newPositionOpenHandler("your-position")
+  }
   const newPositionOpenHandler = (title: string) => {
     console.log(title)
     switch (title) {
@@ -91,8 +98,11 @@ const Earn: NextPage = () => {
     }
   }
   const handleSuccessPosition = (value: string) => {
+    console.log("handleSuccessPosition?", value)
     closeNewPosition()
-    newPositionOpenHandler(value)
+    if (value == 'success-position') {
+      newPositionOpenHandler(value)
+    }
   }
   const closeNewPosition = () => {
     setNewPosition(false)
@@ -164,7 +174,7 @@ const Earn: NextPage = () => {
       </Tabs>
       <div className={`${theme.palette.mode === 'light' ? styles.dividerLight : styles.dividerDark} ${styles.divider}`}></div>
       {value == 0 && (
-        <TableGrid newPositionOpenHandler={newPositionOpenHandler}></TableGrid>
+        <TableGrid yourPositionOpenHandler={yourPositionOpenHandler}></TableGrid>
       )}
       {value == 1 && <div></div>}
 
@@ -247,7 +257,7 @@ const Earn: NextPage = () => {
           setYourPosition(false)
         }}
       >
-        <YourPosition handleClosepositionPopup={handleClosepositionPopup} />
+        <YourPosition handleClosepositionPopup={handleClosepositionPopup} position={curPosition} />
       </Popup>
       <Popup
         isOpen={EditPosOpen}

@@ -98,7 +98,7 @@ const Earn: NextPage = () => {
           </p>
         </div>
         <div className={styles.rightContainer}>
-          <input className={`${styles.btnSearch} ${theme.palette.mode === 'light' ? 'bg-black/[0.1]':'bg-white/[0.1]'}`} placeholder={"Search..."}/>
+          <input className={`${styles.btnSearch} ${theme.palette.mode === 'light' ? 'bg-black/[0.1]' : 'bg-white/[0.1]'}`} placeholder={"Search..."} />
         </div>
       </div>
 
@@ -148,10 +148,10 @@ const Earn: NextPage = () => {
             </thead>
 
             <tbody className={styles.tbody}>
-              <tr className={`border-y-[1px] ${theme.palette.mode === 'light' ? 'border-black/[0.2]':'border-white/[0.1]'}`}>
+              <tr className={`border-y-[1px] ${theme.palette.mode === 'light' ? 'border-black/[0.2]' : 'border-white/[0.1]'}`}>
                 <td className={styles.columnRoundLeft}>
                   <div className={styles.tableCol}>
-                    <Image src="/icons/pic.svg" width={30} height={30} alt={"ICHI"}/>
+                    <Image src="/icons/pic.svg" width={30} height={30} alt={"ICHI"} />
                     <span style={{ paddingLeft: '0.7rem' }}>ICHI</span>
                   </div>
                 </td>
@@ -171,17 +171,17 @@ const Earn: NextPage = () => {
                   <div className={styles.tableCol}>
                     <CustomButton
                       title="Deposit"
-                      handleButtonClick={() => {setDepositDlgOpen(true); setTokenName("ICHI");}}
+                      handleButtonClick={() => { setDepositDlgOpen(true); setTokenName("ICHI"); }}
                       buttonStyle={styles.depositButton}
                     />
                     {/* <Image src="/icons/union.svg" width={20} height={20} /> */}
                   </div>
                 </td>
               </tr>
-              <tr className={`border-y-[1px] ${theme.palette.mode === 'light' ? 'border-black/[0.2]':'border-white/[0.1]'}`}>
+              <tr className={`border-y-[1px] ${theme.palette.mode === 'light' ? 'border-black/[0.2]' : 'border-white/[0.1]'}`}>
                 <td className={styles.columnRoundLeft}>
                   <div className={styles.tableCol}>
-                    <Image src="/icons/pic1.svg" width={30} height={30} alt={"oneICHI"}/>
+                    <Image src="/icons/pic1.svg" width={30} height={30} alt={"oneICHI"} />
                     <span style={{ paddingLeft: '0.7rem' }}>oneICHI</span>
                   </div>
                 </td>
@@ -201,17 +201,17 @@ const Earn: NextPage = () => {
                   <div className={styles.tableCol}>
                     <CustomButton
                       title="Deposit"
-                      handleButtonClick={() => {setDepositDlgOpen(true); setTokenName("oneICHI");}}
+                      handleButtonClick={() => { setDepositDlgOpen(true); setTokenName("oneICHI"); }}
                       buttonStyle={styles.depositButton}
                     />
                     {/* <Image src="/icons/union.svg" width={20} height={20} /> */}
                   </div>
                 </td>
               </tr>
-              <tr className={`border-y-[1px] ${theme.palette.mode === 'light' ? 'border-black/[0.2]':'border-white/[0.1]'}`}>
+              <tr className={`border-y-[1px] ${theme.palette.mode === 'light' ? 'border-black/[0.2]' : 'border-white/[0.1]'}`}>
                 <td className={styles.columnRoundLeft}>
                   <div className={styles.tableCol}>
-                    <Image src="/icons/pic.svg" width={30} height={30} alt={"USDC"}/>
+                    <Image src="/icons/pic.svg" width={30} height={30} alt={"USDC"} />
                     <span style={{ paddingLeft: '0.7rem' }}>USDC</span>
                   </div>
                 </td>
@@ -231,7 +231,7 @@ const Earn: NextPage = () => {
                   <div className={styles.tableCol}>
                     <CustomButton
                       title="Deposit"
-                      handleButtonClick={() => {setDepositDlgOpen(true); setTokenName("USDC");}}
+                      handleButtonClick={() => { setDepositDlgOpen(true); setTokenName("USDC"); }}
                       buttonStyle={styles.depositButton}
                     />
                     {/* <Image src="/icons/union.svg" width={20} height={20} /> */}

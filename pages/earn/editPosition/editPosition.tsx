@@ -7,68 +7,32 @@ import {
   RadioGroup,
 } from "@mui/material"
 
-import { ethers } from 'ethers';
+import CustomButton from "../../../components/UI/customButton/customButton";
+import { addCollateral, removeCollateral } from '../../../contracts/helper';
 
-import spell_abi from '../../../contracts/abi/IchiSpellVault_abi.json';
-import bank_abi from '../../../contracts/abi/BlueBerryBank_abi.json';
-import sToken_abi from '../../../contracts/abi/SupplyToken_abi.json';
-
-import { ICHI_VAULT_SPELL_ADDR, USDC_ADDR, WERC20_ADDR, BANK_ADDR } from '../../../contracts/constants';
-
-// const EditPosition = ({ handleClose }) => {
-const EditPosition = () => {
+const EditPosition = ({ handleClose }) => {
   const [collateral, setCollateral] = useState('Add');
+  const [newAmount, setNewAmount] = useState("0");
+  const [isLoading, setLoading] = useState(false);
+
   const handleCollateralChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCollateral((event.target as HTMLInputElement).value);
   };
-  const [newAmount, setNewAmount] = useState("0");
 
-  let { ethereum } = window;
+  const handleConfirm = async () => {
+    try {
+      setLoading(true)
 
-  const handleClose = async () => {
-    if (ethereum) {
-      let provider = new ethers.providers.Web3Provider(ethereum);
-      let signer = provider.getSigner();
+      if (collateral == 'Add') {
+        await addCollateral(7, parseInt(newAmount), 3);
+      } else {
+        await removeCollateral(7, parseInt(newAmount), 3);
+      }
 
-      let bank_contract = new ethers.Contract(BANK_ADDR, bank_abi, signer);
-
-      let spell_iface = new ethers.utils.Interface(spell_abi);
-
-      // add collateral
-      let token_contract = new ethers.Contract(USDC_ADDR, sToken_abi, signer);
-      const tx = await token_contract.approve(BANK_ADDR, ethers.utils.parseUnits('100', 18));
-      await tx.wait();
-
-      let tx1 = await bank_contract.execute(
-        7,
-        ICHI_VAULT_SPELL_ADDR,
-        spell_iface.encodeFunctionData("deposit", [
-          USDC_ADDR,
-          ethers.utils.parseUnits('100', 18),
-          ethers.utils.parseUnits('300', 18)
-        ])
-      );
-
-      await tx1.wait();
-
-      // // remove collateral
-      // let token_contract = new ethers.Contract(USDC_ADDR, sToken_abi, signer);
-      // const tx = await token_contract.approve(BANK_ADDR, ethers.utils.parseUnits('100', 18));
-      // await tx.wait();
-
-      // let tx1 = await bank_contract.execute(
-      //   7,
-      //   ICHI_VAULT_SPELL_ADDR,
-      //   spell_iface.encodeFunctionData("withdraw", [
-      //     USDC_ADDR,
-      //     ethers.utils.parseUnits('100', 18),
-      //     ethers.utils.parseUnits('0', 18),
-      //     ethers.utils.parseUnits('0', 18),
-      //     ethers.utils.parseUnits('0', 18)
-      //   ])
-      // );
-
-      // await tx1.wait();
+      setLoading(false)
+      handleClose()
+    } catch (error) {
+      setLoading(false)
     }
   };
 
@@ -151,9 +115,12 @@ const EditPosition = () => {
           </div>
         </div>
       </div>
-      <button className={`mt-4 ${Style.button}`} onClick={handleClose} >
-        Confirm
-      </button>
+      <CustomButton
+        title={"Confirm"}
+        buttonStyle={`mt-4 ${Style.button}`}
+        handleButtonClick={handleConfirm}
+        isLoading={isLoading}
+      />
     </div>
   )
 }
