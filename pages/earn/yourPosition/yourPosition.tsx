@@ -1,13 +1,32 @@
 import Style from './yourPosition.module.scss'
-const YourPosition = ({ handleClosepositionPopup, position }: any) => {
+import IPositionStruct from '../../../interfaces/PositionStruct'
+
+const YourPosition = ({
+  handleClosepositionPopup,
+  position = {
+    owner: '',
+    collToken: '',
+    underlyingToken: '',
+    underlyingAmount: '0',
+    underlyingcTokenAmount: '0',
+    collId: '',
+    collateralSize: '0',
+    debtMap: '',
+    positionId: 0,
+    debtValue: 0
+  }
+}: {
+  handleClosepositionPopup: any,
+  position: IPositionStruct,
+}) => {
   const handleClick = (value: string) => {
     handleClosepositionPopup(value)
   }
   console.log("curPos?", position)
 
-  let borrowingAmount = position.collateralSize - position.underlyingAmount;
-  let borrowingRate = Number((borrowingAmount / position.collateralSize) * 100).toFixed(2);
-  let leverageFactor = position.collateralSize / position.underlyingAmount;
+  let borrowingAmount = Number(position.collateralSize) - Number(position.underlyingAmount);
+  let borrowingRate = Number((borrowingAmount / Number(position.collateralSize)) * 100).toFixed(2);
+  let leverageFactor = Number(position.collateralSize) / Number(position.underlyingAmount);
 
   return (
     <div className={`mt-5 ${Style.container}`}>

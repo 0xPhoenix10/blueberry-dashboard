@@ -18,6 +18,19 @@ const Home: NextPage = () => {
   const [YourPosOpen, setYourPosition] = useState(false)
   const [ClosePos, setClosePosition] = useState(false)
   const [EditPosOpen, setEditPosition] = useState(false)
+  const [curPosition, setCurPosition] = useState({
+    owner: '',
+    collToken: '',
+    underlyingToken: '',
+    underlyingAmount: '0',
+    underlyingcTokenAmount: '0',
+    collId: '',
+    collateralSize: '0',
+    debtMap: '',
+    positionId: 0,
+    debtValue: 0
+  })
+
   const width = useWidth()
   const theme = useTheme()
 
@@ -219,7 +232,7 @@ const Home: NextPage = () => {
           setYourPosition(false)
         }}
       >
-        <YourPosition handleClosepositionPopup={handleClosepositionPopup} />
+        <YourPosition handleClosepositionPopup={handleClosepositionPopup} position={curPosition} />
       </Popup>
       <Popup
         isOpen={EditPosOpen}
@@ -232,6 +245,7 @@ const Home: NextPage = () => {
           handleClose={() => {
             setEditPosition(false)
           }}
+          position={curPosition}
         />
       </Popup>
       <Popup
@@ -245,6 +259,7 @@ const Home: NextPage = () => {
           handleClose={() => {
             setClosePosition(false)
           }}
+          position={curPosition}
         />
       </Popup>
     </>
