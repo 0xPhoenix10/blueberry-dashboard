@@ -1,8 +1,9 @@
 import Style from './yourPosition.module.scss'
-const YourPosition = ({ handleClosepositionPopup }: any) => {
+const YourPosition = ({ handleClosepositionPopup, position }: any) => {
   const handleClick = (value: string) => {
     handleClosepositionPopup(value)
   }
+  console.log("curPos?", position)
 
   return (
     <div className={`mt-5 ${Style.container}`}>

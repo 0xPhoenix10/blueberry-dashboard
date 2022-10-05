@@ -9,79 +9,36 @@ import LeverageSlider from "./LeverageSlider";
 import { useState } from "react";
 import CustomButton from "../../../components/UI/customButton/customButton";
 
-import { ethers } from 'ethers';
-
-import spell_abi from '../../../contracts/abi/IchiSpellVault_abi.json';
-import bank_abi from '../../../contracts/abi/BlueBerryBank_abi.json';
-import sToken_abi from '../../../contracts/abi/SupplyToken_abi.json';
-import bToken_abi from '../../../contracts/abi/BaseToken_abi.json';
-// import erc20_abi from '../../../contracts/abi/ERC20.json';
-
-import { ICHI_VAULT_SPELL_ADDR, USDC_ADDR, ICHI_ADDR, BANK_ADDR } from '../../../contracts/constants';
+import { openPosition } from '../../../contracts/helper';
 
 const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
-  // const [type, setValue]=useState(0)
-  // const handleType = () => {
-  //     setValue('success')
-  // }
-  let { ethereum } = window;
 
+  const [isLoading, setLoading] = useState(false);
   const [collateral, setCollateral] = useState('ICHI');
   const [usdcAmount, setUSDCAmount] = useState(0);
   const [ichiAmount, setICHIAmount] = useState(0);
   const [usdcLeverage, setUSDCLeverage] = useState(1.2);
   const [ichiLeverage, setICHILeverage] = useState(1.4);
 
-  let nextPositionId = 0;
-  let positions = [];
-
   const handleCollateralChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCollateral((event.target as HTMLInputElement).value);
   };
 
   const handleSuccessPosition = async () => {
-    if (ethereum) {
+    if (typeof window.ethereum !== undefined && window.ethereum) {
       var amount = collateral == 'ICHI' ? ichiAmount : usdcAmount;
       var amount1 = amount * (collateral == 'ICHI' ? ichiLeverage : usdcLeverage);
 
-      let provider = new ethers.providers.Web3Provider(ethereum);
-      let signer = provider.getSigner();
-      let signer_address = await signer.getAddress();
-
-      let bank_contract = new ethers.Contract(BANK_ADDR, bank_abi, signer);
-
-      let _nextPositionId = await bank_contract.nextPositionId();
-      nextPositionId = _nextPositionId.toString();
-
-      for (let i = 0; i < nextPositionId; i++) {
-        bank_contract.positions(i.toString()).then((result) => {
-          if (result[0] === signer_address) {
-            var res = [...result, i];
-            positions.push(res);
-          }
-        }).catch('error', console.error);
+      try {
+        setLoading(true)
+        await openPosition(collateral, amount, amount1)
+        setLoading(false)
+        handleButtonClick?.("");
+      } catch (error) {
+        setLoading(false)
+        handleButtonClick?.("success-position");
       }
-
-      // let spell_iface = new ethers.utils.Interface(spell_abi);
-
-      // let token_contract = collateral == 'ICHI' ? new ethers.Contract(ICHI_ADDR, bToken_abi, signer) : new ethers.Contract(USDC_ADDR, sToken_abi, signer);
-      // const tx = await token_contract.approve(BANK_ADDR, ethers.utils.parseUnits(amount.toString(), 18));
-      // await tx.wait();
-
-      // let tx1 = await bank_contract.execute(
-      //   0,
-      //   ICHI_VAULT_SPELL_ADDR,
-      //   spell_iface.encodeFunctionData("deposit", [
-      //     collateral == 'ICHI' ? ICHI_ADDR : USDC_ADDR,
-      //     ethers.utils.parseUnits(amount.toString(), 18),
-      //     ethers.utils.parseUnits(amount1.toString(), 18)
-      //   ])
-      // );
-
-      // await tx1.wait();
     }
-
-    handleButtonClick?.("success-position");
   };
 
   return (
@@ -237,6 +194,7 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
         title={"Open Positon"}
         buttonStyle={`mt-4 ${Style.button}`}
         handleButtonClick={handleSuccessPosition}
+        isLoading={isLoading}
       />
     </div>
   );
