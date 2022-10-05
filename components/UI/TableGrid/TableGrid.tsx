@@ -82,7 +82,7 @@ const TableGrid = ({ yourPositionOpenHandler }) => {
                     <td>
                       {' '}
                       <span className={styles.tdSubtitle}>Debt Value</span>{' '}
-                      <span className={styles.coltd}> ${item.debtValue} USD<span className={styles.smallColtd}> ({Number(item.debtValue / item.collateralSize * 100).toFixed(3)}%)</span></span>
+                      <span className={styles.coltd}> ${item.collateralSize - item.underlyingAmount} USD<span className={styles.smallColtd}> ({Number((item.collateralSize - item.underlyingAmount) / item.collateralSize * 100).toFixed(2)}%)</span></span>
                     </td>
                     <td className={`${index == 0 ? styles.columnRoundRight : ''} ${styles.tdSubtitle}`}>
                       {' '}
