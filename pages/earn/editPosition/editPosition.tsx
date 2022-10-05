@@ -10,7 +10,7 @@ import {
 import CustomButton from "../../../components/UI/customButton/customButton";
 import { addCollateral, removeCollateral } from '../../../contracts/helper';
 
-const EditPosition = ({ handleClose }) => {
+const EditPosition = ({ handleClose, position }) => {
   const [collateral, setCollateral] = useState('Add');
   const [newAmount, setNewAmount] = useState("0");
   const [isLoading, setLoading] = useState(false);

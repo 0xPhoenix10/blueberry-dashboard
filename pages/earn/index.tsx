@@ -270,6 +270,7 @@ const Earn: NextPage = () => {
           handleClose={() => {
             setEditPosition(false)
           }}
+          position={curPosition}
         />
       </Popup>
       <Popup
