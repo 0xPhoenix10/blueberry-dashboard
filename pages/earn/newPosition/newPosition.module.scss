@@ -66,7 +66,8 @@
     padding-bottom: 27px;
     min-width: 130px;
 
-    @media (max-width: 680px) {}
+    @media (max-width: 680px) {
+    }
   }
 
   .chooseContainer-content {
@@ -113,7 +114,7 @@
       font-family: heebo;
       font-weight: 500;
 
-      border: 1px solid #FFFFFF;
+      border: 1px solid #ffffff;
     }
 
     input[type="number"]::-webkit-outer-spin-button,
@@ -126,7 +127,6 @@
 
 .button {
   width: 100%;
-
 }
 
 .bottomContainer {
