@@ -77,17 +77,17 @@ const TableGrid = ({ yourPositionOpenHandler }) => {
                     <td>
                       {' '}
                       <span className={styles.tdSubtitle}>Total Position</span>
-                      <span className={styles.coltd}> $500 USD</span>
+                      <span className={styles.coltd}> ${item.collateralSize} USD</span>
                     </td>
                     <td>
                       {' '}
                       <span className={styles.tdSubtitle}>Debt Value</span>{' '}
-                      <span className={styles.coltd}> $250 USD<span className={styles.smallColtd}> (12%)</span></span>
+                      <span className={styles.coltd}> ${item.debtValue} USD<span className={styles.smallColtd}> ({Number(item.debtValue / item.collateralSize * 100).toFixed(3)}%)</span></span>
                     </td>
                     <td className={`${index == 0 ? styles.columnRoundRight : ''} ${styles.tdSubtitle}`}>
                       {' '}
                       <span className={styles.tdSubtitle}>Equity Value</span>{' '}
-                      <span className={styles.coltd}> $250 USD</span>
+                      <span className={styles.coltd}> ${item.underlyingAmount} USD</span>
                     </td>
                   </tr>
                   <tr

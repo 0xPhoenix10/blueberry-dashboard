@@ -1,7 +1,7 @@
 
 import Style from './positionDetails.module.scss';
 
-const PositionDetails = ()=>{
+const PositionDetails = () => {
     return (
         <div className="mt-5">
             <div className={Style.container}>

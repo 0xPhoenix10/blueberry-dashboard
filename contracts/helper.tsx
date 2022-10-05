@@ -55,6 +55,8 @@ export const getPositionList = async () => {
 
         for (let i = 0; i < nextPositionId; i++) {
             var result = await bank_contract.positions(i.toString())
+            var debtValue = await bank_contract.getDebtValue(i.toString())
+
             if (result[0] === signer_address) {
                 var obj = {
                     owner: result[0], // The owner of this position.
@@ -66,6 +68,7 @@ export const getPositionList = async () => {
                     collateralSize: ethers.utils.formatEther(result[6]), // The size of collateral token for this position.
                     debtMap: ethers.utils.formatEther(result[7]), // Bitmap of nonzero debt. i^th bit is set iff debt share of i^th bank is nonzero.
                     positionId: i,
+                    debtValue: parseFloat(ethers.utils.formatEther(debtValue)).toFixed(3)
                 }
                 positions.push(obj);
             }
