@@ -1,12 +1,14 @@
-import Style from './yourPosition.module.scss'
+import Style from "./yourPosition.module.scss";
 const YourPosition = ({ handleClosepositionPopup, position }: any) => {
   const handleClick = (value: string) => {
-    handleClosepositionPopup(value)
-  }
-  console.log("curPos?", position)
+    handleClosepositionPopup(value);
+  };
+  console.log("curPos?", position);
 
   let borrowingAmount = position.collateralSize - position.underlyingAmount;
-  let borrowingRate = Number((borrowingAmount / position.collateralSize) * 100).toFixed(2);
+  let borrowingRate = Number(
+    (borrowingAmount / position.collateralSize) * 100
+  ).toFixed(2);
   let leverageFactor = position.collateralSize / position.underlyingAmount;
 
   return (
@@ -24,7 +26,9 @@ const YourPosition = ({ handleClosepositionPopup, position }: any) => {
           </div>
           <div className={Style.rowContent}>
             <span>Borrowing</span>
-            <span className="text-right">{borrowingAmount} USDC (${borrowingAmount})</span>
+            <span className="text-right">
+              {borrowingAmount} USDC (${borrowingAmount})
+            </span>
           </div>
           <div className={Style.rowContent}>
             <span>Borrow Rate</span>
@@ -52,14 +56,20 @@ const YourPosition = ({ handleClosepositionPopup, position }: any) => {
         </div>
       </div>
       <div className="flex justify-around">
-        <button className={`mt-4 ${Style.button}`} onClick={() => handleClick('close-position')}>
+        <button
+          className={`mt-4 ${Style.button}`}
+          onClick={() => handleClick("close-position")}
+        >
           Close Positon
         </button>
-        <button className={`mt-4 ${Style.button}`} onClick={() => handleClick('edit-position')}>
+        <button
+          className={`mt-4 ${Style.button}`}
+          onClick={() => handleClick("edit-position")}
+        >
           Edit Collateral
         </button>
       </div>
     </div>
-  )
-}
-export default YourPosition
+  );
+};
+export default YourPosition;

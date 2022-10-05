@@ -1,42 +1,52 @@
-import Style from './editPosition.module.scss'
-import { useState } from "react"
+import Style from "./editPosition.module.scss";
+import { useState } from "react";
 import {
   FormControl,
   FormControlLabel,
   Radio,
   RadioGroup,
-} from "@mui/material"
+} from "@mui/material";
 
 import CustomButton from "../../../components/UI/customButton/customButton";
-import { addCollateral, removeCollateral } from '../../../contracts/helper';
+import { addCollateral, removeCollateral } from "../../../contracts/helper";
 
 const EditPosition = ({ handleClose, position }) => {
-  const [collateral, setCollateral] = useState('Add');
+  const [collateral, setCollateral] = useState("Add");
   const [newAmount, setNewAmount] = useState("0");
   const [isLoading, setLoading] = useState(false);
 
-  const handleCollateralChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCollateralChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setCollateral((event.target as HTMLInputElement).value);
   };
 
-  console.log("curPos?", position)
+  console.log("curPos?", position);
 
   let leverageFactor = position.collateralSize / position.underlyingAmount;
 
   const handleConfirm = async () => {
     try {
-      setLoading(true)
+      setLoading(true);
 
-      if (collateral == 'Add') {
-        await addCollateral(position.positionId, parseInt(newAmount), leverageFactor);
+      if (collateral == "Add") {
+        await addCollateral(
+          position.positionId,
+          parseInt(newAmount),
+          leverageFactor
+        );
       } else {
-        await removeCollateral(position.positionId, parseInt(newAmount), leverageFactor);
+        await removeCollateral(
+          position.positionId,
+          parseInt(newAmount),
+          leverageFactor
+        );
       }
 
-      setLoading(false)
-      handleClose()
+      setLoading(false);
+      handleClose();
     } catch (error) {
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -57,44 +67,78 @@ const EditPosition = ({ handleClose, position }) => {
                 <FormControlLabel
                   value="Remove"
                   color="secondary"
-                  control={<Radio sx={{
-                    color: '#fff',
-                    '&.Mui-checked': {
-                      color: '#05A06B',
-                      'svg:first-of-type': {
-                        color: '#fff'
-                      }
-                    },
-                  }} />}
-                  label={<span style={{ color: collateral == "Remove" ? "#fff" : "#8D97A0" }}>Remove</span>}
+                  control={
+                    <Radio
+                      sx={{
+                        color: "#fff",
+                        "&.Mui-checked": {
+                          color: "#05A06B",
+                          "svg:first-of-type": {
+                            color: "#fff",
+                          },
+                        },
+                      }}
+                    />
+                  }
+                  label={
+                    <span
+                      style={{
+                        color: collateral == "Remove" ? "#fff" : "#8D97A0",
+                      }}
+                    >
+                      Remove
+                    </span>
+                  }
                 />
                 <input
                   type="number"
                   className={collateral == "Remove" ? "" : Style.inputDisabled}
-                  onChange={(e: any) => { setNewAmount(e.target.value) }}
-                  onClick={(e: any) => { setNewAmount(e.target?.value); setCollateral("Remove") }}
+                  onChange={(e: any) => {
+                    setNewAmount(e.target.value);
+                  }}
+                  onClick={(e: any) => {
+                    setNewAmount(e.target?.value);
+                    setCollateral("Remove");
+                  }}
                 />
 
                 <FormControlLabel
                   value="Add"
                   color="secondary"
-                  control={<Radio sx={{
-                    color: '#fff',
-                    marginLeft: '10px',
-                    '&.Mui-checked': {
-                      color: '#05A06B',
-                      'svg:first-of-type': {
-                        color: '#fff'
-                      }
-                    },
-                  }} />}
-                  label={<span style={{ color: collateral == "Add" ? "#fff" : "#8D97A0" }}>Add</span>}
+                  control={
+                    <Radio
+                      sx={{
+                        color: "#fff",
+                        marginLeft: "10px",
+                        "&.Mui-checked": {
+                          color: "#05A06B",
+                          "svg:first-of-type": {
+                            color: "#fff",
+                          },
+                        },
+                      }}
+                    />
+                  }
+                  label={
+                    <span
+                      style={{
+                        color: collateral == "Add" ? "#fff" : "#8D97A0",
+                      }}
+                    >
+                      Add
+                    </span>
+                  }
                 />
                 <input
                   type="number"
                   className={collateral == "Add" ? "" : Style.inputDisabled}
-                  onChange={(e: any) => { setNewAmount(e.target.value) }}
-                  onClick={(e: any) => { setNewAmount(e.target?.value); setCollateral("Add") }}
+                  onChange={(e: any) => {
+                    setNewAmount(e.target.value);
+                  }}
+                  onClick={(e: any) => {
+                    setNewAmount(e.target?.value);
+                    setCollateral("Add");
+                  }}
                 />
               </RadioGroup>
             </FormControl>
@@ -126,6 +170,6 @@ const EditPosition = ({ handleClose, position }) => {
         isLoading={isLoading}
       />
     </div>
-  )
-}
-export default EditPosition
+  );
+};
+export default EditPosition;
