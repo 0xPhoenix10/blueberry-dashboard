@@ -284,6 +284,7 @@ const Earn: NextPage = () => {
           handleClose={() => {
             setClosePosition(false)
           }}
+          position={curPosition}
         />
       </Popup>
     </div>

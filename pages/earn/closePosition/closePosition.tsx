@@ -1,6 +1,6 @@
 
 import Style from './closePosition.module.scss';
-const ClosePosition = ({handleClose}) => {
+const ClosePosition = ({ handleClose, position }) => {
 
     return (
         <div className={`mt-5 ${Style.container}`}>
@@ -10,15 +10,15 @@ const ClosePosition = ({handleClose}) => {
                     <div className='flex'>
                         <div className='text-right'>
                             <div className={Style.smallText}>Collateral</div>
-                            <div className={Style.text1}>300 USDC</div>
+                            <div className={Style.text1}> {position.underlyingAmount} USDC</div>
                         </div>
                         <div className='text-right'>
                             <div className={Style.smallText}>Profit</div>
-                            <div className={Style.text1}>300 USDC</div>
+                            <div className={Style.text1}> 0 USDC</div>
                         </div>
                         <div className='text-right'>
                             <div className={Style.smallText}>Total</div>
-                            <div className={Style.text1}>300 USDC</div>
+                            <div className={Style.text1}> 0 USDC</div>
                         </div>
                     </div>
 
@@ -27,7 +27,7 @@ const ClosePosition = ({handleClose}) => {
                 <div>
                     <div className={Style.rowContent}>
                         <span>Total Position Value</span>
-                        <span className='text-right'>$1,000</span>
+                        <span className='text-right'>${position.collateralSize}</span>
                     </div>
                     <div className={Style.rowContent}>
                         <span>Returning</span>
@@ -43,7 +43,7 @@ const ClosePosition = ({handleClose}) => {
             </div>
 
             <button className={`mt-4 ${Style.button}`}
-            onClick={handleClose}
+                onClick={handleClose}
             >Close Positon</button>
         </div>
     )
