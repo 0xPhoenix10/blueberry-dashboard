@@ -48,11 +48,10 @@ const TableGrid = ({ yourPositionOpenHandler }) => {
           </tr>
         </thead>
         <tbody
-          className={`${styles.tbody} ${
-            theme.palette.mode === "light"
-              ? "bg-black/[0.1]"
-              : "bg-white/[0.05]"
-          }`}
+          className={`${styles.tbody} ${theme.palette.mode === "light"
+            ? "bg-black/[0.1]"
+            : "bg-white/[0.05]"
+            }`}
         >
           {positions.map((item, index) => {
             return (
@@ -98,23 +97,22 @@ const TableGrid = ({ yourPositionOpenHandler }) => {
                     <span className={styles.tdSubtitle}>Debt Value</span>{" "}
                     <span className={styles.coltd}>
                       {" "}
-                      ${item.collateralSize - item.underlyingAmount} USD
+                      ${item.debtValue} USD
                       <span className={styles.smallColtd}>
                         {" "}
                         (
                         {Number(
-                          ((item.collateralSize - item.underlyingAmount) /
+                          ((item.debtValue) /
                             item.collateralSize) *
-                            100
+                          100
                         ).toFixed(2)}
                         %)
                       </span>
                     </span>
                   </td>
                   <td
-                    className={`${index == 0 ? styles.columnRoundRight : ""} ${
-                      styles.tdSubtitle
-                    }`}
+                    className={`${index == 0 ? styles.columnRoundRight : ""} ${styles.tdSubtitle
+                      }`}
                   >
                     {" "}
                     <span className={styles.tdSubtitle}>Equity Value</span>{" "}
@@ -126,39 +124,35 @@ const TableGrid = ({ yourPositionOpenHandler }) => {
                 </tr>
                 <tr
                   onClick={() => yourPositionOpenHandler(item)}
-                  className={`${
-                    positions.length == index + 1
-                      ? "border-b-[0px]"
-                      : "border-b-[1px]"
-                  } ${
-                    theme.palette.mode === "light"
+                  className={`${positions.length == index + 1
+                    ? "border-b-[0px]"
+                    : "border-b-[1px]"
+                    } ${theme.palette.mode === "light"
                       ? "border-black/[0.2]"
                       : "border-white/[0.1]"
-                  } ${styles.rowBottom} cursor-pointer`}
+                    } ${styles.rowBottom} cursor-pointer`}
                 >
                   <td
-                    className={`${
-                      positions.length == index + 1
-                        ? styles.columnRoundBottomLeft
-                        : ""
-                    }`}
+                    className={`${positions.length == index + 1
+                      ? styles.columnRoundBottomLeft
+                      : ""
+                      }`}
                   >
-                    <span>Strategy Health: 50%</span>
+                    <span>Strategy Health: {100 - item.risk}%</span>
                   </td>
                   <td
                     colSpan={4}
-                    className={`${
-                      positions.length == index + 1
-                        ? styles.columnRoundBottomRight
-                        : ""
-                    }`}
+                    className={`${positions.length == index + 1
+                      ? styles.columnRoundBottomRight
+                      : ""
+                      }`}
                   >
                     {/* <div className={styles.innerContainer}>
                               <div className={styles.container}></div>
                           </div> */}
                     <ProgressBar
                       color={`linear-gradient(89.83deg, #0056e0 0.3%, #57c5e0 99.81%)`}
-                      value={50}
+                      value={100 - item.risk}
                     ></ProgressBar>
                   </td>
                 </tr>
