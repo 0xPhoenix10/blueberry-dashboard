@@ -5,6 +5,7 @@ import spell_abi from "./abi/IchiSpellVault_abi.json";
 import bank_abi from "./abi/BlueBerryBank_abi.json";
 import sToken_abi from "./abi/SupplyToken_abi.json";
 import bToken_abi from "./abi/BaseToken_abi.json";
+import safeBox_abi from "./abi/SafeBox_abi.json";
 // import erc20_abi from './abi/ERC20.json';
 
 import {
@@ -12,6 +13,7 @@ import {
   USDC_ADDR,
   ICHI_ADDR,
   BANK_ADDR,
+  SAFEBOX_ADDR,
 } from "./constants";
 
 declare global {
@@ -213,6 +215,30 @@ export const depositToken = async (
         ethers.utils.parseUnits((amount * leverage).toString(), 18),
       ])
     );
+
+    await tx1.wait();
+  }
+};
+
+export const lendDeposit = async (
+  amount: number,
+) => {
+  let { ethereum } = window;
+  if (typeof window.ethereum !== undefined && window.ethereum) {
+    let provider = new ethers.providers.Web3Provider(ethereum);
+    let signer = provider.getSigner();
+    // let signer_address = await signer.getAddress();
+
+    let safebox_contract = new ethers.Contract(SAFEBOX_ADDR, safeBox_abi, signer);
+
+    let token_contract = new ethers.Contract(USDC_ADDR, sToken_abi, signer);
+    const tx = await token_contract.approve(
+      SAFEBOX_ADDR,
+      ethers.utils.parseUnits(amount.toString(), 18)
+    );
+    await tx.wait();
+
+    let tx1 = await safebox_contract.deposit(ethers.utils.parseUnits(amount.toString(), 18));
 
     await tx1.wait();
   }
