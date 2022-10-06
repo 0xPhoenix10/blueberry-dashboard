@@ -13,6 +13,8 @@ import Layout from "../components/layouts/layout";
 import { AppContextProvider } from "../context/AppContext";
 import { Web3ReactProvider } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const getLibrary = (provider) => {
   return new Web3Provider(provider);
@@ -55,6 +57,7 @@ function MyApp(props: MyAppProps) {
               <Layout>
                 <Component {...pageProps} />
               </Layout>
+              <ToastContainer />
             </AppContextProvider>
           </Web3ReactProvider>
         </ThemeProvider>

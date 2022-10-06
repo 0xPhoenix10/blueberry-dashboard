@@ -1,4 +1,5 @@
 import { ethers } from "ethers";
+import { toast } from 'react-toastify';
 
 import spell_abi from "./abi/IchiSpellVault_abi.json";
 import bank_abi from "./abi/BlueBerryBank_abi.json";
@@ -26,39 +27,50 @@ export const openPosition = async (
 ) => {
   let { ethereum } = window;
   if (typeof window.ethereum !== undefined && window.ethereum) {
-    let provider = new ethers.providers.Web3Provider(ethereum);
-    let signer = provider.getSigner();
-    let signer_address = await signer.getAddress();
+    try {
+      let provider = new ethers.providers.Web3Provider(ethereum);
+      let signer = provider.getSigner();
+      let signer_address = await signer.getAddress();
 
-    let bank_contract = new ethers.Contract(BANK_ADDR, bank_abi, signer);
+      let bank_contract = new ethers.Contract(BANK_ADDR, bank_abi, signer);
 
-    let spell_iface = new ethers.utils.Interface(spell_abi);
+      let spell_iface = new ethers.utils.Interface(spell_abi);
 
-    let token_contract =
-      collateral == "ICHI"
-        ? new ethers.Contract(ICHI_ADDR, bToken_abi, signer)
-        : new ethers.Contract(USDC_ADDR, sToken_abi, signer);
+      let token_contract =
+        collateral == "ICHI"
+          ? new ethers.Contract(ICHI_ADDR, bToken_abi, signer)
+          : new ethers.Contract(USDC_ADDR, sToken_abi, signer);
 
-    const _tokenValue = await token_contract.balanceOf(signer_address);
-    console.log(ethers.utils.formatEther(_tokenValue));
+      const _tokenValue = await token_contract.balanceOf(signer_address);
+      const mytokenValue = ethers.utils.formatEther(_tokenValue)
+      if(Number(mytokenValue) < amount) {
+        toast.error(`Your max amount is ${mytokenValue}`);
+        return false;
+      }
 
-    // const tx = await token_contract.approve(
-    //   BANK_ADDR,
-    //   ethers.utils.parseUnits(amount.toString(), 18)
-    // );
-    // await tx.wait();
+      const tx = await token_contract.approve(
+        BANK_ADDR,
+        ethers.utils.parseUnits(amount.toString(), 18)
+      );
+      await tx.wait();
 
-    // let tx1 = await bank_contract.execute(
-    //   0,
-    //   ICHI_VAULT_SPELL_ADDR,
-    //   spell_iface.encodeFunctionData("deposit", [
-    //     collateral == "ICHI" ? ICHI_ADDR : USDC_ADDR,
-    //     ethers.utils.parseUnits(amount.toString(), 18),
-    //     ethers.utils.parseUnits(amount1.toString(), 18),
-    //   ])
-    // );
-    // await tx1.wait();
+      let tx1 = await bank_contract.execute(
+        0,
+        ICHI_VAULT_SPELL_ADDR,
+        spell_iface.encodeFunctionData("deposit", [
+          collateral == "ICHI" ? ICHI_ADDR : USDC_ADDR,
+          ethers.utils.parseUnits(amount.toString(), 18),
+          ethers.utils.parseUnits(amount1.toString(), 18),
+        ])
+      );
+      await tx1.wait();
+      return true;
+    } catch (error) {
+      console.log("openPosition", error)
+      return false;
+    }
   }
+  return false;
 };
 
 export const getPositionList = async () => {

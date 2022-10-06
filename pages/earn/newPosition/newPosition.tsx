@@ -33,12 +33,14 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
 
       try {
         setLoading(true);
-        await openPosition(collateral, amount, amount1);
+        const res = await openPosition(collateral, amount, amount1);
         setLoading(false);
-        handleButtonClick?.("");
+        if(res) {
+          handleButtonClick?.("success-position");
+        }
       } catch (error) {
         setLoading(false);
-        handleButtonClick?.("success-position");
+        handleButtonClick?.("");
       }
     }
   };
