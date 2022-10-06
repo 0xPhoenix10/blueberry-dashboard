@@ -13,6 +13,7 @@ import ClosePosition from "./earn/closePosition/closePosition";
 import EditPosition from "./earn/editPosition/editPosition";
 import { Web3Button } from "../components/web3/Web3Button";
 import { useTheme } from "@mui/material/styles";
+import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
   const [YourPosOpen, setYourPosition] = useState(false);
@@ -33,6 +34,7 @@ const Home: NextPage = () => {
 
   const width = useWidth();
   const theme = useTheme();
+  const router = useRouter()
 
   const handleClosepositionPopup = (value: string) => {
     setYourPosition(false);
@@ -112,14 +114,14 @@ const Home: NextPage = () => {
           <CustomButton
             buttonStyle={`${width <= 768 && "w-full"}`}
             title={"Start Earning"}
-            handleButtonClick={() => { }}
+            handleButtonClick={() => router.push("/earn")}
           />
         </div>
         <div className="md:flex gap-8 flex-row my-8 sm:block 2sm:block">
           <div
             className={`basis-1/2 px-6 py-8 border-b-4 ${theme.palette.mode === "light"
-                ? "border-black/[0.1]"
-                : "border-white/[0.05]"
+              ? "border-black/[0.1]"
+              : "border-white/[0.05]"
               }`}
           >
             <span className=" small-label">Net Worth</span>
@@ -130,8 +132,8 @@ const Home: NextPage = () => {
           </div>
           <div
             className={`basis-1/2 px-6 pl-8 py-8 border-b-4 ${theme.palette.mode === "light"
-                ? "border-black/[0.1]"
-                : "border-white/[0.05]"
+              ? "border-black/[0.1]"
+              : "border-white/[0.05]"
               }`}
           >
             <span className="small-label">Net APY%</span>
@@ -142,8 +144,8 @@ const Home: NextPage = () => {
           </div>
           <div
             className={`basis-1/2 px-6 pl-8 py-8 border-b-4 ${theme.palette.mode === "light"
-                ? "border-black/[0.1]"
-                : "border-white/[0.05]"
+              ? "border-black/[0.1]"
+              : "border-white/[0.05]"
               }`}
           >
             <span className="small-label">Projected Weekly Earnings</span>
