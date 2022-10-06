@@ -11,7 +11,7 @@ import CustomButton from "../../../components/UI/customButton/customButton";
 
 import { useWeb3React } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 import { openPosition } from "../../../contracts/helper";
 
@@ -31,9 +31,9 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
   };
 
   const handleSuccessPosition = async () => {
-    if(!active) {
-      toast.error("Please connect wallet first!")
-      return
+    if (!active) {
+      toast.error("Please connect wallet first!");
+      return;
     }
     if (typeof window.ethereum !== undefined && window.ethereum) {
       var amount = collateral == "ICHI" ? ichiAmount : usdcAmount;
@@ -44,7 +44,7 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
         setLoading(true);
         const res = await openPosition(collateral, amount, amount1);
         setLoading(false);
-        if(res) {
+        if (res) {
           handleButtonClick?.("success-position");
         }
       } catch (error) {

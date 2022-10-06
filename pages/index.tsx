@@ -20,21 +20,21 @@ const Home: NextPage = () => {
   const [ClosePos, setClosePosition] = useState(false);
   const [EditPosOpen, setEditPosition] = useState(false);
   const [curPosition, setCurPosition] = useState({
-    owner: '',
-    collToken: '',
-    underlyingToken: '',
-    underlyingAmount: '0',
-    underlyingcTokenAmount: '0',
-    collId: '',
-    collateralSize: '0',
-    debtMap: '',
+    owner: "",
+    collToken: "",
+    underlyingToken: "",
+    underlyingAmount: "0",
+    underlyingcTokenAmount: "0",
+    collId: "",
+    collateralSize: "0",
+    debtMap: "",
     positionId: 0,
-    debtValue: 0
-  })
+    debtValue: 0,
+  });
 
   const width = useWidth();
   const theme = useTheme();
-  const router = useRouter()
+  const router = useRouter();
 
   const handleClosepositionPopup = (value: string) => {
     setYourPosition(false);
@@ -89,9 +89,10 @@ const Home: NextPage = () => {
         <div
           className={
             styles["start-farming-widget"] +
-            ` my-8 rounded-lg px-8 1sm:block py-5 ${theme.palette.mode === "light"
-              ? "bg-black/[0.05]"
-              : "bg-white/[0.05]"
+            ` my-8 rounded-lg px-8 1sm:block py-5 ${
+              theme.palette.mode === "light"
+                ? "bg-black/[0.05]"
+                : "bg-white/[0.05]"
             }`
           }
         >
@@ -119,10 +120,11 @@ const Home: NextPage = () => {
         </div>
         <div className="md:flex gap-8 flex-row my-8 sm:block 2sm:block">
           <div
-            className={`basis-1/2 px-6 py-8 border-b-4 ${theme.palette.mode === "light"
-              ? "border-black/[0.1]"
-              : "border-white/[0.05]"
-              }`}
+            className={`basis-1/2 px-6 py-8 border-b-4 ${
+              theme.palette.mode === "light"
+                ? "border-black/[0.1]"
+                : "border-white/[0.05]"
+            }`}
           >
             <span className=" small-label">Net Worth</span>
             <Text>
@@ -131,10 +133,11 @@ const Home: NextPage = () => {
             </Text>
           </div>
           <div
-            className={`basis-1/2 px-6 pl-8 py-8 border-b-4 ${theme.palette.mode === "light"
-              ? "border-black/[0.1]"
-              : "border-white/[0.05]"
-              }`}
+            className={`basis-1/2 px-6 pl-8 py-8 border-b-4 ${
+              theme.palette.mode === "light"
+                ? "border-black/[0.1]"
+                : "border-white/[0.05]"
+            }`}
           >
             <span className="small-label">Net APY%</span>
             <Text>
@@ -143,10 +146,11 @@ const Home: NextPage = () => {
             </Text>
           </div>
           <div
-            className={`basis-1/2 px-6 pl-8 py-8 border-b-4 ${theme.palette.mode === "light"
-              ? "border-black/[0.1]"
-              : "border-white/[0.05]"
-              }`}
+            className={`basis-1/2 px-6 pl-8 py-8 border-b-4 ${
+              theme.palette.mode === "light"
+                ? "border-black/[0.1]"
+                : "border-white/[0.05]"
+            }`}
           >
             <span className="small-label">Projected Weekly Earnings</span>
             <Text>
@@ -205,8 +209,9 @@ const Home: NextPage = () => {
               <h6 className="text-muted">Position Value Breakdown</h6>
             </Text>
             <div
-              className={`${styles.lendingRow} mt-5 ${width <= 768 && "flex-column"
-                } cursor-pointer`}
+              className={`${styles.lendingRow} mt-5 ${
+                width <= 768 && "flex-column"
+              } cursor-pointer`}
               onClick={(event) => newPositionOpenHandler("your-position")}
             >
               <div className={styles.rightRow}>
@@ -229,8 +234,9 @@ const Home: NextPage = () => {
               </div>
             </div>
             <div
-              className={`${styles.lendingRow}  ${width <= 768 && "flex-column"
-                } cursor-pointer`}
+              className={`${styles.lendingRow}  ${
+                width <= 768 && "flex-column"
+              } cursor-pointer`}
               onClick={(event) => newPositionOpenHandler("your-position")}
             >
               <div className={styles.rightRow}>
@@ -262,7 +268,10 @@ const Home: NextPage = () => {
           setYourPosition(false);
         }}
       >
-        <YourPosition handleClosepositionPopup={handleClosepositionPopup} position={curPosition} />
+        <YourPosition
+          handleClosepositionPopup={handleClosepositionPopup}
+          position={curPosition}
+        />
       </Popup>
       <Popup
         isOpen={EditPosOpen}

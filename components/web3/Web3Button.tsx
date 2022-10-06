@@ -341,7 +341,7 @@ export function Web3Button() {
 
   const [openConnectDlg, setOpenConnectDlg] = React.useState(false);
   const [ethBalance, setEthBalance] = useState<number>(0);
-  
+
   const handleShowConnectDlg = () => {
     window.localStorage.setItem("provider", undefined);
     deactivate();
@@ -358,15 +358,15 @@ export function Web3Button() {
     } else {
       const provider = window.localStorage.getItem("provider");
       const reConnectWallect = async () => {
-        if (provider == 'coinbaseWallet') {
+        if (provider == "coinbaseWallet") {
           await activate(connectors.coinbaseWallet);
-        } else if (provider == 'walletConnect') {
+        } else if (provider == "walletConnect") {
           await activate(connectors.walletConnect);
-        } else if (provider == 'injected') {
+        } else if (provider == "injected") {
           await activate(connectors.injected);
         }
-      }
-      reConnectWallect()
+      };
+      reConnectWallect();
     }
   }, []);
 
