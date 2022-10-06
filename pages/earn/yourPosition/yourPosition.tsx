@@ -1,42 +1,45 @@
-import Style from './yourPosition.module.scss'
-import IPositionStruct from '../../../interfaces/PositionStruct'
+import Style from "./yourPosition.module.scss";
+import IPositionStruct from "../../../interfaces/PositionStruct";
 
 import { useWeb3React } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const YourPosition = ({
   handleClosepositionPopup,
   position = {
-    owner: '',
-    collToken: '',
-    underlyingToken: '',
-    underlyingAmount: '0',
-    underlyingcTokenAmount: '0',
-    collId: '',
-    collateralSize: '0',
-    debtMap: '',
+    owner: "",
+    collToken: "",
+    underlyingToken: "",
+    underlyingAmount: "0",
+    underlyingcTokenAmount: "0",
+    collId: "",
+    collateralSize: "0",
+    debtMap: "",
     positionId: 0,
-    debtValue: 0
-  }
+    debtValue: 0,
+  },
 }: {
-  handleClosepositionPopup: any,
-  position: IPositionStruct,
+  handleClosepositionPopup: any;
+  position: IPositionStruct;
 }) => {
   const { active } = useWeb3React<Web3Provider>();
   const handleClick = (value: string) => {
-    if(!active) {
-      toast.error("Please connect wallet first!")
-      return
+    if (!active) {
+      toast.error("Please connect wallet first!");
+      return;
     }
 
     handleClosepositionPopup(value);
   };
   console.log("curPos?", position);
 
-  let borrowingAmount = Number(position.collateralSize) - Number(position.underlyingAmount);
-  let borrowingRate = Number((borrowingAmount / Number(position.collateralSize)) * 100).toFixed(2);
-  let leverageFactor = Number(position.collateralSize) / Number(position.underlyingAmount);
+  let borrowingAmount = Number(position.collateralSize);
+  let borrowingRate = Number(
+    (borrowingAmount / Number(position.collateralSize)) * 100
+  ).toFixed(2);
+  let leverageFactor =
+    Number(position.collateralSize) / Number(position.underlyingAmount);
 
   return (
     <div className={`mt-5 ${Style.container}`}>

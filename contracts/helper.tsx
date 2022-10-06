@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 import spell_abi from "./abi/IchiSpellVault_abi.json";
 import bank_abi from "./abi/BlueBerryBank_abi.json";
@@ -44,8 +44,8 @@ export const openPosition = async (
           : new ethers.Contract(USDC_ADDR, sToken_abi, signer);
 
       const _tokenValue = await token_contract.balanceOf(signer_address);
-      const mytokenValue = ethers.utils.formatEther(_tokenValue)
-      if(Number(mytokenValue) < amount) {
+      const mytokenValue = ethers.utils.formatEther(_tokenValue);
+      if (Number(mytokenValue) < amount) {
         toast.error(`Your max amount is ${mytokenValue}`);
         return false;
       }
@@ -68,7 +68,7 @@ export const openPosition = async (
       await tx1.wait();
       return true;
     } catch (error) {
-      console.log("openPosition", error)
+      console.log("openPosition", error);
       return false;
     }
   }
@@ -104,7 +104,7 @@ export const getPositionList = async () => {
           debtMap: ethers.utils.formatEther(result[7]), // Bitmap of nonzero debt. i^th bit is set iff debt share of i^th bank is nonzero.
           positionId: i,
           debtValue: parseFloat(ethers.utils.formatEther(debtValue)).toFixed(3),
-          risk: Number(risk / 10000 * 100).toFixed(2)
+          risk: Number((risk / 10000) * 100).toFixed(2),
         };
         positions.push(obj);
       }
@@ -220,16 +220,18 @@ export const depositToken = async (
   }
 };
 
-export const lendDeposit = async (
-  amount: number,
-) => {
+export const lendDeposit = async (amount: number) => {
   let { ethereum } = window;
   if (typeof window.ethereum !== undefined && window.ethereum) {
     let provider = new ethers.providers.Web3Provider(ethereum);
     let signer = provider.getSigner();
     // let signer_address = await signer.getAddress();
 
-    let safebox_contract = new ethers.Contract(SAFEBOX_ADDR, safeBox_abi, signer);
+    let safebox_contract = new ethers.Contract(
+      SAFEBOX_ADDR,
+      safeBox_abi,
+      signer
+    );
 
     let token_contract = new ethers.Contract(USDC_ADDR, sToken_abi, signer);
     const tx = await token_contract.approve(
@@ -238,7 +240,9 @@ export const lendDeposit = async (
     );
     await tx.wait();
 
-    let tx1 = await safebox_contract.deposit(ethers.utils.parseUnits(amount.toString(), 18));
+    let tx1 = await safebox_contract.deposit(
+      ethers.utils.parseUnits(amount.toString(), 18)
+    );
 
     await tx1.wait();
   }
