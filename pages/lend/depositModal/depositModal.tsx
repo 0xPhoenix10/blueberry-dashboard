@@ -8,14 +8,22 @@ import Style from "./depositModal.module.scss";
 import { useState } from "react";
 import CustomButton from "../../../components/UI/customButton/customButton";
 
+import { useWeb3React } from "@web3-react/core";
+import { Web3Provider } from "@ethersproject/providers";
 import { depositToken } from '../../../contracts/helper';
+import { toast } from 'react-toastify';
 
 const DepositModal = ({ tokenName, handleButtonClick }: DepositModalProps) => {
   const [amount, setAmount] = useState('0');
   const [isLoading, setLoading] = useState(false);
+  const { active } = useWeb3React<Web3Provider>();
 
   const handleSuccessPosition = async () => {
     try {
+      if(!active) {
+        toast.error("Please connect wallet first!")
+        return
+      }
       setLoading(true)
       await depositToken(7, parseInt(amount), 3)
       handleButtonClick?.("success-position");
