@@ -1,6 +1,10 @@
 import Style from './yourPosition.module.scss'
 import IPositionStruct from '../../../interfaces/PositionStruct'
 
+import { useWeb3React } from "@web3-react/core";
+import { Web3Provider } from "@ethersproject/providers";
+import { toast } from 'react-toastify';
+
 const YourPosition = ({
   handleClosepositionPopup,
   position = {
@@ -19,7 +23,13 @@ const YourPosition = ({
   handleClosepositionPopup: any,
   position: IPositionStruct,
 }) => {
+  const { active } = useWeb3React<Web3Provider>();
   const handleClick = (value: string) => {
+    if(!active) {
+      toast.error("Please connect wallet first!")
+      return
+    }
+
     handleClosepositionPopup(value);
   };
   console.log("curPos?", position);

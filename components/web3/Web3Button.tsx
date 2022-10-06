@@ -341,7 +341,7 @@ export function Web3Button() {
 
   const [openConnectDlg, setOpenConnectDlg] = React.useState(false);
   const [ethBalance, setEthBalance] = useState<number>(0);
-
+  
   const handleShowConnectDlg = () => {
     window.localStorage.setItem("provider", undefined);
     deactivate();
