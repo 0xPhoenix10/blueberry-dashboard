@@ -28,6 +28,7 @@ export const openPosition = async (
   if (typeof window.ethereum !== undefined && window.ethereum) {
     let provider = new ethers.providers.Web3Provider(ethereum);
     let signer = provider.getSigner();
+    let signer_address = await signer.getAddress();
 
     let bank_contract = new ethers.Contract(BANK_ADDR, bank_abi, signer);
 
@@ -37,22 +38,26 @@ export const openPosition = async (
       collateral == "ICHI"
         ? new ethers.Contract(ICHI_ADDR, bToken_abi, signer)
         : new ethers.Contract(USDC_ADDR, sToken_abi, signer);
-    const tx = await token_contract.approve(
-      BANK_ADDR,
-      ethers.utils.parseUnits(amount.toString(), 18)
-    );
-    await tx.wait();
 
-    let tx1 = await bank_contract.execute(
-      0,
-      ICHI_VAULT_SPELL_ADDR,
-      spell_iface.encodeFunctionData("deposit", [
-        collateral == "ICHI" ? ICHI_ADDR : USDC_ADDR,
-        ethers.utils.parseUnits(amount.toString(), 18),
-        ethers.utils.parseUnits(amount1.toString(), 18),
-      ])
-    );
-    await tx1.wait();
+    const _tokenValue = await token_contract.balanceOf(signer_address);
+    console.log(ethers.utils.formatEther(_tokenValue));
+
+    // const tx = await token_contract.approve(
+    //   BANK_ADDR,
+    //   ethers.utils.parseUnits(amount.toString(), 18)
+    // );
+    // await tx.wait();
+
+    // let tx1 = await bank_contract.execute(
+    //   0,
+    //   ICHI_VAULT_SPELL_ADDR,
+    //   spell_iface.encodeFunctionData("deposit", [
+    //     collateral == "ICHI" ? ICHI_ADDR : USDC_ADDR,
+    //     ethers.utils.parseUnits(amount.toString(), 18),
+    //     ethers.utils.parseUnits(amount1.toString(), 18),
+    //   ])
+    // );
+    // await tx1.wait();
   }
 };
 
@@ -68,9 +73,10 @@ export const getPositionList = async () => {
     let _nextPositionId = await bank_contract.nextPositionId();
     let nextPositionId = _nextPositionId.toString();
 
-    for (let i = 0; i < nextPositionId; i++) {
+    for (let i = 1; i < nextPositionId; i++) {
       var result = await bank_contract.positions(i.toString());
       var debtValue = await bank_contract.getDebtValue(i.toString());
+      var risk = await bank_contract.getPositionRisk(i.toString());
 
       if (result[0] === signer_address) {
         var obj = {
@@ -84,6 +90,7 @@ export const getPositionList = async () => {
           debtMap: ethers.utils.formatEther(result[7]), // Bitmap of nonzero debt. i^th bit is set iff debt share of i^th bank is nonzero.
           positionId: i,
           debtValue: parseFloat(ethers.utils.formatEther(debtValue)).toFixed(3),
+          risk: Number(risk / 10000 * 100).toFixed(2)
         };
         positions.push(obj);
       }
