@@ -10,7 +10,7 @@ import CustomButton from "../../../components/UI/customButton/customButton";
 
 import { useWeb3React } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
-import { depositToken } from '../../../contracts/helper';
+import { lendDeposit } from '../../../contracts/helper';
 import { toast } from 'react-toastify';
 
 const DepositModal = ({ tokenName, handleButtonClick }: DepositModalProps) => {
@@ -25,7 +25,7 @@ const DepositModal = ({ tokenName, handleButtonClick }: DepositModalProps) => {
         return
       }
       setLoading(true)
-      await depositToken(7, parseInt(amount), 3)
+      await lendDeposit(parseInt(amount))
       handleButtonClick?.("success-position");
       setLoading(false)
     } catch (error) {
