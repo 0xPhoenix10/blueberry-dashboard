@@ -252,7 +252,7 @@ export const lendClose = async () => {
   if (typeof window.ethereum !== undefined && window.ethereum) {
     let provider = new ethers.providers.Web3Provider(ethereum);
     let signer = provider.getSigner();
-    // let signer_address = await signer.getAddress();
+    let signer_address = await signer.getAddress();
 
     let safebox_contract = new ethers.Contract(
       SAFEBOX_ADDR,
@@ -260,9 +260,7 @@ export const lendClose = async () => {
       signer
     );
 
-    let token_contract = new ethers.Contract(USDC_ADDR, sToken_abi, signer);
-    let amount = await token_contract.balanceOf(SAFEBOX_ADDR);
-    console.log(amount.toString());
+    let amount = await safebox_contract.balanceOf(signer_address);
     let tx = await safebox_contract.withdraw(
       amount.toString()
     );
