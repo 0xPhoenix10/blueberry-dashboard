@@ -219,3 +219,29 @@ export const lendClose = async () => {
     await tx.wait();
   }
 };
+
+export const getLendingPoolList = async () => {
+  let { ethereum } = window;
+
+  if (typeof window.ethereum !== undefined && window.ethereum) {
+    let provider = new ethers.providers.Web3Provider(ethereum);
+    let signer = provider.getSigner();
+    let signer_address = await signer.getAddress();
+
+    let safebox_contract = new ethers.Contract(
+      SAFEBOX_ADDR,
+      ABIS.SafeBox,
+      signer
+    );
+
+    let amount = await safebox_contract.balanceOf(signer_address);
+    let symbol = await safebox_contract.symbol();
+
+    var list = {
+      amount: parseFloat(ethers.utils.formatEther(amount)).toFixed(2),
+      symbol: symbol
+    }
+
+    return list;
+  }
+}

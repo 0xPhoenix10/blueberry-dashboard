@@ -193,8 +193,8 @@ const Earn: NextPage = () => {
       </Tabs>
       <div
         className={`${theme.palette.mode === "light"
-            ? styles.dividerLight
-            : styles.dividerDark
+          ? styles.dividerLight
+          : styles.dividerDark
           } ${styles.divider}`}
       ></div>
       {value == 0 && (
@@ -231,8 +231,8 @@ const Earn: NextPage = () => {
                   <tr
                     key={row.id}
                     className={`border-y-[1px] ${theme.palette.mode === "light"
-                        ? "border-black/[0.2]"
-                        : "border-white/[0.1]"
+                      ? "border-black/[0.2]"
+                      : "border-white/[0.1]"
                       }`}
                   >
                     <td className={styles.columnRoundLeft}>
