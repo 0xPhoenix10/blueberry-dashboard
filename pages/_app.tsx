@@ -15,6 +15,10 @@ import { Web3ReactProvider } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Updaters from "../state/Updater";
+import store from '../state';
+import { Provider } from 'react-redux';
+import { WalletProvider } from "../providers";
 
 const getLibrary = (provider) => {
   return new Web3Provider(provider);
@@ -53,12 +57,17 @@ function MyApp(props: MyAppProps) {
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           <Web3ReactProvider getLibrary={getLibrary}>
-            <AppContextProvider>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-              <ToastContainer />
-            </AppContextProvider>
+            <WalletProvider>
+              <Provider store={store}>
+                <AppContextProvider>
+                  <Updaters />
+                  <Layout>
+                    <Component {...pageProps} />
+                  </Layout>
+                  <ToastContainer />
+                </AppContextProvider>
+              </Provider>
+            </WalletProvider>
           </Web3ReactProvider>
         </ThemeProvider>
       </ColorModeContext.Provider>

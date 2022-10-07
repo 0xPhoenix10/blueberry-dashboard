@@ -261,9 +261,7 @@ export const lendClose = async () => {
     );
 
     let amount = await safebox_contract.balanceOf(signer_address);
-    let tx = await safebox_contract.withdraw(
-      amount.toString()
-    );
+    let tx = await safebox_contract.withdraw(amount.toString());
 
     await tx.wait();
   }
