@@ -138,10 +138,9 @@ export const addCollateral = async (
     let tx1 = await bank_contract.execute(
       position_id,
       ICHI_VAULT_SPELL_ADDR,
-      spell_iface.encodeFunctionData("deposit", [
+      spell_iface.encodeFunctionData("increasePosition", [
         USDC_ADDR,
-        ethers.utils.parseUnits(amount.toString(), 18),
-        ethers.utils.parseUnits((amount * leverage).toString(), 18),
+        ethers.utils.parseUnits(amount.toString(), 18)
       ])
     );
     await tx1.wait();
@@ -162,22 +161,12 @@ export const removeCollateral = async (
 
     let spell_iface = new ethers.utils.Interface(spell_abi);
 
-    let token_contract = new ethers.Contract(USDC_ADDR, sToken_abi, signer);
-    const tx = await token_contract.approve(
-      BANK_ADDR,
-      ethers.utils.parseUnits(amount.toString(), 18)
-    );
-    await tx.wait();
-
     let tx1 = await bank_contract.execute(
       position_id,
       ICHI_VAULT_SPELL_ADDR,
-      spell_iface.encodeFunctionData("withdraw", [
+      spell_iface.encodeFunctionData("reducePosition", [
         USDC_ADDR,
-        ethers.utils.parseUnits(amount.toString(), 18),
-        ethers.utils.parseUnits("0", 18),
-        ethers.utils.parseUnits("0", 18),
-        ethers.utils.parseUnits("0", 18),
+        ethers.utils.parseUnits(amount.toString(), 18)
       ])
     );
 
