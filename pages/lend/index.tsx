@@ -71,9 +71,8 @@ const Earn: NextPage = () => {
 
   return (
     <div
-      className={`${
-        width <= 680 ? "h-fit" : "h-full"
-      } items-center my-4 md:px-16 sm:px-1 2sm:px0 sm:block`}
+      className={`${width <= 680 ? "h-fit" : "h-full"
+        } items-center my-4 md:px-16 sm:px-1 2sm:px0 sm:block`}
     >
       {width <= 680 && (
         <header className="md:h-[90px] pb-4 md:flex items-center md:px-16 sm:px-1 2sm:px0 sm:h-[150px] sm:block">
@@ -106,11 +105,10 @@ const Earn: NextPage = () => {
         </div>
         <div className={styles.rightContainer}>
           <input
-            className={`${styles.btnSearch} ${
-              theme.palette.mode === "light"
+            className={`${styles.btnSearch} ${theme.palette.mode === "light"
                 ? "bg-black/[0.1]"
                 : "bg-white/[0.1]"
-            }`}
+              }`}
             placeholder={"Search..."}
           />
         </div>
@@ -131,8 +129,8 @@ const Earn: NextPage = () => {
                   value === 0
                     ? "#19857b"
                     : theme.palette.mode === "light"
-                    ? "#000"
-                    : "#fff",
+                      ? "#000"
+                      : "#fff",
               }}
             >
               My Positions
@@ -148,11 +146,10 @@ const Earn: NextPage = () => {
         /> */}
       </Tabs>
       <div
-        className={`${
-          theme.palette.mode === "light"
+        className={`${theme.palette.mode === "light"
             ? styles.dividerLight
             : styles.dividerDark
-        } ${styles.divider}`}
+          } ${styles.divider}`}
       ></div>
       {value == 0 && <TableGrid />}
       {value == 1 && <div></div>}
@@ -179,11 +176,10 @@ const Earn: NextPage = () => {
 
             <tbody className={styles.tbody}>
               <tr
-                className={`border-y-[1px] ${
-                  theme.palette.mode === "light"
+                className={`border-y-[1px] ${theme.palette.mode === "light"
                     ? "border-black/[0.2]"
                     : "border-white/[0.1]"
-                }`}
+                  }`}
               >
                 <td className={styles.columnRoundLeft}>
                   <div className={styles.tableCol}>
@@ -223,11 +219,10 @@ const Earn: NextPage = () => {
                 </td>
               </tr>
               <tr
-                className={`border-y-[1px] ${
-                  theme.palette.mode === "light"
+                className={`border-y-[1px] ${theme.palette.mode === "light"
                     ? "border-black/[0.2]"
                     : "border-white/[0.1]"
-                }`}
+                  }`}
               >
                 <td className={styles.columnRoundLeft}>
                   <div className={styles.tableCol}>
@@ -267,11 +262,10 @@ const Earn: NextPage = () => {
                 </td>
               </tr>
               <tr
-                className={`border-y-[1px] ${
-                  theme.palette.mode === "light"
+                className={`border-y-[1px] ${theme.palette.mode === "light"
                     ? "border-black/[0.2]"
                     : "border-white/[0.1]"
-                }`}
+                  }`}
               >
                 <td className={styles.columnRoundLeft}>
                   <div className={styles.tableCol}>

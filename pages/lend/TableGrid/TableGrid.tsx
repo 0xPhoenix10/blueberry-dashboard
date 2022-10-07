@@ -1,9 +1,21 @@
+import React, { useState, useEffect } from "react";
 import styles from "./TableGrid.module.scss";
 import Image from "next/image";
 import { useTheme } from "@mui/material/styles";
 
+import { getLendingPoolList } from "../../../contracts/helper";
+
 const TableGrid = () => {
   const theme = useTheme();
+  const [list, setLendingPoolList] = useState([]);
+
+  useEffect(() => {
+    getLendingPoolList().then((res) => {
+      console.log("pool list? ", res);
+      setLendingPoolList(res);
+    });
+  }, []);
+
   return (
     <>
       <table className={styles.table}>
@@ -15,18 +27,16 @@ const TableGrid = () => {
           </tr>
         </thead>
         <tbody
-          className={`${styles.tbody} ${
-            theme.palette.mode === "light"
-              ? "bg-black/[0.1]"
-              : "bg-white/[0.05]"
-          }`}
+          className={`${styles.tbody} ${theme.palette.mode === "light"
+            ? "bg-black/[0.1]"
+            : "bg-white/[0.05]"
+            }`}
         >
           <tr
-            className={`border-b-[1px] ${
-              theme.palette.mode === "light"
-                ? "border-black/[0.2]"
-                : "border-white/[0.1]"
-            }`}
+            className={`border-b-[1px] ${theme.palette.mode === "light"
+              ? "border-black/[0.2]"
+              : "border-white/[0.1]"
+              }`}
           >
             <td className={styles.columnRoundLeft}>
               <div className={styles.tableCol}>
@@ -40,7 +50,7 @@ const TableGrid = () => {
                   style={{ paddingLeft: "0.7rem" }}
                   className={styles.tdSpan}
                 >
-                  ICHI
+                  USDC
                 </span>
               </div>
             </td>
@@ -53,39 +63,8 @@ const TableGrid = () => {
               <span className={styles.coltd}> 12% ($576)</span>
             </td>
             <td className={styles.tdSubtitle}>
-              <p>250,0000 oneICHI</p>
-              <p className={styles.smallPositionText}>$2,500,000 USD</p>
-            </td>
-          </tr>
-
-          <tr
-            className={`border-b-[1px] ${
-              theme.palette.mode === "light"
-                ? "border-black/[0.2]"
-                : "border-white/[0.1]"
-            }`}
-          >
-            <td>
-              <div className={styles.tableCol}>
-                <Image
-                  src="/icons/pic1.svg"
-                  width={40}
-                  height={40}
-                  alt="icon"
-                />
-                <span
-                  style={{ paddingLeft: "0.7rem" }}
-                  className={styles.tdSpan}
-                >
-                  {" "}
-                  oneICHI
-                </span>
-              </div>
-            </td>
-            <td> 12% ($576)</td>
-            <td>
-              <p>250,0000 oneICHI</p>
-              <p className={styles.smallPositionText}>$2,500,000 USD</p>
+              <p>{list.amount} {list.symbol}</p>
+              <p className={styles.smallPositionText}>${Number(list.amount / 100).toFixed(2)} USD</p>
             </td>
           </tr>
         </tbody>

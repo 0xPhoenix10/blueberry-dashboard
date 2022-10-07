@@ -24,7 +24,7 @@ export default function Updater(): null {
 		multicall.all(contractCalls).then(nextPositionId => {
 			console.log(+nextPositionId);
 			contractCalls = [];
-			for(let i = 1; i< +nextPositionId; i++) {
+			for (let i = 1; i < +nextPositionId; i++) {
 				contractCalls.push(bankContract.positions(i));
 				contractCalls.push(bankContract.getDebtValue(i));
 				contractCalls.push(bankContract.getPositionRisk(i));
@@ -32,7 +32,7 @@ export default function Updater(): null {
 			multicall.all(contractCalls).then(results => {
 				const myPositions: IPosition[] = [];
 				let index = 0;
-				for(let i = 1; i< +nextPositionId; i++) {
+				for (let i = 1; i < +nextPositionId; i++) {
 					const position = results[index++];
 					const debt: BigNumber = results[index++];
 					const risk: BigNumber = results[index++];
