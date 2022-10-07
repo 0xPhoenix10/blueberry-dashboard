@@ -1,7 +1,7 @@
 import { useWeb3React } from '@web3-react/core';
 import { Web3ReactContextInterface } from '@web3-react/core/dist/types'
 import { Web3Provider } from '@ethersproject/providers'
-import { ChainId, DEFAULT_CHAIN, NETWORK_CONNECTIONS } from '../constant';
+import { ChainId, DEFAULT_CHAIN, NETWORK_CONNECTIONS, SUPPORTED_CHAINS } from '../constant';
 import { ethers } from 'ethers';
 import { useEffect, useState } from 'react';
 
@@ -16,8 +16,8 @@ export const useActiveWeb3React = (): Web3ReactContextInterface<Web3Provider> =>
   const initProvider = () => {
     if (library === undefined) {
       return simpleRpcProvider;
-    } else if (chainId === ChainId.Mainnet) {
-      return new ethers.providers.Web3Provider(library) || simpleRpcProvider;
+    } else if (SUPPORTED_CHAINS.includes(chainId)) {
+      return new ethers.providers.Web3Provider(library.provider) || simpleRpcProvider;
     } else {
       return simpleRpcProvider;
     }
@@ -27,12 +27,12 @@ export const useActiveWeb3React = (): Web3ReactContextInterface<Web3Provider> =>
   useEffect(() => {
     if (library === undefined) {
       setProvider(simpleRpcProvider);
-    } else if (chainId === ChainId.Mainnet) {
-      setProvider(new ethers.providers.Web3Provider(library) || simpleRpcProvider);
+    } else if (SUPPORTED_CHAINS.includes(chainId)) {
+      setProvider(new ethers.providers.Web3Provider(library.provider) || simpleRpcProvider);
     } else {
       setProvider(simpleRpcProvider);
     }
   }, [library, chainId])
 
-  return { library: provider, chainId: chainId ?? ChainId.Mainnet, ...web3React }
+  return { library: provider, chainId: chainId ?? DEFAULT_CHAIN, ...web3React }
 }

@@ -2,7 +2,7 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { save, load } from 'redux-localstorage-simple';
 // import { createLogger } from 'redux-logger'
 
-// import contracts from './contracts/reducer';
+import contracts from './contracts/reducer';
 import application from './application/reducer';
 
 const PERSISTED_KEYS: string[] = ['application', 'contracts'];
@@ -10,7 +10,7 @@ const PERSISTED_KEYS: string[] = ['application', 'contracts'];
 const store = configureStore({
   reducer: {
     application,
-    // contracts,
+    contracts,
   },
   middleware: [
     ...getDefaultMiddleware({ serializableCheck: false, thunk: false }),
