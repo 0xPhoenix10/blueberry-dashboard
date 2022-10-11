@@ -53,12 +53,12 @@ const strategiesTable = [
 ] as StrategiesTable[];
 
 const Earn: NextPage = () => {
-  const [value, setValue] = useState(0)
-  const [NewOpen, setNewPosition] = useState(false)
-  const [SuccessOpen, setSuccesPosition] = useState(false)
-  const [YourPosOpen, setYourPosition] = useState(false)
-  const [EditPosOpen, setEditPosition] = useState(false)
-  const [ClosePos, setClosePosition] = useState(false)
+  const [value, setValue] = useState(0);
+  const [NewOpen, setNewPosition] = useState(false);
+  const [SuccessOpen, setSuccesPosition] = useState(false);
+  const [YourPosOpen, setYourPosition] = useState(false);
+  const [EditPosOpen, setEditPosition] = useState(false);
+  const [ClosePos, setClosePosition] = useState(false);
   const [curPosition, setCurPosition] = useState<IPosition>();
 
   const width = useWidth();
@@ -113,8 +113,9 @@ const Earn: NextPage = () => {
   };
   return (
     <div
-      className={`${width <= 680 ? "h-fit" : "h-full"
-        } items-center my-4 md:px-16 sm:px-1 2sm:px0 sm:block`}
+      className={`${
+        width <= 680 ? "h-fit" : "h-full"
+      } items-center my-4 md:px-16 sm:px-1 2sm:px0 sm:block`}
     >
       {width <= 680 && (
         <header className="md:h-[90px] pb-4 md:flex items-center md:px-16 sm:px-1 2sm:px0 sm:h-[150px] sm:block">
@@ -166,8 +167,8 @@ const Earn: NextPage = () => {
                   value === 0
                     ? "#19857b"
                     : theme.palette.mode === "light"
-                      ? "#000"
-                      : "#fff",
+                    ? "#000"
+                    : "#fff",
               }}
             >
               Active Positions
@@ -182,8 +183,8 @@ const Earn: NextPage = () => {
                   value === 1
                     ? "#19857b"
                     : theme.palette.mode === "light"
-                      ? "#000"
-                      : "#fff",
+                    ? "#000"
+                    : "#fff",
               }}
             >
               Liquidated Positions
@@ -192,10 +193,11 @@ const Earn: NextPage = () => {
         />
       </Tabs>
       <div
-        className={`${theme.palette.mode === "light"
-          ? styles.dividerLight
-          : styles.dividerDark
-          } ${styles.divider}`}
+        className={`${
+          theme.palette.mode === "light"
+            ? styles.dividerLight
+            : styles.dividerDark
+        } ${styles.divider}`}
       ></div>
       {value == 0 && (
         <LeveragePositionTable
@@ -230,10 +232,11 @@ const Earn: NextPage = () => {
                 return (
                   <tr
                     key={row.id}
-                    className={`border-y-[1px] ${theme.palette.mode === "light"
-                      ? "border-black/[0.2]"
-                      : "border-white/[0.1]"
-                      }`}
+                    className={`border-y-[1px] ${
+                      theme.palette.mode === "light"
+                        ? "border-black/[0.2]"
+                        : "border-white/[0.1]"
+                    }`}
                   >
                     <td className={styles.columnRoundLeft}>
                       <div className={styles.tableCol}>
