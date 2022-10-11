@@ -9,6 +9,8 @@ import {
   ICHI_ADDR,
   BANK_ADDR,
   SAFEBOX_ADDR,
+  BERC20DELEGATOR_ADDR,
+  COREORACLE_ADDR,
 } from "./constants";
 
 declare global {
@@ -237,11 +239,27 @@ export const getLendingPoolList = async () => {
     let amount = await safebox_contract.balanceOf(signer_address);
     let symbol = await safebox_contract.symbol();
 
+    let berc20_contract = new ethers.Contract(
+      BERC20DELEGATOR_ADDR,
+      ABIS.BErc20,
+      signer
+    );
+    let e_rate = await berc20_contract.exchangeRateStored();
+
+    let oracle_contract = new ethers.Contract(
+      COREORACLE_ADDR,
+      ABIS.CoreOracle,
+      signer
+    );
+    let utoken_price = await oracle_contract.getPrice(USDC_ADDR);
+
     var list = {
       amount: parseFloat(ethers.utils.formatEther(amount)).toFixed(2),
-      symbol: symbol
-    }
+      symbol: symbol,
+      rate: parseFloat(ethers.utils.formatEther(e_rate)),
+      utokenPrice: parseFloat(ethers.utils.formatEther(utoken_price))
+    };
 
     return list;
   }
-}
+};

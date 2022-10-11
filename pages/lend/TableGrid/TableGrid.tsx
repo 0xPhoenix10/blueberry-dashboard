@@ -28,14 +28,14 @@ const TableGrid = () => {
         </thead>
         <tbody
           className={`${styles.tbody} ${theme.palette.mode === "light"
-            ? "bg-black/[0.1]"
-            : "bg-white/[0.05]"
+              ? "bg-black/[0.1]"
+              : "bg-white/[0.05]"
             }`}
         >
           <tr
             className={`border-b-[1px] ${theme.palette.mode === "light"
-              ? "border-black/[0.2]"
-              : "border-white/[0.1]"
+                ? "border-black/[0.2]"
+                : "border-white/[0.1]"
               }`}
           >
             <td className={styles.columnRoundLeft}>
@@ -63,8 +63,12 @@ const TableGrid = () => {
               <span className={styles.coltd}> 12% ($576)</span>
             </td>
             <td className={styles.tdSubtitle}>
-              <p>{list.amount} {list.symbol}</p>
-              <p className={styles.smallPositionText}>${Number(list.amount / 100).toFixed(2)} USD</p>
+              <p>
+                {list.amount} {list.symbol}
+              </p>
+              <p className={styles.smallPositionText}>
+                ${Number(list.amount * list.rate * list.utokenPrice).toFixed(2)} USD
+              </p>
             </td>
           </tr>
         </tbody>
