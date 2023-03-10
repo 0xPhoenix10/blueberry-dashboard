@@ -1,65 +1,88 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import { useWidth } from '../../hooks/useWidth'
-import styles from './layout.module.scss'
+import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useWidth } from "../../hooks/useWidth";
+import styles from "./layout.module.scss";
 
-const Sidebar = () => {
-  const router = useRouter()
-  const pathName = router.pathname
-  const width = useWidth()
+import { useTheme } from "@mui/material/styles";
+
+const Sidebar = ({
+  handleSidebarClick,
+}: {
+  handleSidebarClick: (value: string) => void;
+}) => {
+  const router = useRouter();
+  const pathName = router.pathname;
+  const width = useWidth();
+  const theme = useTheme();
 
   const [menuItems, setMenuItems] = useState([
     {
-      href: '/',
-      title: 'Overview',
-      icon: <Image src={'/icons/overview.svg'} width={40} height={40} />,
-      selectedIcon: '/icons/selectedOverview.svg',
+      href: "/",
+      title: "Overview",
+      icon: (
+        <Image
+          src={"/icons/overview.svg"}
+          width={25}
+          height={25}
+          alt={"Overview"}
+        />
+      ),
+      selectedIcon: "/icons/selectedOverview.svg",
       isSelected: false,
     },
     {
-      href: '/earn',
-      title: 'Earn',
-      icon: <Image src={'/icons/lend.svg'} width={40} height={40} />,
-      selectedIcon: '/icons/selectedLend.svg',
+      href: "/earn",
+      title: "Earn",
+      icon: (
+        <Image src={"/icons/earn.svg"} width={25} height={25} alt={"Earn"} />
+      ),
+      selectedIcon: "/icons/selectedEarn.svg",
       isSelected: false,
     },
     {
-      href: '/lend',
-      title: 'Lend',
-      icon: <Image src={'/icons/earn.svg'} width={40} height={40} />,
-      selectedIcon: '/icons/selectedEarn.svg',
+      href: "/lend",
+      title: "Lend",
+      icon: (
+        <Image src={"/icons/lend.svg"} width={25} height={25} alt={"Lend"} />
+      ),
+      selectedIcon: "/icons/selectedLend.svg",
       isSelected: false,
     },
-  ])
+  ]);
 
   useEffect(() => {
     if (pathName) {
-      activeRoute(pathName)
+      activeRoute(pathName);
     }
-  }, [pathName])
+  }, [pathName]);
 
   const activeRoute = (route: string) => {
-    let _routes = [...menuItems]
+    handleSidebarClick?.(route);
+    let _routes = [...menuItems];
     _routes = _routes.map((item) => {
       return {
         ...item,
         isSelected: item.href === route ? true : false,
-      }
-    })
-    setMenuItems([..._routes])
-  }
+      };
+    });
+    setMenuItems([..._routes]);
+  };
 
   return (
-    <aside className="sidebar sticky top-0 h-screen bg-[#001223]">
+    <aside
+      className={`sidebar sticky top-0 h-screen ${
+        theme.palette.mode === "light" ? "bg-slate-200" : "bg-[#001223]"
+      } `}
+    >
       <div
         className={`flex items-center justify-center ${
-          width > 680 ? 'h-[90px]' : ''
+          width > 680 ? "h-[90px]" : ""
         }`}
       >
         {width > 680 && (
-          <Link href={'/'}>
+          <Link href={"/"}>
             <a>
               <Image
                 src="/icons/home.svg"
@@ -79,21 +102,35 @@ const Sidebar = () => {
                 <a
                   className={`flex p-2  justify-center rounded cursor-pointer ${
                     styles.itemIcon
-                  } ${router.asPath === href && 'text-white'} ${
-                    isSelected ? styles.selectedItem : ''
+                  } ${router.asPath === href && "text-white"} ${
+                    isSelected ? styles.selectedItem : ""
+                  } ${
+                    isSelected
+                      ? theme.palette.mode === "light"
+                        ? "bg-[#b6d4db]"
+                        : "bg-[#1b2e41]"
+                      : ""
                   }`}
                 >
                   {isSelected ? (
                     <Image
                       src={selectedIcon}
                       alt={title}
-                      width={44}
-                      height={44}
+                      width={27}
+                      height={27}
                     />
                   ) : (
                     icon
                   )}
-                  <span className="text-xs">{title}</span>
+                  <span
+                    className={`text-xs ${
+                      theme.palette.mode === "light"
+                        ? "text-[#000]"
+                        : "text-[#ffffff59]"
+                    }`}
+                  >
+                    {title}
+                  </span>
                 </a>
               </Link>
             </li>
@@ -108,7 +145,7 @@ const Sidebar = () => {
           <Link href={"https://twitter.com/BLBprotocol/"}>
             <a>
               <Image
-                src="/icons/twitter.svg"
+                src="/social/twitter.svg"
                 alt="twitter"
                 width={20}
                 height={18}
@@ -120,7 +157,7 @@ const Sidebar = () => {
           <Link href={"https://discord.com/invite/VJAPVjy5uk"}>
             <a>
               <Image
-                src="/icons/discord.svg"
+                src="/social/discord.svg"
                 alt="discord"
                 width={20}
                 height={18}
@@ -132,7 +169,11 @@ const Sidebar = () => {
           <Link href={"https://github.com/Blueberryfi"}>
             <a>
               <Image
-                src="/icons/git.svg"
+                src={
+                  theme.palette.mode === "light"
+                    ? "/social/github-dark.svg"
+                    : "/social/github-light.svg"
+                }
                 alt="github"
                 width={20}
                 height={18}
@@ -144,7 +185,11 @@ const Sidebar = () => {
           <Link href={"https://medium.com/@blueberryprotocol"}>
             <a>
               <Image
-                src="/icons/m_icon.svg"
+                src={
+                  theme.palette.mode === "light"
+                    ? "/social/medium-dark.svg"
+                    : "/social/medium-light.svg"
+                }
                 alt="medium"
                 width={20}
                 height={18}
@@ -157,7 +202,7 @@ const Sidebar = () => {
         <button className='absolute bottom-4 p-2 bg-fuchsia-200 rounded hover:bg-fuchsia-400 cursor-pointer'>Link to everything</button>
       </div> */}
     </aside>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

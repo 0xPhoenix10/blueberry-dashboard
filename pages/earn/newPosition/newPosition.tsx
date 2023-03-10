@@ -1,28 +1,57 @@
 import {
   FormControl,
   FormControlLabel,
-  FormLabel,
   Radio,
   RadioGroup,
-  Slider,
 } from "@mui/material";
-import Button from "../../../components/UI/Button/Button";
 import Style from "./newPosition.module.scss";
 import LeverageSlider from "./LeverageSlider";
 import { useState } from "react";
 import CustomButton from "../../../components/UI/customButton/customButton";
+
+import { useWeb3React } from "@web3-react/core";
+import { Web3Provider } from "@ethersproject/providers";
+import { toast } from "react-toastify";
+
+import { openPosition } from "../../../contracts/helper";
+
 const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
-  // const [type, setValue]=useState(0)
-  // const handleType = () => {
-  //     setValue('success')
-  // }
-  const [collateral, setCollateral] = useState('ICHI');
-  const handleCollateralChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const [isLoading, setLoading] = useState(false);
+  const [collateral, setCollateral] = useState("ICHI");
+  const [usdcAmount, setUSDCAmount] = useState(0);
+  const [ichiAmount, setICHIAmount] = useState(0);
+  const [usdcLeverage, setUSDCLeverage] = useState(1.2);
+  const [ichiLeverage, setICHILeverage] = useState(1.4);
+  const { active } = useWeb3React<Web3Provider>();
+
+  const handleCollateralChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setCollateral((event.target as HTMLInputElement).value);
   };
 
-  const handleSuccessPosition = () => {
-    handleButtonClick?.("success-position");
+  const handleSuccessPosition = async () => {
+    if (!active) {
+      toast.error("Please connect wallet first!");
+      return;
+    }
+    if (typeof window.ethereum !== undefined && window.ethereum) {
+      var amount = collateral == "ICHI" ? ichiAmount : usdcAmount;
+      var amount1 =
+        amount * (collateral == "ICHI" ? ichiLeverage : usdcLeverage);
+
+      try {
+        setLoading(true);
+        const res = await openPosition(collateral, amount, amount1);
+        setLoading(false);
+        if (res) {
+          handleButtonClick?.("success-position");
+        }
+      } catch (error) {
+        setLoading(false);
+        handleButtonClick?.("");
+      }
+    }
   };
 
   return (
@@ -46,7 +75,7 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
       </div>
       <div className={`mt-5 ${Style.chooseContainer}`}>
         <div className={Style["chooseContainer-content"]}>
-          <label>Choose Collateral</label>
+          <p className={Style.label}>Choose Collateral</p>
           <FormControl>
             <RadioGroup
               row
@@ -55,92 +84,133 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
               value={collateral}
               onChange={handleCollateralChange}
             >
-              <FormControlLabel
-                value="ICHI"
-                color="secondary"
-                control={<Radio sx={{
-                  color: '#fff',
-                  '&.Mui-checked': {
-                    color: '#05A06B',
-                    'svg:first-of-type': {
-                      color: '#fff'
-                    }
-                  },
-                }}/>}
-                label={<span style={{color: collateral == "ICHI" ? "#fff" : "#8D97A0"}}>ICHI</span>}
-              />
-              <input type="text" className={collateral == "ICHI" ? "" : Style.inputDisabled} onClick={() => setCollateral("ICHI")} />
+              <div>
+                <FormControlLabel
+                  value="ICHI"
+                  color="secondary"
+                  control={
+                    <Radio
+                      sx={{
+                        color: "#fff",
+                        "&.Mui-checked": {
+                          color: "#05A06B",
+                          "svg:first-of-type": {
+                            color: "#fff",
+                          },
+                        },
+                      }}
+                    />
+                  }
+                  label={
+                    <p
+                      style={{
+                        color: collateral == "ICHI" ? "#fff" : "#8D97A0",
+                        width: "42px",
+                      }}
+                    >
+                      ICHI
+                    </p>
+                  }
+                />
+                <input
+                  type="number"
+                  className={collateral == "ICHI" ? "" : Style.inputDisabled}
+                  onClick={() => setCollateral("ICHI")}
+                  onChange={(e) => setICHIAmount(parseInt(e.target.value))}
+                />
+              </div>
 
-              <FormControlLabel
-                value="USDC"
-                color="secondary"
-                control={<Radio sx={{
-                  color: '#fff',
-                  marginLeft: '10px',
-                  '&.Mui-checked': {
-                    color: '#05A06B',
-                    'svg:first-of-type': {
-                      color: '#fff'
-                    }
-                  },
-                }}/>}
-                label={<span style={{color: collateral == "USDC" ? "#fff" : "#8D97A0"}}>USDC</span>}
-              />
-              <input type="text" className={collateral == "USDC" ? "" : Style.inputDisabled} onClick={() => setCollateral("USDC")} />
+              <div className={Style.formControl}>
+                <FormControlLabel
+                  value="USDC"
+                  color="secondary"
+                  control={
+                    <Radio
+                      sx={{
+                        color: "#fff",
+                        "&.Mui-checked": {
+                          color: "#05A06B",
+                          "svg:first-of-type": {
+                            color: "#fff",
+                          },
+                        },
+                      }}
+                    />
+                  }
+                  label={
+                    <p
+                      style={{
+                        color: collateral == "USDC" ? "#fff" : "#8D97A0",
+                        width: "42px",
+                      }}
+                    >
+                      USDC
+                    </p>
+                  }
+                />
+                <input
+                  type="number"
+                  className={collateral == "USDC" ? "" : Style.inputDisabled}
+                  onClick={() => setCollateral("USDC")}
+                  onChange={(e) => setUSDCAmount(parseInt(e.target.value))}
+                />
+              </div>
             </RadioGroup>
           </FormControl>
         </div>
         <div className={` ${Style.chooseSubContainer}`}></div>
 
         <div className={Style["chooseContainer-content"]}>
-          <label className={` ${Style.chooseSubContainerLabel}`}>
+          <p className={`${Style.label} ${Style.chooseSubContainerLabel}`}>
             Choose Leverage
-          </label>
-          {
-            collateral == "USDC" ? (
-              <LeverageSlider
-                marks={[
-                  {
-                    value: 0,
-                    label: '0x',
-                  },
-                  {
-                    value: 1,
-                    label: '1x',
-                  },
-                  {
-                    value: 3,
-                    label: '3x',
-                  },
-                ]}
-                max={3}
-                realMax={3}
-              />
-            ) : (
-              <LeverageSlider
-                marks={[
-                  {
-                    value: 0,
-                    label: '0x',
-                  },
-                  {
-                    value: 1,
-                    label: '1x',
-                  },
-                  {
-                    value: 1.5,
-                    label: '1.5x',
-                  },
-                  {
-                    value: 3,
-                    label: '3x',
-                  },
-                ]}
-                max={3}
-                realMax={1.5}
-              />
-            )
-          }
+          </p>
+          {collateral == "USDC" ? (
+            <LeverageSlider
+              marks={[
+                {
+                  value: 0,
+                  label: "0x",
+                },
+                {
+                  value: 1,
+                  label: "1x",
+                },
+                {
+                  value: 3,
+                  label: "3x",
+                },
+              ]}
+              max={3}
+              realMax={3}
+              value={usdcLeverage}
+              setValue={setUSDCLeverage}
+            />
+          ) : (
+            <LeverageSlider
+              marks={[
+                {
+                  value: 0,
+                  label: "0x",
+                },
+                {
+                  value: 1,
+                  label: "1x",
+                },
+                {
+                  value: 1.5,
+                  label: "1.5x",
+                },
+                {
+                  value: 3,
+                  label: "3x",
+                },
+              ]}
+              max={3}
+              realMax={1.5}
+              value={ichiLeverage}
+              setValue={setICHILeverage}
+            />
+          )}
         </div>
       </div>
 
@@ -148,7 +218,7 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
         <ul className={Style.list}>
           <li>
             <span>Total Position Value</span>{" "}
-            <span className={Style.bold}>$900 ($630 ICHI / $270 USDC)</span>
+            <p className={Style.bold}>$900 ($630 ICHI / $270 USDC)</p>
           </li>
           <li>
             <span>Borrowing</span>{" "}
@@ -171,6 +241,7 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
         title={"Open Positon"}
         buttonStyle={`mt-4 ${Style.button}`}
         handleButtonClick={handleSuccessPosition}
+        isLoading={isLoading}
       />
     </div>
   );
@@ -178,5 +249,5 @@ const NewPosition = ({ handleButtonClick }: NewPositionProps) => {
 export default NewPosition;
 
 interface NewPositionProps {
-  handleButtonClick: (value:string) => void;
+  handleButtonClick: (value: string) => void;
 }

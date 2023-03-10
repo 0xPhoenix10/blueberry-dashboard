@@ -3,6 +3,10 @@
   justify-content: space-between;
   align-items: center;
 
+  @media (max-width: 680px) {
+    display: block;
+  }
+
   .title {
     font-weight: 700;
     line-height: 30px;
@@ -13,21 +17,37 @@
   .rightContainer {
     display: flex;
 
+    @media (max-width: 680px) {
+      display: block;
+    }
+
     .rightSubContainer {
       display: flex;
       flex-direction: column;
+
+      @media (max-width: 680px) {
+        margin: 0px;
+      }
 
       .text1 {
         color: #8d97a0;
         font-size: 12px;
         font-weight: 400;
         text-align: end;
+
+        @media (max-width: 680px) {
+          text-align: start;
+        }
       }
 
       .text2 {
         font-size: 16px;
         text-align: end;
         font-weight: 400;
+
+        @media (max-width: 680px) {
+          text-align: start;
+        }
       }
     }
   }
@@ -41,8 +61,13 @@
   .chooseSubContainer {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
   }
+
   .chooseSubContainerLabel {
     padding-bottom: 27px;
+    min-width: 130px;
+
+    @media (max-width: 680px) {
+    }
   }
 
   .chooseContainer-content {
@@ -52,10 +77,24 @@
     column-gap: 25px;
     margin-top: 20px;
 
-    label {
+    @media (max-width: 680px) {
+      display: block;
+    }
+
+    .formControl {
+      @media (max-width: 519px) {
+        margin-top: 10px;
+      }
+    }
+
+    .label {
       font-size: 12px;
       font-weight: 400;
       color: #fff;
+
+      @media (max-width: 680px) {
+        margin-bottom: 20px;
+      }
     }
 
     .inputDisabled {
@@ -63,7 +102,7 @@
       border: 0px !important;
     }
 
-    input[type="text"] {
+    input[type="number"] {
       width: 90px;
       height: 40px;
       background: rgba(255, 255, 255, 0.25);
@@ -74,23 +113,34 @@
       color: #fff;
       font-family: heebo;
       font-weight: 500;
-      
-      border: 1px solid #FFFFFF;
+
+      border: 1px solid #ffffff;
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
     }
   }
 }
 
 .button {
   width: 100%;
-
 }
 
 .bottomContainer {
   padding: 25px 5px;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 680px) {
+    display: block;
+  }
+
   .list {
     list-style: unstyled;
+
     li {
       display: flex;
       color: #fff;
@@ -98,11 +148,19 @@
       font-size: 12px;
       font-weight: 300;
       white-space: pre;
+
+      @media (max-width: 680px) {
+        white-space: break-spaces;
+      }
+
       //  column-gap: 25px;
       .bold {
         font-weight: 400;
+        margin: 0px;
       }
-      span {
+
+      span,
+      p {
         width: 50%;
       }
     }
